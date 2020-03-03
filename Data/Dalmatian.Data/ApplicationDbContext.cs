@@ -26,7 +26,29 @@
 
         public DbSet<Setting> Settings { get; set; }
 
-        public DbSet<ClubRegisterNumber> ClubRegisterNumbers { get; set; }  
+        public DbSet<ClubRegisterNumber> ClubRegisterNumbers { get; set; }
+
+        public DbSet<BreedingInformation> BreedingInformations { get; set; }
+
+        public DbSet<ConfirmationOfMating> ConfirmationOfMatings { get; set; }
+
+        public DbSet<Dog> Dogs { get; set; }
+
+        public DbSet<HealthInformation> HealthInformations { get; set; }
+
+        public DbSet<Kennel> Kennels { get; set; }
+
+        public DbSet<Litter> Litters { get; set; }
+
+        public DbSet<Parent> Parents { get; set; }
+
+        public DbSet<Person> Persons { get; set; }
+
+        public DbSet<RegistrationDogNumber> RegistrationDogNumbers { get; set; }
+
+        public DbSet<ReportOfLitter> ReportOfLitters { get; set; }
+
+        public DbSet<User> Users { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 
