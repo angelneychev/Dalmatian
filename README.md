@@ -1,8 +1,4 @@
 # Dalmatian Database
-<<<<<<< HEAD
-=======
-
->>>>>>> f55de6c... update README.md
 
 ## Build status
 
