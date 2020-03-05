@@ -15,7 +15,7 @@
 
         public Parent Parent { get; set; }
 
-        public int ParentId { get; set; }
+        //public int ParentId { get; set; }
 
         public DateTime? DateOfBirth { get; set; }
 

@@ -4,10 +4,13 @@
 
     public class Parent : BaseDeletableModel<int>
     {
+        public Dog Dog { get; set; }
 
-        public int? FatherId { get; set; }
+        public int DogId { get; set; }
 
-        public int? MotherId { get; set; }
+        public int? FatherDogId { get; set; }
+
+        public int? MotherDogId { get; set; }
 
     }
 }

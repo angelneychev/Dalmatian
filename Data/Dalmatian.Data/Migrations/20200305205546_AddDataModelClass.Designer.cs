@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dalmatian.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200303195359_DatabaseModel")]
-    partial class DatabaseModel
+    [Migration("20200305205546_AddDataModelClass")]
+    partial class AddDataModelClass
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -301,9 +301,6 @@ namespace Dalmatian.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ParentId")
-                        .HasColumnType("int");
-
                     b.Property<string>("PedigreeName")
                         .HasColumnType("nvarchar(max)");
 
@@ -318,8 +315,6 @@ namespace Dalmatian.Data.Migrations
                     b.HasIndex("ClubRegisterNumberId");
 
                     b.HasIndex("IsDeleted");
-
-                    b.HasIndex("ParentId");
 
                     b.HasIndex("PersonId");
 
@@ -490,7 +485,10 @@ namespace Dalmatian.Data.Migrations
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("FatherId")
+                    b.Property<int>("DogId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("FatherDogId")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
@@ -499,10 +497,13 @@ namespace Dalmatian.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("MotherId")
+                    b.Property<int?>("MotherDogId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DogId")
+                        .IsUnique();
 
                     b.HasIndex("IsDeleted");
 
@@ -876,12 +877,6 @@ namespace Dalmatian.Data.Migrations
                         .WithMany()
                         .HasForeignKey("ClubRegisterNumberId");
 
-                    b.HasOne("Dalmatian.Data.Models.Parent", "Parent")
-                        .WithMany()
-                        .HasForeignKey("ParentId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("Dalmatian.Data.Models.Person", "Person")
                         .WithMany()
                         .HasForeignKey("PersonId");
@@ -920,6 +915,15 @@ namespace Dalmatian.Data.Migrations
                     b.HasOne("Dalmatian.Data.Models.Person", "Person")
                         .WithMany()
                         .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Dalmatian.Data.Models.Parent", b =>
+                {
+                    b.HasOne("Dalmatian.Data.Models.Dog", "Dog")
+                        .WithOne("Parent")
+                        .HasForeignKey("Dalmatian.Data.Models.Parent", "DogId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
