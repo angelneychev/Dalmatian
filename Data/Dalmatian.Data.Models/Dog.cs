@@ -1,4 +1,7 @@
-﻿namespace Dalmatian.Data.Models
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace Dalmatian.Data.Models
 {
     using System;
 
@@ -23,13 +26,27 @@
 
         public Color Color { get; set; }
 
-        public Person Person { get; set; }
+        public string OwnerName { get; set; }
 
-        public int? PersonId { get; set; }
+        public string BreederName { get; set; }
+
+        //public Person Person { get; set; }
+
+        //public int? PersonId { get; set; }
 
         public ClubRegisterNumber ClubRegisterNumber { get; set; }
 
         public int? ClubRegisterNumberId { get; set; }
+
+        //public virtual ICollection<Parent> DogParents { get; set; } = new HashSet<Parent>();
+
+        public virtual ICollection<BreedingInformation> BreedingInformation { get; set; } = new HashSet<BreedingInformation>();
+
+        public virtual ICollection<HealthInformation> DogHealthInformation { get; set; } = new HashSet<HealthInformation>();
+
+        public virtual ICollection<RegistrationDogNumber> RegistrationDogNumbers { get; set; } = new HashSet<RegistrationDogNumber>();
+
+        //public virtual ICollection<ClubRegisterNumber> ClubRegisterNumbers { get; set; } = new HashSet<ClubRegisterNumber>();
 
     }
 }
