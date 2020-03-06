@@ -1,7 +1,7 @@
-﻿using Dalmatian.Data.Common.Models;
-
-namespace Dalmatian.Data.Models
+﻿namespace Dalmatian.Data.Models
 {
+    using Dalmatian.Data.Common.Models;
+
     public class ClubRegisterNumber : BaseDeletableModel<int>
     {
         public string ClubNumber { get; set; }
