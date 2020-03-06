@@ -1,4 +1,6 @@
-﻿namespace Dalmatian.Data.Models
+﻿using System.Collections.Generic;
+
+namespace Dalmatian.Data.Models
 {
     using Dalmatian.Data.Common.Models;
 
@@ -11,6 +13,5 @@
         public int? FatherDogId { get; set; }
 
         public int? MotherDogId { get; set; }
-
     }
 }

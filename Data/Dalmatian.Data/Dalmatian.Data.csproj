@@ -15,6 +15,10 @@
     <Compile Remove="Migrations\20200303092128_test.Designer.cs" />
     <Compile Remove="Migrations\20200303193330_DatabaseModel.cs" />
     <Compile Remove="Migrations\20200303193330_DatabaseModel.Designer.cs" />
+    <Compile Remove="Migrations\20200305205546_AddDataModelClass.cs" />
+    <Compile Remove="Migrations\20200305205546_AddDataModelClass.Designer.cs" />
+    <Compile Remove="Migrations\20200306104307_EditModelDataDog.cs" />
+    <Compile Remove="Migrations\20200306104307_EditModelDataDog.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
