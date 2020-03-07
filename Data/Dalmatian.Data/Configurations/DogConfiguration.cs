@@ -1,9 +1,9 @@
-﻿using Dalmatian.Data.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-namespace Dalmatian.Data.Configurations
+﻿namespace Dalmatian.Data.Configurations
 {
+    using Dalmatian.Data.Models;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
     public class DogConfiguration : IEntityTypeConfiguration<Dog>
     {
         public void Configure(EntityTypeBuilder<Dog> dog)

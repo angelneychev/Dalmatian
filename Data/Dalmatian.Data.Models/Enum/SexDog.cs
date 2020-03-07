@@ -4,7 +4,7 @@
 
     public enum SexDog
     {
-        [Display(Name = "Dalmatian")]
-        Dalmatian = 1530,
+        Male = 10,
+        Female = 20,
     }
 }

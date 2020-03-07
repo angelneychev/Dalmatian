@@ -1,8 +1,8 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace Dalmatian.Data.Migrations
+﻿namespace Dalmatian.Data.Migrations
 {
+    using System;
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class AddNewModelDataClass : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,7 +19,7 @@ namespace Dalmatian.Data.Migrations
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     Firstname = table.Column<string>(nullable: true),
                     Middlename = table.Column<string>(nullable: true),
-                    Lastname = table.Column<string>(nullable: true)
+                    Lastname = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -45,7 +45,7 @@ namespace Dalmatian.Data.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
-                    DisplayName = table.Column<string>(nullable: true)
+                    DisplayName = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -76,7 +76,7 @@ namespace Dalmatian.Data.Migrations
                     Twitter = table.Column<string>(nullable: true),
                     Instagram = table.Column<string>(nullable: true),
                     LinkedIn = table.Column<string>(nullable: true),
-                    UserId = table.Column<string>(nullable: true)
+                    UserId = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -107,7 +107,7 @@ namespace Dalmatian.Data.Migrations
                     Color = table.Column<int>(nullable: false),
                     OwnerName = table.Column<string>(nullable: true),
                     BreederName = table.Column<string>(nullable: true),
-                    ClubRegisterNumberId = table.Column<int>(nullable: true)
+                    ClubRegisterNumberId = table.Column<int>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -131,7 +131,7 @@ namespace Dalmatian.Data.Migrations
                     BreedingStatus = table.Column<int>(nullable: false),
                     CountryOfOrigin = table.Column<int>(nullable: false),
                     CountryOfResidence = table.Column<int>(nullable: false),
-                    DogId = table.Column<int>(nullable: false)
+                    DogId = table.Column<int>(nullable: false),
                 },
                 constraints: table =>
                 {
@@ -155,7 +155,7 @@ namespace Dalmatian.Data.Migrations
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     ClubNumber = table.Column<string>(nullable: true),
-                    DogId = table.Column<int>(nullable: true)
+                    DogId = table.Column<int>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -182,7 +182,7 @@ namespace Dalmatian.Data.Migrations
                     DogMaleId = table.Column<int>(nullable: false),
                     DogFemaleId = table.Column<int>(nullable: false),
                     DateOfMating = table.Column<DateTime>(nullable: false),
-                    TypeOfMating = table.Column<int>(nullable: false)
+                    TypeOfMating = table.Column<int>(nullable: false),
                 },
                 constraints: table =>
                 {
@@ -215,7 +215,7 @@ namespace Dalmatian.Data.Migrations
                     HipRating = table.Column<int>(nullable: false),
                     ElbowRating = table.Column<int>(nullable: false),
                     OtherHealthTest = table.Column<string>(nullable: true),
-                    DogId = table.Column<int>(nullable: false)
+                    DogId = table.Column<int>(nullable: false),
                 },
                 constraints: table =>
                 {
@@ -240,7 +240,7 @@ namespace Dalmatian.Data.Migrations
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     DogId = table.Column<int>(nullable: false),
                     FatherDogId = table.Column<int>(nullable: true),
-                    MotherDogId = table.Column<int>(nullable: true)
+                    MotherDogId = table.Column<int>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -264,7 +264,7 @@ namespace Dalmatian.Data.Migrations
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     RegistrationNumber = table.Column<string>(nullable: true),
-                    DogId = table.Column<int>(nullable: false)
+                    DogId = table.Column<int>(nullable: false),
                 },
                 constraints: table =>
                 {
@@ -295,7 +295,7 @@ namespace Dalmatian.Data.Migrations
                     NumberOfFemales = table.Column<int>(nullable: false),
                     PersonId = table.Column<int>(nullable: false),
                     KennelId = table.Column<int>(nullable: false),
-                    LetterOfLitter = table.Column<int>(nullable: false)
+                    LetterOfLitter = table.Column<int>(nullable: false),
                 },
                 constraints: table =>
                 {
@@ -333,7 +333,7 @@ namespace Dalmatian.Data.Migrations
                     LitterId = table.Column<int>(nullable: false),
                     DogId = table.Column<int>(nullable: false),
                     BreederInCharge = table.Column<string>(nullable: true),
-                    DateOfExamination = table.Column<DateTime>(nullable: false)
+                    DateOfExamination = table.Column<DateTime>(nullable: false),
                 },
                 constraints: table =>
                 {

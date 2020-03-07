@@ -1,8 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace Dalmatian.Data.Migrations
+﻿namespace Dalmatian.Data.Migrations
 {
+    using System;
+
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class EditDataModelDogKennelAddBreade : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -103,7 +104,7 @@ namespace Dalmatian.Data.Migrations
                     Facebook = table.Column<string>(nullable: true),
                     Twitter = table.Column<string>(nullable: true),
                     Instagram = table.Column<string>(nullable: true),
-                    Linkedin = table.Column<string>(nullable: true)
+                    Linkedin = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -284,7 +285,7 @@ namespace Dalmatian.Data.Migrations
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     Lastname = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Middlename = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                 },
                 constraints: table =>
                 {
@@ -310,7 +311,7 @@ namespace Dalmatian.Data.Migrations
                     PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
                     SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                 },
                 constraints: table =>
                 {
