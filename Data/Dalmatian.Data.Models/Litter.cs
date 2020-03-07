@@ -21,13 +21,9 @@
 
         public int NumberOfFemales { get; set; }
 
-        public Person Person { get; set; }
+        public Breeder Breeder { get; set; }
 
-        public int PersonId { get; set; }
-
-        public Kennel Kennel { get; set; }
-
-        public int KennelId { get; set; }
+        public int BreederId { get; set; }
 
         public LetterOfLitter LetterOfLitter { get; set; }
     }

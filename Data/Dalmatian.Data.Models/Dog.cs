@@ -10,6 +10,14 @@ namespace Dalmatian.Data.Models
 
     public class Dog : BaseDeletableModel<int>
     {
+        public Dog()
+        {
+            this.BreedingInformation = new HashSet<BreedingInformation>();
+            this.DogHealthInformation = new HashSet<HealthInformation>();
+            this.RegistrationDogNumbers = new HashSet<RegistrationDogNumber>();
+            this.Parents = new HashSet<Parent>();
+        }
+
         public string PedigreeName { get; set; }
 
         public Breed Breed { get; set; }
@@ -30,23 +38,16 @@ namespace Dalmatian.Data.Models
 
         public string BreederName { get; set; }
 
-        //public Person Person { get; set; }
-
-        //public int? PersonId { get; set; }
-
         public ClubRegisterNumber ClubRegisterNumber { get; set; }
 
         public int? ClubRegisterNumberId { get; set; }
 
-        //public virtual ICollection<Parent> DogParents { get; set; } = new HashSet<Parent>();
+        public virtual ICollection<Parent> Parents { get; set; }
 
-        public virtual ICollection<BreedingInformation> BreedingInformation { get; set; } = new HashSet<BreedingInformation>();
+        public virtual ICollection<BreedingInformation> BreedingInformation { get; set; }
 
-        public virtual ICollection<HealthInformation> DogHealthInformation { get; set; } = new HashSet<HealthInformation>();
+        public virtual ICollection<HealthInformation> DogHealthInformation { get; set; }
 
-        public virtual ICollection<RegistrationDogNumber> RegistrationDogNumbers { get; set; } = new HashSet<RegistrationDogNumber>();
-
-        //public virtual ICollection<ClubRegisterNumber> ClubRegisterNumbers { get; set; } = new HashSet<ClubRegisterNumber>();
-
+        public virtual ICollection<RegistrationDogNumber> RegistrationDogNumbers { get; set; }
     }
 }

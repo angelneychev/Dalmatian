@@ -42,13 +42,12 @@
 
         public DbSet<Parent> Parents { get; set; }
 
-        public DbSet<Person> Persons { get; set; }
+        public DbSet<Breeder> Breeder { get; set; }
 
         public DbSet<RegistrationDogNumber> RegistrationDogNumbers { get; set; }
 
         public DbSet<ReportOfLitter> ReportOfLitters { get; set; }
 
-        public DbSet<User> Users { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 

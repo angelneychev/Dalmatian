@@ -13,5 +13,6 @@ namespace Dalmatian.Data.Models
         public int? FatherDogId { get; set; }
 
         public int? MotherDogId { get; set; }
+
     }
 }

@@ -4,14 +4,16 @@ using Dalmatian.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Dalmatian.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200307184645_EditDataModelDogKennelAddBreade")]
+    partial class EditDataModelDogKennelAddBreade
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,6 +68,9 @@ namespace Dalmatian.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("BreederId")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -125,6 +130,8 @@ namespace Dalmatian.Data.Migrations
                         .HasMaxLength(256);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BreederId");
 
                     b.HasIndex("IsDeleted");
 
@@ -483,9 +490,6 @@ namespace Dalmatian.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BreederId")
-                        .HasColumnType("int");
-
                     b.Property<int>("ConfirmationOfMatingId")
                         .HasColumnType("int");
 
@@ -500,6 +504,9 @@ namespace Dalmatian.Data.Migrations
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<int>("KennelId")
+                        .HasColumnType("int");
 
                     b.Property<int>("LetterOfLitter")
                         .HasColumnType("int");
@@ -516,16 +523,21 @@ namespace Dalmatian.Data.Migrations
                     b.Property<int>("NumberOfPuppies")
                         .HasColumnType("int");
 
+                    b.Property<int>("PersonId")
+                        .HasColumnType("int");
+
                     b.Property<string>("RegistrationNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BreederId");
-
                     b.HasIndex("ConfirmationOfMatingId");
 
                     b.HasIndex("IsDeleted");
+
+                    b.HasIndex("KennelId");
+
+                    b.HasIndex("PersonId");
 
                     b.ToTable("Litters");
                 });
@@ -785,6 +797,13 @@ namespace Dalmatian.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Dalmatian.Data.Models.ApplicationUser", b =>
+                {
+                    b.HasOne("Dalmatian.Data.Models.Breeder", null)
+                        .WithMany("Users")
+                        .HasForeignKey("BreederId");
+                });
+
             modelBuilder.Entity("Dalmatian.Data.Models.Breeder", b =>
                 {
                     b.HasOne("Dalmatian.Data.Models.Kennel", "Kennel")
@@ -838,15 +857,21 @@ namespace Dalmatian.Data.Migrations
 
             modelBuilder.Entity("Dalmatian.Data.Models.Litter", b =>
                 {
-                    b.HasOne("Dalmatian.Data.Models.Breeder", "Breeder")
-                        .WithMany()
-                        .HasForeignKey("BreederId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("Dalmatian.Data.Models.ConfirmationOfMating", "ConfirmationOfMating")
                         .WithMany()
                         .HasForeignKey("ConfirmationOfMatingId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Dalmatian.Data.Models.Kennel", "Kennel")
+                        .WithMany()
+                        .HasForeignKey("KennelId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Dalmatian.Data.Models.Breeder", "Person")
+                        .WithMany()
+                        .HasForeignKey("PersonId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
