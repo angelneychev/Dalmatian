@@ -1,57 +1,12 @@
-﻿namespace Dalmatian.Data.Migrations
-{
-    using System;
-    using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
-    public partial class AddNewModelDataClass : Migration
+namespace Dalmatian.Data.Migrations
+{
+    public partial class editeDataModel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Persons",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedOn = table.Column<DateTime>(nullable: false),
-                    ModifiedOn = table.Column<DateTime>(nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: false),
-                    DeletedOn = table.Column<DateTime>(nullable: true),
-                    Firstname = table.Column<string>(nullable: true),
-                    Middlename = table.Column<string>(nullable: true),
-                    Lastname = table.Column<string>(nullable: true),
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Persons", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
-                {
-                    Id = table.Column<string>(nullable: false),
-                    UserName = table.Column<string>(nullable: true),
-                    NormalizedUserName = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    NormalizedEmail = table.Column<string>(nullable: true),
-                    EmailConfirmed = table.Column<bool>(nullable: false),
-                    PasswordHash = table.Column<string>(nullable: true),
-                    SecurityStamp = table.Column<string>(nullable: true),
-                    ConcurrencyStamp = table.Column<string>(nullable: true),
-                    PhoneNumber = table.Column<string>(nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
-                    LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false),
-                    DisplayName = table.Column<string>(nullable: true),
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.Id);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Kennels",
                 columns: table => new
@@ -64,27 +19,83 @@
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     RegistrationNumber = table.Column<string>(nullable: true),
-                    OwnerName = table.Column<string>(nullable: true),
-                    Breed = table.Column<int>(nullable: false),
                     Country = table.Column<int>(nullable: false),
-                    City = table.Column<string>(nullable: true),
-                    Address = table.Column<string>(nullable: true),
-                    Phone = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    Website = table.Column<string>(nullable: true),
-                    Facebook = table.Column<string>(nullable: true),
-                    Twitter = table.Column<string>(nullable: true),
-                    Instagram = table.Column<string>(nullable: true),
-                    LinkedIn = table.Column<string>(nullable: true),
-                    UserId = table.Column<string>(nullable: true),
+                    City = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Kennels", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Breeder",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    ModifiedOn = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    DeletedOn = table.Column<DateTime>(nullable: true),
+                    Firstname = table.Column<string>(nullable: true),
+                    Middlename = table.Column<string>(nullable: true),
+                    Lastname = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: true),
+                    KennelId = table.Column<int>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    Phone = table.Column<string>(nullable: true),
+                    Website = table.Column<string>(nullable: true),
+                    Country = table.Column<int>(nullable: false),
+                    City = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(nullable: true),
+                    Facebook = table.Column<string>(nullable: true),
+                    Twitter = table.Column<string>(nullable: true),
+                    Instagram = table.Column<string>(nullable: true),
+                    Linkedin = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Breeder", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Kennels_Users_UserId",
+                        name: "FK_Breeder_Kennels_KennelId",
+                        column: x => x.KennelId,
+                        principalTable: "Kennels",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Breeder_AspNetUsers_UserId",
                         column: x => x.UserId,
-                        principalTable: "Users",
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Litters",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    ModifiedOn = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    DeletedOn = table.Column<DateTime>(nullable: true),
+                    RegistrationNumber = table.Column<string>(nullable: true),
+                    DateOfBirth = table.Column<DateTime>(nullable: false),
+                    ConfirmationOfMatingId = table.Column<int>(nullable: false),
+                    NumberOfPuppies = table.Column<int>(nullable: false),
+                    NumberOfMales = table.Column<int>(nullable: false),
+                    NumberOfFemales = table.Column<int>(nullable: false),
+                    BreederId = table.Column<int>(nullable: false),
+                    LetterOfLitter = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Litters", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Litters_Breeder_BreederId",
+                        column: x => x.BreederId,
+                        principalTable: "Breeder",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -102,12 +113,16 @@
                     PedigreeName = table.Column<string>(nullable: true),
                     Breed = table.Column<int>(nullable: false),
                     SexDog = table.Column<int>(nullable: false),
+                    ImagesUrl = table.Column<string>(nullable: true),
                     DateOfBirth = table.Column<DateTime>(nullable: true),
                     DateOfDeath = table.Column<DateTime>(nullable: true),
                     Color = table.Column<int>(nullable: false),
                     OwnerName = table.Column<string>(nullable: true),
                     BreederName = table.Column<string>(nullable: true),
+                    BreedingInformationId = table.Column<int>(nullable: true),
                     ClubRegisterNumberId = table.Column<int>(nullable: true),
+                    ParentId = table.Column<int>(nullable: true),
+                    RegistrationDogNumberId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -131,7 +146,7 @@
                     BreedingStatus = table.Column<int>(nullable: false),
                     CountryOfOrigin = table.Column<int>(nullable: false),
                     CountryOfResidence = table.Column<int>(nullable: false),
-                    DogId = table.Column<int>(nullable: false),
+                    DogId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -154,8 +169,8 @@
                     ModifiedOn = table.Column<DateTime>(nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
-                    ClubNumber = table.Column<string>(nullable: true),
-                    DogId = table.Column<int>(nullable: true),
+                    DogId = table.Column<int>(nullable: false),
+                    ClubNumber = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -182,7 +197,7 @@
                     DogMaleId = table.Column<int>(nullable: false),
                     DogFemaleId = table.Column<int>(nullable: false),
                     DateOfMating = table.Column<DateTime>(nullable: false),
-                    TypeOfMating = table.Column<int>(nullable: false),
+                    TypeOfMating = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -215,7 +230,7 @@
                     HipRating = table.Column<int>(nullable: false),
                     ElbowRating = table.Column<int>(nullable: false),
                     OtherHealthTest = table.Column<string>(nullable: true),
-                    DogId = table.Column<int>(nullable: false),
+                    DogId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -240,7 +255,7 @@
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     DogId = table.Column<int>(nullable: false),
                     FatherDogId = table.Column<int>(nullable: true),
-                    MotherDogId = table.Column<int>(nullable: true),
+                    MotherDogId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -264,7 +279,7 @@
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     RegistrationNumber = table.Column<string>(nullable: true),
-                    DogId = table.Column<int>(nullable: false),
+                    DogId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -273,49 +288,6 @@
                         name: "FK_RegistrationDogNumbers_Dogs_DogId",
                         column: x => x.DogId,
                         principalTable: "Dogs",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Litters",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedOn = table.Column<DateTime>(nullable: false),
-                    ModifiedOn = table.Column<DateTime>(nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: false),
-                    DeletedOn = table.Column<DateTime>(nullable: true),
-                    RegistrationNumber = table.Column<string>(nullable: true),
-                    DateOfBirth = table.Column<DateTime>(nullable: false),
-                    ConfirmationOfMatingId = table.Column<int>(nullable: false),
-                    NumberOfPuppies = table.Column<int>(nullable: false),
-                    NumberOfMales = table.Column<int>(nullable: false),
-                    NumberOfFemales = table.Column<int>(nullable: false),
-                    PersonId = table.Column<int>(nullable: false),
-                    KennelId = table.Column<int>(nullable: false),
-                    LetterOfLitter = table.Column<int>(nullable: false),
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Litters", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Litters_ConfirmationOfMatings_ConfirmationOfMatingId",
-                        column: x => x.ConfirmationOfMatingId,
-                        principalTable: "ConfirmationOfMatings",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Litters_Kennels_KennelId",
-                        column: x => x.KennelId,
-                        principalTable: "Kennels",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Litters_Persons_PersonId",
-                        column: x => x.PersonId,
-                        principalTable: "Persons",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -333,7 +305,7 @@
                     LitterId = table.Column<int>(nullable: false),
                     DogId = table.Column<int>(nullable: false),
                     BreederInCharge = table.Column<string>(nullable: true),
-                    DateOfExamination = table.Column<DateTime>(nullable: false),
+                    DateOfExamination = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -351,6 +323,21 @@
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Breeder_IsDeleted",
+                table: "Breeder",
+                column: "IsDeleted");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Breeder_KennelId",
+                table: "Breeder",
+                column: "KennelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Breeder_UserId",
+                table: "Breeder",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_BreedingInformations_DogId",
@@ -388,6 +375,11 @@
                 column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Dogs_BreedingInformationId",
+                table: "Dogs",
+                column: "BreedingInformationId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Dogs_ClubRegisterNumberId",
                 table: "Dogs",
                 column: "ClubRegisterNumberId");
@@ -396,6 +388,16 @@
                 name: "IX_Dogs_IsDeleted",
                 table: "Dogs",
                 column: "IsDeleted");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Dogs_ParentId",
+                table: "Dogs",
+                column: "ParentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Dogs_RegistrationDogNumberId",
+                table: "Dogs",
+                column: "RegistrationDogNumberId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_HealthInformations_DogId",
@@ -413,9 +415,9 @@
                 column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Kennels_UserId",
-                table: "Kennels",
-                column: "UserId");
+                name: "IX_Litters_BreederId",
+                table: "Litters",
+                column: "BreederId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Litters_ConfirmationOfMatingId",
@@ -428,29 +430,13 @@
                 column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Litters_KennelId",
-                table: "Litters",
-                column: "KennelId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Litters_PersonId",
-                table: "Litters",
-                column: "PersonId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Parents_DogId",
                 table: "Parents",
-                column: "DogId",
-                unique: true);
+                column: "DogId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Parents_IsDeleted",
                 table: "Parents",
-                column: "IsDeleted");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Persons_IsDeleted",
-                table: "Persons",
                 column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
@@ -479,10 +465,42 @@
                 column: "LitterId");
 
             migrationBuilder.AddForeignKey(
+                name: "FK_Litters_ConfirmationOfMatings_ConfirmationOfMatingId",
+                table: "Litters",
+                column: "ConfirmationOfMatingId",
+                principalTable: "ConfirmationOfMatings",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Dogs_BreedingInformations_BreedingInformationId",
+                table: "Dogs",
+                column: "BreedingInformationId",
+                principalTable: "BreedingInformations",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
+
+            migrationBuilder.AddForeignKey(
                 name: "FK_Dogs_ClubRegisterNumbers_ClubRegisterNumberId",
                 table: "Dogs",
                 column: "ClubRegisterNumberId",
                 principalTable: "ClubRegisterNumbers",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Dogs_Parents_ParentId",
+                table: "Dogs",
+                column: "ParentId",
+                principalTable: "Parents",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Dogs_RegistrationDogNumbers_RegistrationDogNumberId",
+                table: "Dogs",
+                column: "RegistrationDogNumberId",
+                principalTable: "RegistrationDogNumbers",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Restrict);
         }
@@ -490,20 +508,23 @@
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
+                name: "FK_BreedingInformations_Dogs_DogId",
+                table: "BreedingInformations");
+
+            migrationBuilder.DropForeignKey(
                 name: "FK_ClubRegisterNumbers_Dogs_DogId",
                 table: "ClubRegisterNumbers");
 
-            migrationBuilder.DropTable(
-                name: "BreedingInformations");
+            migrationBuilder.DropForeignKey(
+                name: "FK_Parents_Dogs_DogId",
+                table: "Parents");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_RegistrationDogNumbers_Dogs_DogId",
+                table: "RegistrationDogNumbers");
 
             migrationBuilder.DropTable(
                 name: "HealthInformations");
-
-            migrationBuilder.DropTable(
-                name: "Parents");
-
-            migrationBuilder.DropTable(
-                name: "RegistrationDogNumbers");
 
             migrationBuilder.DropTable(
                 name: "ReportOfLitters");
@@ -512,22 +533,28 @@
                 name: "Litters");
 
             migrationBuilder.DropTable(
+                name: "Breeder");
+
+            migrationBuilder.DropTable(
                 name: "ConfirmationOfMatings");
 
             migrationBuilder.DropTable(
                 name: "Kennels");
 
             migrationBuilder.DropTable(
-                name: "Persons");
-
-            migrationBuilder.DropTable(
-                name: "Users");
-
-            migrationBuilder.DropTable(
                 name: "Dogs");
 
             migrationBuilder.DropTable(
+                name: "BreedingInformations");
+
+            migrationBuilder.DropTable(
                 name: "ClubRegisterNumbers");
+
+            migrationBuilder.DropTable(
+                name: "Parents");
+
+            migrationBuilder.DropTable(
+                name: "RegistrationDogNumbers");
         }
     }
 }

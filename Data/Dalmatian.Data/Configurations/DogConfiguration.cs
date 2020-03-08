@@ -1,4 +1,6 @@
-﻿namespace Dalmatian.Data.Configurations
+﻿using System.Reflection;
+
+namespace Dalmatian.Data.Configurations
 {
     using Dalmatian.Data.Models;
     using Microsoft.EntityFrameworkCore;
@@ -9,9 +11,26 @@
         public void Configure(EntityTypeBuilder<Dog> dog)
         {
             dog
-                .HasOne(a => a.Parent)
+                .HasMany(a => a.Parents)
                 .WithOne(b => b.Dog)
-                .HasForeignKey<Parent>(b => b.DogId);
+                .HasForeignKey(b => b.DogId);
+
+            dog
+                .HasMany(a => a.BreedingInformations)
+                .WithOne(b => b.Dog)
+                .HasForeignKey(b => b.DogId);
+
+            dog
+                .HasMany(a => a.HealthInformations)
+                .WithOne(b => b.Dog)
+                .HasForeignKey(b => b.DogId);
+
+            dog
+                .HasMany(a => a.RegistrationDogNumbers)
+                .WithOne(b => b.Dog)
+                .HasForeignKey(b => b.DogId);
+
+
         }
     }
 }

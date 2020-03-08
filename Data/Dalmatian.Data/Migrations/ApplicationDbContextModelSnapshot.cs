@@ -282,6 +282,9 @@ namespace Dalmatian.Data.Migrations
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("DogId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -289,6 +292,8 @@ namespace Dalmatian.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DogId");
 
                     b.HasIndex("IsDeleted");
 
@@ -353,6 +358,9 @@ namespace Dalmatian.Data.Migrations
                     b.Property<string>("BreederName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("BreedingInformationId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("ClubRegisterNumberId")
                         .HasColumnType("int");
 
@@ -383,17 +391,29 @@ namespace Dalmatian.Data.Migrations
                     b.Property<string>("OwnerName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ParentId")
+                        .HasColumnType("int");
+
                     b.Property<string>("PedigreeName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("RegistrationDogNumberId")
+                        .HasColumnType("int");
 
                     b.Property<int>("SexDog")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BreedingInformationId");
+
                     b.HasIndex("ClubRegisterNumberId");
 
                     b.HasIndex("IsDeleted");
+
+                    b.HasIndex("ParentId");
+
+                    b.HasIndex("RegistrationDogNumberId");
 
                     b.ToTable("Dogs");
                 });
@@ -549,9 +569,6 @@ namespace Dalmatian.Data.Migrations
                     b.Property<int>("DogId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("DogId1")
-                        .HasColumnType("int");
-
                     b.Property<int?>("FatherDogId")
                         .HasColumnType("int");
 
@@ -566,10 +583,7 @@ namespace Dalmatian.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DogId")
-                        .IsUnique();
-
-                    b.HasIndex("DogId1");
+                    b.HasIndex("DogId");
 
                     b.HasIndex("IsDeleted");
 
@@ -802,7 +816,16 @@ namespace Dalmatian.Data.Migrations
             modelBuilder.Entity("Dalmatian.Data.Models.BreedingInformation", b =>
                 {
                     b.HasOne("Dalmatian.Data.Models.Dog", "Dog")
-                        .WithMany("BreedingInformation")
+                        .WithMany("BreedingInformations")
+                        .HasForeignKey("DogId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Dalmatian.Data.Models.ClubRegisterNumber", b =>
+                {
+                    b.HasOne("Dalmatian.Data.Models.Dog", "Dog")
+                        .WithMany()
                         .HasForeignKey("DogId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -825,15 +848,27 @@ namespace Dalmatian.Data.Migrations
 
             modelBuilder.Entity("Dalmatian.Data.Models.Dog", b =>
                 {
-                    b.HasOne("Dalmatian.Data.Models.ClubRegisterNumber", "ClubRegisterNumber")
-                        .WithMany()
+                    b.HasOne("Dalmatian.Data.Models.BreedingInformation", null)
+                        .WithMany("Dogs")
+                        .HasForeignKey("BreedingInformationId");
+
+                    b.HasOne("Dalmatian.Data.Models.ClubRegisterNumber", null)
+                        .WithMany("Dogs")
                         .HasForeignKey("ClubRegisterNumberId");
+
+                    b.HasOne("Dalmatian.Data.Models.Parent", null)
+                        .WithMany("Dogs")
+                        .HasForeignKey("ParentId");
+
+                    b.HasOne("Dalmatian.Data.Models.RegistrationDogNumber", null)
+                        .WithMany("Dogs")
+                        .HasForeignKey("RegistrationDogNumberId");
                 });
 
             modelBuilder.Entity("Dalmatian.Data.Models.HealthInformation", b =>
                 {
                     b.HasOne("Dalmatian.Data.Models.Dog", "Dog")
-                        .WithMany("DogHealthInformation")
+                        .WithMany("HealthInformations")
                         .HasForeignKey("DogId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -857,14 +892,10 @@ namespace Dalmatian.Data.Migrations
             modelBuilder.Entity("Dalmatian.Data.Models.Parent", b =>
                 {
                     b.HasOne("Dalmatian.Data.Models.Dog", "Dog")
-                        .WithOne("Parent")
-                        .HasForeignKey("Dalmatian.Data.Models.Parent", "DogId")
+                        .WithMany("Parents")
+                        .HasForeignKey("DogId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.HasOne("Dalmatian.Data.Models.Dog", null)
-                        .WithMany("Parents")
-                        .HasForeignKey("DogId1");
                 });
 
             modelBuilder.Entity("Dalmatian.Data.Models.RegistrationDogNumber", b =>

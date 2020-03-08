@@ -19,5 +19,7 @@
         public Parent Parent { get; set; }
 
         public string ImagesUrl { get; set; }
+
+        private IEnumerable<DogBreedingViewModel> BreedingInformations { get; set; }
     }
 }

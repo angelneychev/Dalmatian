@@ -16,11 +16,23 @@ namespace Dalmatian.Data.Seeding
             {
                 return;
             }
-
-            await dbContext.ClubRegisterNumbers.AddAsync(new ClubRegisterNumber
+            var clubRegisterNumbers =
+                new List<(int DogId, string ClubNumber)>
+                {
+                    (1, "10193"),
+                    //(2, "bilateral"),
+                    //(3, "bilateral"),
+                    //(4, "bilateral"),
+                };
+            foreach (var number in clubRegisterNumbers)
             {
-                ClubNumber = "10193",
-            });
+                await dbContext.ClubRegisterNumbers.AddAsync(new ClubRegisterNumber
+                {
+                    DogId = number.DogId,
+                    ClubNumber = number.ClubNumber,
+                });
+            }
+
         }
     }
 }

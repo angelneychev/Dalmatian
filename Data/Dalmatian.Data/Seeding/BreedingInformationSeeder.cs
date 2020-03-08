@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Dalmatian.Data.Models;
-using Dalmatian.Data.Models.Enum;
-using Microsoft.EntityFrameworkCore.Internal;
-
-namespace Dalmatian.Data.Seeding
+﻿namespace Dalmatian.Data.Seeding
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Dalmatian.Data.Models;
+    using Dalmatian.Data.Models.Enum;
+    using Microsoft.EntityFrameworkCore.Internal;
+
     public class BreedingInformationSeeder : ISeeder
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)

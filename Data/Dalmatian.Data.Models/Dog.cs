@@ -12,7 +12,7 @@
         public Dog()
         {
             this.BreedingInformations = new HashSet<BreedingInformation>();
-            this.DogHealthInformations = new HashSet<HealthInformation>();
+            this.HealthInformations = new HashSet<HealthInformation>();
             this.RegistrationDogNumbers = new HashSet<RegistrationDogNumber>();
             this.Parents = new HashSet<Parent>();
         }
@@ -23,11 +23,7 @@
 
         public SexDog SexDog { get; set; }
 
-        public Parent Parent { get; set; }
-
         public string ImagesUrl { get; set; }
-
-        //public int ParentId { get; set; }
 
         public DateTime? DateOfBirth { get; set; }
 
@@ -39,15 +35,11 @@
 
         public string BreederName { get; set; }
 
-        public ClubRegisterNumber ClubRegisterNumber { get; set; }
-
-        public int? ClubRegisterNumberId { get; set; }
-
         public virtual ICollection<Parent> Parents { get; set; }
 
         public virtual ICollection<BreedingInformation> BreedingInformations { get; set; }
 
-        public virtual ICollection<HealthInformation> DogHealthInformations { get; set; }
+        public virtual ICollection<HealthInformation> HealthInformations { get; set; }
 
         public virtual ICollection<RegistrationDogNumber> RegistrationDogNumbers { get; set; }
     }

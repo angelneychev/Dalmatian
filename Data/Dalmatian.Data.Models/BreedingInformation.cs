@@ -1,4 +1,6 @@
-﻿namespace Dalmatian.Data.Models
+﻿using System.Collections.Generic;
+
+namespace Dalmatian.Data.Models
 {
     using Dalmatian.Data.Common.Models;
     using Dalmatian.Data.Models.Enum;
@@ -19,8 +21,10 @@
 
         public Country CountryOfResidence { get; set; }
 
+        public int DogId { get; set; }
+
         public Dog Dog { get; set; }
 
-        public int DogId { get; set; }
+        public virtual ICollection<Dog> Dogs { get; set; }
     }
 }
