@@ -45,8 +45,10 @@
                         options.CheckConsentNeeded = context => true;
                         options.MinimumSameSitePolicy = SameSiteMode.None;
                     });
+            //var mvcBuilder = services.AddControllersWithViews();
+            //mvcBuilder.AddRazorRuntimeCompilation();
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();
 
             services.AddSingleton(this.configuration);
@@ -58,8 +60,10 @@
 
             // Application services
             // MailSender install
-            services.AddTransient<IEmailSender>(x => new SendGridEmailSender("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"));
+            services.AddTransient<IEmailSender>(
+                serviceProvider => new SendGridEmailSender(this.configuration["SendGrid:ApiKey"]));
             services.AddTransient<ISettingsService, SettingsService>();
+            services.AddTransient<IDogsService, DogsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -104,6 +108,7 @@
                 endpoints =>
                     {
                         endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                        endpoints.MapControllerRoute("dogInfo", "club-dogs/{pedigreeName:minlength(1)}", new {controller= "Dogs", action = "ByDogName" });
                         endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapRazorPages();
                     });

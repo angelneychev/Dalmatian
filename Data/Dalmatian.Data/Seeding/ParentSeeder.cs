@@ -1,4 +1,6 @@
-﻿namespace Dalmatian.Data.Seeding
+﻿using System.Collections.Generic;
+
+namespace Dalmatian.Data.Seeding
 {
     using System;
     using System.Threading.Tasks;
@@ -15,12 +17,20 @@
                 return;
             }
 
-            await dbContext.Parents.AddAsync(new Parent
+            var parents = new List<(int DogId, int FatherDogId, int MotherDogId)>
             {
-                DogId = 2,
-                FatherDogId = 3,
-                MotherDogId = 4,
-            });
+                (2, 3, 4),
+            };
+
+            foreach (var parent in parents)
+            {
+                await dbContext.Parents.AddAsync(new Parent
+                {
+                    DogId = parent.DogId,
+                    FatherDogId = parent.FatherDogId,
+                    MotherDogId = parent.MotherDogId,
+                });
+            }
         }
     }
 }

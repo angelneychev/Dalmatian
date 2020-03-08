@@ -1,4 +1,6 @@
-﻿namespace Dalmatian.Data.Seeding
+﻿using System.Collections.Generic;
+
+namespace Dalmatian.Data.Seeding
 {
     using System;
     using System.Threading.Tasks;

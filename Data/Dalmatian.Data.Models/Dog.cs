@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace Dalmatian.Data.Models
+﻿namespace Dalmatian.Data.Models
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     using Dalmatian.Data.Common.Models;
     using Dalmatian.Data.Models.Enum;
@@ -12,8 +11,8 @@ namespace Dalmatian.Data.Models
     {
         public Dog()
         {
-            this.BreedingInformation = new HashSet<BreedingInformation>();
-            this.DogHealthInformation = new HashSet<HealthInformation>();
+            this.BreedingInformations = new HashSet<BreedingInformation>();
+            this.DogHealthInformations = new HashSet<HealthInformation>();
             this.RegistrationDogNumbers = new HashSet<RegistrationDogNumber>();
             this.Parents = new HashSet<Parent>();
         }
@@ -25,6 +24,8 @@ namespace Dalmatian.Data.Models
         public SexDog SexDog { get; set; }
 
         public Parent Parent { get; set; }
+
+        public string ImagesUrl { get; set; }
 
         //public int ParentId { get; set; }
 
@@ -44,9 +45,9 @@ namespace Dalmatian.Data.Models
 
         public virtual ICollection<Parent> Parents { get; set; }
 
-        public virtual ICollection<BreedingInformation> BreedingInformation { get; set; }
+        public virtual ICollection<BreedingInformation> BreedingInformations { get; set; }
 
-        public virtual ICollection<HealthInformation> DogHealthInformation { get; set; }
+        public virtual ICollection<HealthInformation> DogHealthInformations { get; set; }
 
         public virtual ICollection<RegistrationDogNumber> RegistrationDogNumbers { get; set; }
     }

@@ -21,6 +21,10 @@
     <Compile Remove="Migrations\20200306104307_EditModelDataDog.Designer.cs" />
     <Compile Remove="Migrations\20200307184404_EditDataModelDogKennelAddBreade.cs" />
     <Compile Remove="Migrations\20200307184404_EditDataModelDogKennelAddBreade.Designer.cs" />
+    <Compile Remove="Migrations\20200307215012_updateModelData.cs" />
+    <Compile Remove="Migrations\20200307215012_updateModelData.Designer.cs" />
+    <Compile Remove="Migrations\20200308185448_EdidDogClass.cs" />
+    <Compile Remove="Migrations\20200308185448_EdidDogClass.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

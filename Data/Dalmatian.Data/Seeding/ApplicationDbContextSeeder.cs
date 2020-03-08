@@ -28,9 +28,11 @@
                               new RolesSeeder(),
                               new SettingsSeeder(),
                               new DogSeeder(),
-                              new RegistrationDogNumberSeeder(),
-                              new ClubRegisterNumberSeeder(),
                               new ParentSeeder(),
+                              new ClubRegisterNumberSeeder(),
+                              new BreedingInformationSeeder(),
+                              new HealthInformationSeeder(),
+                              new RegistrationDogNumberSeeder(),
                           };
 
             foreach (var seeder in seeders)

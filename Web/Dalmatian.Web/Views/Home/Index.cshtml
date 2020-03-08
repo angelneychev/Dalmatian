@@ -1,9 +1,47 @@
 ﻿@using Dalmatian.Common
+@using Dalmatian.Data.Models
+@using Dalmatian.Web.ViewModels.Home
+@model IndexViewModel
 @{
-    this.ViewData["Title"] = "Home Page";
+    this.ViewData["Title"] = $"Welcome to {GlobalConstants.SystemName!}";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-left">
+    <h1 class="display-4">@this.ViewData["Title"]</h1>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="table">
+            <table class="table">
+                <thead>
+                    <tr class="thead-dark">
+                        <th scope="col">#</th>
+                        <th scope="col">Dog Name</th>
+                        <th scope="col">Sex</th>
+                        <th scope="col">DateOfBirth</th>
+                        <th scope="col">DateOfDeath</th>
+                        <th scope="col">Breeder Name</th>
+                        <th scope="col">Owner Name</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                @{ int countRow = 1;}
+                @foreach (var dog in Model.Dogs)
+                {
+                    <tr>
+                        <td>@countRow.</td>
+                        <td><a class="" href="@dog.Url">@dog.PedigreeName</a></td>
+                        <td>@dog.SexDog</td>
+                        <td>@dog.DateOfBirth?.ToShortDateString()</td>
+                        <td>@dog.DateOfDeath?.ToShortDateString()</td>
+                        <td>@dog.BreederName</td>
+                        <td>@dog.OwnerName</td>
+                    </tr>
+                    countRow++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
