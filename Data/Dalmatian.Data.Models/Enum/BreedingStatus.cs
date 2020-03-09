@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Dalmatian.Data.Models.Enum
+﻿namespace Dalmatian.Data.Models.Enum
 {
+    using System.ComponentModel.DataAnnotations;
+
     public enum BreedingStatus
     {
         [Display(Name = "Intact")]

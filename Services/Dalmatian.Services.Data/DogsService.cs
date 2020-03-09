@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Dalmatian.Services.Data
+﻿namespace Dalmatian.Services.Data
 {
     using System.Collections.Generic;
     using System.Linq;

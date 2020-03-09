@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-
-namespace Dalmatian.Data.Models.Enum
+﻿namespace Dalmatian.Data.Models.Enum
 {
+    using System.ComponentModel.DataAnnotations;
+
+    using Microsoft.EntityFrameworkCore.Diagnostics;
+
     public enum HipRating
     {
         [Display(Name = "OFA - Normal")]
@@ -53,6 +54,5 @@ namespace Dalmatian.Data.Models.Enum
         SV_a5 = 230,
         [Display(Name = "SV - a6 (a-Ausland)")]
         SV_a6 = 240,
-
     }
 }

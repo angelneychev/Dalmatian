@@ -5,7 +5,7 @@ namespace Dalmatian.Data.Models.Enum
     public enum Baer
     {
         [Display(Name = "+/+")]
-        bilateral =10,
+        bilateral = 10,
 
         [Display(Name = "-/+")]
         left_unilateral = 20,
@@ -15,6 +15,5 @@ namespace Dalmatian.Data.Models.Enum
 
         [Display(Name = "-/-")]
         total_deaf = 40,
-
     }
 }

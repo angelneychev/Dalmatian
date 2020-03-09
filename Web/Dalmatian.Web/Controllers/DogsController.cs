@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Dalmatian.Web.Controllers
+﻿namespace Dalmatian.Web.Controllers
 {
     using Dalmatian.Services.Data;
     using Dalmatian.Web.ViewModels.Dogs;
