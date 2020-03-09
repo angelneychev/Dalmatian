@@ -1,10 +1,13 @@
-﻿@using Dalmatian.Web.ViewModels.Dogs
-@model DogViewModel
+﻿@using Dalmatian.Common
+@using Dalmatian.Data.Models
+@using Dalmatian.Web.ViewModels.Dogs
+@model DogsViewModel
 @{
-    ViewData["Title"] = "ByDogName";
+    ViewData["Title"] = Model.PedigreeName;
 }
 
 <h1>ByDogName</h1>
 
 @Model.PedigreeName
+@Model.Id
 

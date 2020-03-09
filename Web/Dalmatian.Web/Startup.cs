@@ -45,8 +45,10 @@
                         options.CheckConsentNeeded = context => true;
                         options.MinimumSameSitePolicy = SameSiteMode.None;
                     });
-            //var mvcBuilder = services.AddControllersWithViews();
-            //mvcBuilder.AddRazorRuntimeCompilation();
+            /*
+             var mvcBuilder = services.AddControllersWithViews();
+            mvcBuilder.AddRazorRuntimeCompilation();
+            */
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();
@@ -108,7 +110,7 @@
                 endpoints =>
                     {
                         endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-                        endpoints.MapControllerRoute("dogInfo", "club-dogs/{pedigreeName:minlength(1)}", new {controller= "Dogs", action = "ByDogName" });
+                        endpoints.MapControllerRoute("dogInfo", "club-dogs/{pedigreeName:minlength(1)}", new { controller= "Dogs", action = "ByDogName" });
                         endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapRazorPages();
                     });

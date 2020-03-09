@@ -1,12 +1,16 @@
-﻿using System.Collections.Generic;
-
-namespace Dalmatian.Data.Models
+﻿namespace Dalmatian.Data.Models
 {
+    using System.Collections.Generic;
+
     using Dalmatian.Data.Common.Models;
     using Dalmatian.Data.Models.Enum;
 
     public class Breeder : BaseDeletableModel<int>
     {
+        public Breeder()
+        {
+            this.Kennels = new HashSet<Kennel>();
+        }
 
         public string Firstname { get; set; }
 
@@ -14,13 +18,9 @@ namespace Dalmatian.Data.Models
 
         public string Lastname { get; set; }
 
-        public Kennel Kennel { get; set; }
-
         public ApplicationUser User { get; set; }
 
         public string UserId { get; set; }
-
-        public int? KennelId { get; set; }
 
         public string Email { get; set; }
 
@@ -41,5 +41,7 @@ namespace Dalmatian.Data.Models
         public string Instagram { get; set; }
 
         public string Linkedin { get; set; }
+
+        public ICollection<Kennel> Kennels { get; set; }
     }
 }

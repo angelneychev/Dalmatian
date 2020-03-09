@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.2" />
+  </ItemGroup>
+    <PrivateAssets>all</PrivateAssets>
+  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.2">
+    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+  </PackageReference>
+  <ItemGroup>
+    <ProjectReference Include="..\Data\Dalmatian.Data.Common\Dalmatian.Data.Common.csproj" />
+    <ProjectReference Include="..\Data\Dalmatian.Data.Models\Dalmatian.Data.Models.csproj" />
+    <ProjectReference Include="..\Data\Dalmatian.Data\Dalmatian.Data.csproj" />
+    <ProjectReference Include="..\Web\Dalmatian.Web\Dalmatian.Web.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -11,7 +11,5 @@
         public Dog Dog { get; set; }
 
         public string ClubNumber { get; set; }
-
-        public virtual ICollection<Dog> Dogs { get; set; }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-
-namespace Dalmatian.Data.Configurations
+﻿namespace Dalmatian.Data.Configurations
 {
     using Dalmatian.Data.Models;
     using Microsoft.EntityFrameworkCore;
@@ -29,8 +27,6 @@ namespace Dalmatian.Data.Configurations
                 .HasMany(a => a.RegistrationDogNumbers)
                 .WithOne(b => b.Dog)
                 .HasForeignKey(b => b.DogId);
-
-
         }
     }
 }

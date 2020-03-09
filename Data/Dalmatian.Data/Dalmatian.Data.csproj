@@ -29,6 +29,10 @@
     <Compile Remove="Migrations\20200308222815_editeDataModel.Designer.cs" />
     <Compile Remove="Migrations\20200308223907_editeDataModel.cs" />
     <Compile Remove="Migrations\20200308223907_editeDataModel.Designer.cs" />
+    <Compile Remove="Migrations\20200309075403_EditDataModel.cs" />
+    <Compile Remove="Migrations\20200309075403_EditDataModel.Designer.cs" />
+    <Compile Remove="Migrations\20200309082825_EditDataModel.cs" />
+    <Compile Remove="Migrations\20200309082825_EditDataModel.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

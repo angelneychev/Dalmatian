@@ -1,17 +1,10 @@
-﻿using System.Collections.Generic;
-
-namespace Dalmatian.Data.Models
+﻿namespace Dalmatian.Data.Models
 {
     using Dalmatian.Data.Common.Models;
     using Dalmatian.Data.Models.Enum;
 
     public class Kennel : BaseDeletableModel<int>
     {
-        public Kennel()
-        {
-            this.Breeders = new HashSet<Breeder>();
-        }
-
         public string Name { get; set; }
 
         public string RegistrationNumber { get; set; }
@@ -20,6 +13,8 @@ namespace Dalmatian.Data.Models
 
         public string City { get; set; }
 
-        public virtual ICollection<Breeder> Breeders { get; set; }
+        public int BreederId { get; set; }
+
+        public Breeder Breeder { get; set; }
     }
 }

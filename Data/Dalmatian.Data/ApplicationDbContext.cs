@@ -24,6 +24,10 @@
         {
         }
 
+        public ApplicationDbContext()
+        {
+        }
+
         public DbSet<Setting> Settings { get; set; }
 
         public DbSet<ClubRegisterNumber> ClubRegisterNumbers { get; set; }
@@ -42,7 +46,7 @@
 
         public DbSet<Parent> Parents { get; set; }
 
-        public DbSet<Breeder> Breeder { get; set; }
+        public DbSet<Breeder> Breeders { get; set; }
 
         public DbSet<RegistrationDogNumber> RegistrationDogNumbers { get; set; }
 

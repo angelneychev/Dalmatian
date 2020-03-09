@@ -1,4 +1,6 @@
-﻿namespace Dalmatian.Services.Data
+﻿using System;
+
+namespace Dalmatian.Services.Data
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -18,8 +20,8 @@
 
         public IEnumerable<T> GetAll<T>(int? count = null)
         {
-            IQueryable<Dog> query = 
-                this.dogRepository.All().OrderBy(x => x.DateOfBirth);
+            IQueryable<Dog> query =
+                this.dogRepository.All().OrderBy(x => x.CreatedOn);
 
             if (count.HasValue)
             {
@@ -31,6 +33,7 @@
 
         public T GetByName<T>(string pedigreeName)
         {
+            pedigreeName = pedigreeName.Replace('-', ' ');
             var dog = this.dogRepository.All().Where(x => x.PedigreeName == pedigreeName)
                 .To<T>().FirstOrDefault();
 

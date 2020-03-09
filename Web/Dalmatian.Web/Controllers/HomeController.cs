@@ -1,12 +1,11 @@
-﻿using Dalmatian.Services.Data;
-
-namespace Dalmatian.Web.Controllers
+﻿namespace Dalmatian.Web.Controllers
 {
     using System.Diagnostics;
     using System.Linq;
 
     using Dalmatian.Data.Common.Repositories;
     using Dalmatian.Data.Models;
+    using Dalmatian.Services.Data;
     using Dalmatian.Services.Mapping;
     using Dalmatian.Web.ViewModels;
     using Dalmatian.Web.ViewModels.Home;

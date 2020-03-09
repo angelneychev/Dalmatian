@@ -11,7 +11,5 @@
         public int DogId { get; set; }
 
         public Dog Dog { get; set; }
-
-        public virtual ICollection<Dog> Dogs { get; set; }
     }
 }

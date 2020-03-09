@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace Dalmatian.Data.Models
+﻿namespace Dalmatian.Data.Models
 {
+    using System.Collections.Generic;
+
     using Dalmatian.Data.Common.Models;
 
     public class Parent : BaseDeletableModel<int>
@@ -13,7 +13,5 @@ namespace Dalmatian.Data.Models
         public int? FatherDogId { get; set; }
 
         public int? MotherDogId { get; set; }
-
-        public virtual ICollection<Dog> Dogs { get; set; }  
     }
 }

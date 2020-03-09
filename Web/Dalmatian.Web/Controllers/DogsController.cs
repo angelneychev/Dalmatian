@@ -1,4 +1,6 @@
-﻿namespace Dalmatian.Web.Controllers
+﻿using System.Collections.Generic;
+
+namespace Dalmatian.Web.Controllers
 {
     using Dalmatian.Services.Data;
     using Dalmatian.Web.ViewModels.Dogs;
@@ -15,7 +17,7 @@
 
         public IActionResult ByDogName(string pedigreeName)
         {
-            var viewMode = this.dogsService.GetByName<DogViewModel>(pedigreeName);
+            var viewMode = this.dogsService.GetByName<DogsViewModel>(pedigreeName);
 
             return this.View(viewMode);
         }
