@@ -5,9 +5,9 @@
     public enum HeightUnits
     {
         [Display(Name = "Centimeters")]
-        Cm = 10,
+        cm = 10,
 
         [Display(Name = "Inches")]
-        Inch = 20,
+        inch = 20,
     }
 }

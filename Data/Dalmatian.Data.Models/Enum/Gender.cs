@@ -5,9 +5,9 @@
     public enum Gender
     {
         [Display(Name = "Male")]
-        Male = 10,
+        MALE = 10,
 
         [Display(Name = "Female")]
-        Female = 20,
+        FEMALE = 20,
     }
 }

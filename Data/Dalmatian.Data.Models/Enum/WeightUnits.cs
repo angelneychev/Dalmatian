@@ -1,13 +1,13 @@
-﻿namespace Dalmatian.Data.Models.Enum
-{
-    using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
+namespace Dalmatian.Data.Models.Enum
+{
     public enum WeightUnits
     {
         [Display(Name = "Kilogram")]
-        Kg = 10,
+        kg = 10,
 
         [Display(Name = "Pound")]
-        Lbs = 20,
+        lbs = 20,
     }
 }

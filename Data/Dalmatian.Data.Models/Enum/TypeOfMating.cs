@@ -5,12 +5,13 @@
     public enum TypeOfMating
     {
         [Display(Name = "Natural mating")]
-        Nм = 10,
+        NМ = 10,
 
         [Display(Name = "Artificial insemination w/chilled/fresh sperm")]
-        Aicfs = 20,
+        AICFS = 20,
 
         [Display(Name = "Artificial insemination w/frozen sperm")]
-        Aifs = 30,
+        AIFS = 30,
+
     }
 }
