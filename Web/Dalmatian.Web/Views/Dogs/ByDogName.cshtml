@@ -1,26 +1,32 @@
-﻿@using System.ComponentModel.DataAnnotations
+﻿@using System.ComponentModel
+@using System.ComponentModel.DataAnnotations
+@using System.Reflection
 @using Dalmatian.Common
 @using Dalmatian.Data.Models
 @using Dalmatian.Data.Models.Enum
+@using Dalmatian.Web.Infrastructure
 @using Dalmatian.Web.ViewModels.Dogs
 @model DogsViewModel
 @{
     ViewData["Title"] = Model.PedigreeName;
 }
+    <div class="container-fluid">
 
-<h1>ByDogName</h1>
+        <h1>@Model.PedigreeName</h1>
+        <p>@Model.Id </p>
+        <div class="row">
+            <img src="@Model.ImagesUrl" class="rounded img-thumbnail alert-info" alt="Cinque Terre">
+            @*<p>@Model.ImagesUrl </p>*@
+            <p>@Model.Breed </p>
+            <p>@Model.Color.GetEnumDisplayName()</p>
 
-<p>@Model.PedigreeName </p>
-<p>@Model.Id </p>
-<p>@Model.ImagesUrl </p>
-<p>@Model.Breed </p>
-<p>@Model.Color</p>
 
-
-@foreach (var dog in Model.Parents)
-{
-    <p>@dog.FatherDogId</p>
-    <p>@dog.MotherDogId</p>
-}
+            @foreach (var dog in Model.Parents)
+            {
+                <p>@dog.FatherDogId</p>
+                <p>@dog.MotherDogId</p>
+            }
+        </div>
+    </div>
 
 <h1>ByDogName</h1>

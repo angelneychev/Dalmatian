@@ -61,7 +61,7 @@ namespace Dalmatian.Data.Migrations
                     DateOfDeath = table.Column<DateTime>(nullable: true),
                     Color = table.Column<int>(nullable: false),
                     OwnerName = table.Column<string>(nullable: true),
-                    BreederName = table.Column<string>(nullable: true),
+                    BreederName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -163,7 +163,7 @@ namespace Dalmatian.Data.Migrations
                     DogMaleId = table.Column<int>(nullable: false),
                     DogFemaleId = table.Column<int>(nullable: false),
                     DateOfMating = table.Column<DateTime>(nullable: false),
-                    TypeOfMating = table.Column<int>(nullable: false),
+                    TypeOfMating = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
