@@ -10,23 +10,55 @@
 @{
     ViewData["Title"] = Model.PedigreeName;
 }
-    <div class="container-fluid">
+<table class="table table-bordered w-auto border-dark">
+    <tbody>
+    <tr class="table-primary">
+        <th>Breed</th>
+        <th>Registration type</th>
+        <th>Date of birth</th>
+        <th>Date of registration</th>
+        <th>Sex</th>
+        <th>Colour</th>
+        <th>Breeder</th>
+    </tr>
+    <tr class=" table table-bordered border-dark">
+        <td valign="top">153  Dalmatian</td>
+        <td valign="top">litter registration</td>
+        <td valign="top">30.1.2018</td>
+        <td valign="top">21.3.2018</td>
+        <td valign="top">male</td>
+        <td valign="top">white, brown spots</td>
+        <td valign="top">LUKJANOV SUVI, NUMMELA - a valid breeder commitment (in use since 2011)</td>
+    </tr>
+    </tbody>
+</table>
+                    <img src="@Model.ImagesUrl" class="rounded" width="450px" alt="@Model.PedigreeName" />
 
-        <h1>@Model.PedigreeName</h1>
-        <p>@Model.Id </p>
-        <div class="row">
-            <img src="@Model.ImagesUrl" class="rounded img-thumbnail alert-info" alt="Cinque Terre">
-            @*<p>@Model.ImagesUrl </p>*@
-            <p>@Model.Breed </p>
-            <p>@Model.Color.GetEnumDisplayName()</p>
 
+<div class="col-12 alert alert-primary active">
+    <h2>@Model.PedigreeName</h2>
+</div>
+<div class="row alert alert-primary m-auto">
+    <div class="col-4">
 
-            @foreach (var dog in Model.Parents)
-            {
-                <p>@dog.FatherDogId</p>
-                <p>@dog.MotherDogId</p>
-            }
-        </div>
     </div>
+    <div class="col-8">
+        <p class="text-body">Date of birth:<strong>@Model.DateOfBirth</strong></p>
+        <p>Date of birth:  <strong>@Model.Color.GetEnumDisplayName()</strong></p>
+    </div>
+</div>
 
-<h1>ByDogName</h1>
+@*<ul class="list-inline list-unstyled text-right">
+        <li class="list-inline-item">
+            <i class="fas fa-user-edit"></i>
+        </li>
+        <li class="list-inline-item">
+            <i class="fas fa-calendar-alt"></i>
+        </li>
+        <li class="list-inline-item">
+            <i class="fas fa-comment-dots"></i> comments
+        </li>
+    </ul>*@
+
+@*<p>@Model.Breed.GetEnumDisplayName() </p>
+    <p>@Model.OwnerName</p>*@

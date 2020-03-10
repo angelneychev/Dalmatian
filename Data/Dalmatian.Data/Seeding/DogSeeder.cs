@@ -23,7 +23,7 @@
                 {
                     ("Perdita’s All My Tomorrows", "Dalmatian", "Male", "WBRS", "Dimitar Ivanov",
                         "https://plovdivshow.files.wordpress.com/2012/04/554278_353370938043774_961209239_n.jpg"),
-                    ("Spotmaniac Breath-taking View", "Dalmatian", "Female", "WBRS", "Elena Neycheva",
+                    ("Spotmaniac Breath taking View", "Dalmatian", "Female", "WBRS", "Elena Neycheva",
                         "http://www.spotmaniac.com/images/Erika_CACIB_Vratza-Sofia.jpg"),
                     ("Bad & Mad Serbian Sensation in Raul", "Dalmatian", "Male", "WBRS", "Elena Neycheva",
                         "https://upload.wikimedia.org/wikipedia/commons/2/21/Bad_%26_Mad_Serbian_Sensation_in_Raul.jpg"),
