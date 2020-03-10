@@ -1,9 +1,8 @@
 ﻿namespace Dalmatian.Web.ViewModels.Settings
 {
+    using AutoMapper;
     using Dalmatian.Data.Models;
     using Dalmatian.Services.Mapping;
-
-    using AutoMapper;
 
     public class SettingViewModel : IMapFrom<Setting>, IHaveCustomMappings
     {

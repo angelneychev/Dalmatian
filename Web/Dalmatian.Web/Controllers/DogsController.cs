@@ -1,4 +1,6 @@
-﻿namespace Dalmatian.Web.Controllers
+﻿using System.Linq;
+
+namespace Dalmatian.Web.Controllers
 {
     using Dalmatian.Services.Data;
     using Dalmatian.Web.ViewModels.Dogs;

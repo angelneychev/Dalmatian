@@ -33,6 +33,8 @@
     <Compile Remove="Migrations\20200309075403_EditDataModel.Designer.cs" />
     <Compile Remove="Migrations\20200309082825_EditDataModel.cs" />
     <Compile Remove="Migrations\20200309082825_EditDataModel.Designer.cs" />
+    <Compile Remove="Migrations\20200309084002_EditDataModel.cs" />
+    <Compile Remove="Migrations\20200309084002_EditDataModel.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

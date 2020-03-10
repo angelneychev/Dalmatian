@@ -1,5 +1,7 @@
-﻿@using Dalmatian.Common
+﻿@using System.ComponentModel.DataAnnotations
+@using Dalmatian.Common
 @using Dalmatian.Data.Models
+@using Dalmatian.Data.Models.Enum
 @using Dalmatian.Web.ViewModels.Dogs
 @model DogsViewModel
 @{
@@ -8,6 +10,17 @@
 
 <h1>ByDogName</h1>
 
-@Model.PedigreeName
-@Model.Id
+<p>@Model.PedigreeName </p>
+<p>@Model.Id </p>
+<p>@Model.ImagesUrl </p>
+<p>@Model.Breed </p>
+<p>@Model.Color</p>
 
+
+@foreach (var dog in Model.Parents)
+{
+    <p>@dog.FatherDogId</p>
+    <p>@dog.MotherDogId</p>
+}
+
+<h1>ByDogName</h1>

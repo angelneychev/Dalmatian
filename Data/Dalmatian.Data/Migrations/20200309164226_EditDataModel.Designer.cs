@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dalmatian.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200309084002_EditDataModel")]
+    [Migration("20200309164226_EditDataModel")]
     partial class EditDataModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -13,8 +13,8 @@
 
         public string OtherHealthTest { get; set; }
 
-        public Dog Dog { get; set; }
-
         public int DogId { get; set; }
+
+        public Dog Dog { get; set; }
     }
 }
