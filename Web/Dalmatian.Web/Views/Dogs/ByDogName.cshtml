@@ -10,30 +10,68 @@
 @{
     ViewData["Title"] = Model.PedigreeName;
 }
-<table class="table table-bordered w-auto border-dark">
-    <tbody>
-    <tr class="table-primary">
-        <th>Breed</th>
-        <th>Registration type</th>
-        <th>Date of birth</th>
-        <th>Date of registration</th>
-        <th>Sex</th>
-        <th>Colour</th>
-        <th>Breeder</th>
-    </tr>
-    <tr class=" table table-bordered border-dark">
-        <td valign="top">153  Dalmatian</td>
-        <td valign="top">litter registration</td>
-        <td valign="top">30.1.2018</td>
-        <td valign="top">21.3.2018</td>
-        <td valign="top">male</td>
-        <td valign="top">white, brown spots</td>
-        <td valign="top">LUKJANOV SUVI, NUMMELA - a valid breeder commitment (in use since 2011)</td>
-    </tr>
-    </tbody>
-</table>
-                    <img src="@Model.ImagesUrl" class="rounded" width="450px" alt="@Model.PedigreeName" />
+    @*<div class="alert alert-primary active">
+        
+    </div>*@
+    <table class="table table-bordered w-auto border-dark">
+        <thead class="table-primary">
+        <tr>
+            <th colspan="7">
+                Basic information
+            </th>
+        </tr>
+        <thead class="table-primary">
+            <tr>
+                <th colspan="2">
+                    <img id="myImg" src="@Model.ImagesUrl" alt="@Model.PedigreeName" style="width:100%; max-width:300px">
 
+                    <!-- The Modal -->
+                    <div id="myModal" class="modal">
+
+                        <!-- The Close Button -->
+                        <span class="close">&times;</span>
+
+                        <!-- Modal Content (The Image) -->
+                        <img class="modal-content" id="img01">
+
+                        <!-- Modal Caption (Image Text) -->
+                        <div id="caption"></div>
+                    </div>
+                    @*<a href="@Model.ImagesUrl?image=1" data-toggle="lightbox" data-max-width="600" alt="@Model.PedigreeName">
+        <img src="@Model.ImagesUrl?image=1" class="img-fluid" data-max-width="200"/>
+        </a>*@
+
+
+                    @*<a class="thumbnail fancybox" rel="ligthbox"><img src="@Model.ImagesUrl" class="rounded img-responsive" alt="@Model.PedigreeName"/></a>*@
+                </th>
+                <th colspan="5"><h3>@Model.PedigreeName</h3></th>
+            </tr>
+        </thead>
+        <thead class="table-primary">
+            <tr>
+                <th>Breed</th>
+                <th>Registration type</th>
+                <th>Date of birth</th>
+                <th>Date of registration</th>
+                <th>Sex</th>
+                <th>Colour</th>
+                <th>Breeder</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-bordered bg-white">
+                <td valign="top">153 Dalmatian</td>
+                <td valign="top">litter registration</td>
+                <td valign="top">30.1.2018</td>
+                <td valign="top">21.3.2018</td>
+                <td valign="top">male</td>
+                <td valign="top">white, brown spots</td>
+                <td valign="top">LUKJANOV SUVI, NUMMELA - a valid breeder commitment (in use since 2011)</td>
+            </tr>
+        </tbody>
+    </table>
+        @*<img src="@Model.ImagesUrl" class="rounded" width="450px" alt="@Model.PedigreeName" />*@
+    
 
 <div class="col-12 alert alert-primary active">
     <h2>@Model.PedigreeName</h2>
