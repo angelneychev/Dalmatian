@@ -37,6 +37,8 @@
     <Compile Remove="Migrations\20200309084002_EditDataModel.Designer.cs" />
     <Compile Remove="Migrations\20200309164226_EditDataModel.cs" />
     <Compile Remove="Migrations\20200309164226_EditDataModel.Designer.cs" />
+    <Compile Remove="Migrations\20200311191204_UpdateDateModelDogAndRegisterNumber.cs" />
+    <Compile Remove="Migrations\20200311191204_UpdateDateModelDogAndRegisterNumber.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

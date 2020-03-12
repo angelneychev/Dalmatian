@@ -1,4 +1,6 @@
-﻿namespace Dalmatian.Web.ViewModels.Dogs
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Dalmatian.Web.ViewModels.Dogs
 {
     using System;
     using System.Collections.Generic;
@@ -19,8 +21,10 @@
 
         public string ImagesUrl { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy")]
         public DateTime? DateOfBirth { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy")]
         public DateTime? DateOfDeath { get; set; }
 
         public Color Color { get; set; }
@@ -36,5 +40,7 @@
         public IEnumerable<ClubRegisterNumber> ClubRegisterNumbers { get; set; }
 
         public IEnumerable<HealthInformationViewModel> HealthInformations { get; set; }
+
+        public IEnumerable<RegistrationDogNumberViewModel> RegistrationDogNumbers { get; set; }
     }
 }

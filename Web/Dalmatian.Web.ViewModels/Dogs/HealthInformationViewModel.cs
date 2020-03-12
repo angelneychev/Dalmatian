@@ -10,6 +10,8 @@
     {
     public int Id { get; set; }
 
+    public int DogId { get; set; }
+
     public Baer Baer { get; set; }
 
     public HipRating HipRating { get; set; }

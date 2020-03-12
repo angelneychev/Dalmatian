@@ -37,6 +37,8 @@
 
         public virtual ICollection<Parent> Parents { get; set; }
 
+        public ICollection<ClubRegisterNumber> ClubRegisterNumbers { get; set; }
+
         public virtual ICollection<BreedingInformation> BreedingInformations { get; set; }
 
         public virtual ICollection<HealthInformation> HealthInformations { get; set; }

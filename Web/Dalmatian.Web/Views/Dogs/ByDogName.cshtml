@@ -1,102 +1,148 @@
-﻿@using System.ComponentModel
-@using System.ComponentModel.DataAnnotations
-@using System.Reflection
-@using Dalmatian.Common
-@using Dalmatian.Data.Models
-@using Dalmatian.Data.Models.Enum
-@using Dalmatian.Web.Infrastructure
+﻿@using Dalmatian.Web.Infrastructure
 @using Dalmatian.Web.ViewModels.Dogs
+
 @model DogsViewModel
 @{
     ViewData["Title"] = Model.PedigreeName;
 }
-    @*<div class="alert alert-primary active">
-        
-    </div>*@
-    <table class="table table-bordered w-auto border-dark">
-        <thead class="table-primary">
-        <tr>
-            <th colspan="7">
-                Basic information
-            </th>
-        </tr>
-        <thead class="table-primary">
-            <tr>
-                <th colspan="2">
-                    <img id="myImg" src="@Model.ImagesUrl" alt="@Model.PedigreeName" style="width:100%; max-width:300px">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 alert alert-primary active">
+            <h2>@Model.PedigreeName</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <table class="table table-bordered border-dark">
+                <thead class="table-primary">
+                <tr>
+                    <th colspan="5">
+                        <img id="myImg" src="@Model.ImagesUrl" alt="@Model.PedigreeName" style="width: 100%; max-width: 300px">
+                        <!-- The Modal -->
+                        <div id="myModal" class="modal">
 
-                    <!-- The Modal -->
-                    <div id="myModal" class="modal">
+                            <!-- The Close Button -->
+                            <span class="close">&times;</span>
 
-                        <!-- The Close Button -->
-                        <span class="close">&times;</span>
+                            <!-- Modal Content (The Image) -->
+                            <img class="modal-content" id="img01">
 
-                        <!-- Modal Content (The Image) -->
-                        <img class="modal-content" id="img01">
-
-                        <!-- Modal Caption (Image Text) -->
-                        <div id="caption"></div>
-                    </div>
-                    @*<a href="@Model.ImagesUrl?image=1" data-toggle="lightbox" data-max-width="600" alt="@Model.PedigreeName">
-        <img src="@Model.ImagesUrl?image=1" class="img-fluid" data-max-width="200"/>
-        </a>*@
-
-
-                    @*<a class="thumbnail fancybox" rel="ligthbox"><img src="@Model.ImagesUrl" class="rounded img-responsive" alt="@Model.PedigreeName"/></a>*@
+                            <!-- Modal Caption (Image Text) -->
+                            <div id="caption"></div>
+                        </div>
+                    </th>
+                </tr>
+                <thead class="table-primary">
+                <th colspan="5">
+                    <h4>Basic information</h4>
                 </th>
-                <th colspan="5"><h3>@Model.PedigreeName</h3></th>
-            </tr>
-        </thead>
-        <thead class="table-primary">
-            <tr>
-                <th>Breed</th>
-                <th>Registration type</th>
-                <th>Date of birth</th>
-                <th>Date of registration</th>
-                <th>Sex</th>
-                <th>Colour</th>
-                <th>Breeder</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="table-bordered bg-white">
-                <td valign="top">153 Dalmatian</td>
-                <td valign="top">litter registration</td>
-                <td valign="top">30.1.2018</td>
-                <td valign="top">21.3.2018</td>
-                <td valign="top">male</td>
-                <td valign="top">white, brown spots</td>
-                <td valign="top">LUKJANOV SUVI, NUMMELA - a valid breeder commitment (in use since 2011)</td>
-            </tr>
-        </tbody>
-    </table>
-        @*<img src="@Model.ImagesUrl" class="rounded" width="450px" alt="@Model.PedigreeName" />*@
-    
+                </thead>
+                <thead class="table-primary">
+                <tr>
+                    <th>Breed</th>
+                    <th>Date of birth</th>
+                    <th>Sex</th>
+                    <th>Colour</th>
+                    <th>Breeder</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="table-bordered bg-white">
+                    <td valign="top">@Model.Breed.GetEnumDisplayName()</td>
+                    <td valign="top">@Model.DateOfBirth?.ToShortDateString()</td>
+                    <td valign="top">@Model.SexDog.GetEnumDisplayName()</td>
+                    <td valign="top">@Model.Color.GetEnumDisplayName()</td>
+                    <td valign="top">@Model.BreederName</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-4">
+            <table class="table table-bordered border-dark">
+                <thead class="table-primary">
+                <th colspan="5">
+                    <p>Health information</p>
+                </th>
+                </thead>
+                <thead class="table-primary">
+                <tr>
+                    <th>Baer test</th>
+                    <th>Hip Rating</th>
+                    <th>Elbow Rating</th>
+                    <th colspan="2">Other health test</th>
+                </tr>
+                </thead>
+                @foreach (var dogHealth in Model.HealthInformations)
+                {
+                    <tbody>
+                    <tr class="table-bordered bg-white">
+                        <td valig="top">@dogHealth.Baer.GetEnumDisplayName()</td>
+                        <td valig="top">@dogHealth.HipRating.GetEnumDisplayName()</td>
+                        <td valig="top">@dogHealth.ElbowRating</td>
+                        <td valig="top" colspan="2">@dogHealth.OtherHealthTest</td>
 
+                    </tr>
+                    </tbody>
+                }
+            </table>
+            <table class="table table-bordered border-dark">
+                <thead class="table-primary">
+                <th colspan="5">
+                    <p>BreedingInformation</p>
+                </th>
+                </thead>
+                <thead class="table-primary">
+                <tr>
+                    <th>Height</th>
+                    <th>Weight</th>
+                    <th>Breeding status</th>
+                    <th>Country of origin</th>
+                    <th>Country of residence</th>
+                </tr>
+                </thead>
+                @foreach (var dog in Model.BreedingInformations)
+                {
+                    <tbody>
+                    <tr class="table-bordered bg-white">
+                        <td valign="top">@dog.Height @dog.HeightUnits</td>
+                        <td valign="top">@dog.Weight @dog.WeightUnits</td>
+                        <td valign="top">@dog.BreedingStatus.GetEnumDisplayName()</td>
+                        <td valign="top">@dog.CountryOfOrigin.GetEnumDisplayName()</td>
+                        <td valign="top">@dog.CountryOfResidence.GetEnumDisplayName()</td>
+                    </tr>
+                    </tbody>
+                }
+            </table>
+        </div>
+        <div class="col-4">
+            <table class="table table-bordered border-dark align-self-auto">
+                <thead class="table-primary">
+                <th colspan="5">
+                    <p>Basic information</p>
+                </th>
+                </thead>
+                <thead class="table-primary">
+                <tr>
+                    <th>Breed</th>
+                    <th>Date of birth</th>
+                    <th>Sex</th>
+                    <th>Colour</th>
+                    <th>Breeder</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="table-bordered bg-white">
+                    <td valign="top">@Model.Breed.GetEnumDisplayName()</td>
+                    <td valign="top">@Model.DateOfBirth?.ToShortDateString()</td>
+                    <td valign="top">@Model.SexDog.GetEnumDisplayName()</td>
+                    <td valign="top">@Model.Color.GetEnumDisplayName()</td>
+                    <td valign="top">@Model.BreederName</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 <div class="col-12 alert alert-primary active">
-    <h2>@Model.PedigreeName</h2>
+<h2>@Model.PedigreeName</h2>
 </div>
-<div class="row alert alert-primary m-auto">
-    <div class="col-4">
-
-    </div>
-    <div class="col-8">
-        <p class="text-body">Date of birth:<strong>@Model.DateOfBirth</strong></p>
-        <p>Date of birth:  <strong>@Model.Color.GetEnumDisplayName()</strong></p>
-    </div>
-</div>
-
-@*<ul class="list-inline list-unstyled text-right">
-        <li class="list-inline-item">
-            <i class="fas fa-user-edit"></i>
-        </li>
-        <li class="list-inline-item">
-            <i class="fas fa-calendar-alt"></i>
-        </li>
-        <li class="list-inline-item">
-            <i class="fas fa-comment-dots"></i> comments
-        </li>
-    </ul>*@
-
-@*<p>@Model.Breed.GetEnumDisplayName() </p>
-    <p>@Model.OwnerName</p>*@
