@@ -9,9 +9,9 @@
     {
         public static string GetEnumDisplayName(this Enum enumValue)
         {
-            return enumValue.GetType()
+            return enumValue.GetType()?
                 .GetMember(enumValue.ToString())
-                .First()
+                .First()?
                 .GetCustomAttribute<DisplayAttribute>()
                 .GetName();
         }
