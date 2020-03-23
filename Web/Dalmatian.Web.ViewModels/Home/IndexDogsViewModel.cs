@@ -23,8 +23,6 @@
 
         public DateTime? DateOfDeath { get; set; }
 
-        public string Url => $"/club-dogs/{this.PedigreeName.Replace(' ', '-')}";
-
-        public ICollection<Parent> Parents { get; set; }
+        public string Url => $"/club-dogs/{ this.PedigreeName.Replace(' ', '-') + "-" + this.Id}";
     }
 }

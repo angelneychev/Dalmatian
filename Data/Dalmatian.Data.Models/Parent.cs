@@ -6,12 +6,12 @@
 
     public class Parent : BaseDeletableModel<int>
     {
-        public Dog Dog { get; set; }
+        //public Dog Dog { get; set; }
 
-        public int DogId { get; set; }
+        //public int DogId { get; set; }
 
-        public int? FatherDogId { get; set; }
+        //public int? FatherDogId { get; set; }
 
-        public int? MotherDogId { get; set; }
+        //public int? MotherDogId { get; set; }
     }
 }

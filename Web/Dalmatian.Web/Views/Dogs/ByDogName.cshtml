@@ -12,137 +12,147 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-4">
-            <table class="table table-bordered border-dark">
-                <thead class="table-primary">
-                <tr>
+
+        <div class="col-auto">
+            <div class="table-responsive">
+                <table class="table table-bordered border-dark">
+                    <thead class="table-primary">
+                        <tr>
+                            <th colspan="5">
+                                <img id="myImg" src="@Model.ImagesUrl" alt="@Model.PedigreeName" style="width: 100%; max-width: 300px" class="rounded mx-auto d-block">
+                                <!-- The Modal -->
+                                <div id="myModal" class="modal">
+
+                                    <!-- The Close Button -->
+                                    <span class="close">&times;</span>
+
+                                    <!-- Modal Content (The Image) -->
+                                    <img class="modal-content" id="img01">
+
+                                    <!-- Modal Caption (Image Text) -->
+                                    <div id="caption"></div>
+                                </div>
+                            </th>
+                        </tr>
+                    <thead class="table-primary">
                     <th colspan="5">
-                        <img id="myImg" src="@Model.ImagesUrl" alt="@Model.PedigreeName" style="width: 100%; max-width: 300px">
-                        <!-- The Modal -->
-                        <div id="myModal" class="modal">
-
-                            <!-- The Close Button -->
-                            <span class="close">&times;</span>
-
-                            <!-- Modal Content (The Image) -->
-                            <img class="modal-content" id="img01">
-
-                            <!-- Modal Caption (Image Text) -->
-                            <div id="caption"></div>
-                        </div>
+                        <h4>Basic information</h4>
                     </th>
-                </tr>
-                <thead class="table-primary">
-                <th colspan="5">
-                    <h4>Basic information</h4>
-                </th>
-                </thead>
-                <thead class="table-primary">
-                <tr>
-                    <th>Breed</th>
-                    <th>Date of birth</th>
-                    <th>Sex</th>
-                    <th>Colour</th>
-                    <th>Breeder</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="table-bordered bg-white">
-                    <td valign="top">@Model.Breed.GetEnumDisplayName()</td>
-                    <td valign="top">@Model.DateOfBirth?.ToShortDateString()</td>
-                    <td valign="top">@Model.SexDog.GetEnumDisplayName()</td>
-                    <td valign="top">@Model.Color.GetEnumDisplayName()</td>
-                    <td valign="top">@Model.BreederName</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-4">
-            <table class="table table-bordered border-dark">
-                <thead class="table-primary">
-                <th colspan="5">
-                    <p>Health information</p>
-                </th>
-                </thead>
-                <thead class="table-primary">
-                <tr>
-                    <th>Baer test</th>
-                    <th>Hip Rating</th>
-                    <th>Elbow Rating</th>
-                    <th colspan="2">Other health test</th>
-                </tr>
-                </thead>
-                @foreach (var dogHealth in Model.HealthInformations)
-                {
+                    </thead>
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Breed</th>
+                            <th>Date of birth</th>
+                            <th>Sex</th>
+                            <th>Colour</th>
+                            <th>Breeder</th>
+                        </tr>
+                    </thead>
                     <tbody>
-                    <tr class="table-bordered bg-white">
-                        <td valig="top">@dogHealth.Baer.GetEnumDisplayName()</td>
-                        <td valig="top">@dogHealth.HipRating.GetEnumDisplayName()</td>
-                        <td valig="top">@dogHealth.ElbowRating</td>
-                        <td valig="top" colspan="2">@dogHealth.OtherHealthTest</td>
+                        <tr class="table-bordered bg-white">
+                            <td valign="top">@Model.Breed.GetEnumDisplayName()</td>
+                            <td valign="top">@Model.DateOfBirth?.ToShortDateString()</td>
+                            <td valign="top">@Model.SexDog.GetEnumDisplayName()</td>
+                            <td valign="top">@Model.Color.GetEnumDisplayName()</td>
+                            <td valign="top">@Model.BreederName</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="table-responsive-sm">
+                <table class="table table-bordered border-dark">
+                    <thead class="table-primary">
+                    <th colspan="5">
+                        <p>Health information</p>
+                    </th>
+                    </thead>
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Baer test</th>
+                            <th>Hip Rating</th>
+                            <th>Elbow Rating</th>
+                            <th colspan="2">Other health test</th>
+                        </tr>
+                    </thead>
+                    @foreach (var dogHealth in Model.HealthInformations)
+                    {
+                        <tbody>
+                            <tr class="table-bordered bg-white">
+                                <td valig="top">@dogHealth.Baer.GetEnumDisplayName()</td>
+                                <td valig="top">@dogHealth.HipRating.GetEnumDisplayName()</td>
+                                <td valig="top">@dogHealth.ElbowRating</td>
+                                <td valig="top" colspan="2">@dogHealth.OtherHealthTest</td>
 
+                            </tr>
+                        </tbody>
+                    }
+                </table>
+
+                <table class="table table-bordered border-dark">
+                    <thead class="table-primary">
+                    <th colspan="5">
+                        <p>BreedingInformation</p>
+                    </th>
+                    </thead>
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Height</th>
+                            <th>Weight</th>
+                            <th>Breeding status</th>
+                            <th>Country of origin</th>
+                            <th>Country of residence</th>
+                        </tr>
+                    </thead>
+                    @foreach (var dog in Model.BreedingInformations)
+                    {
+                        <tbody>
+                            <tr class="table-bordered bg-white">
+                                <td valign="top">@dog.Height @dog.HeightUnits</td>
+                                <td valign="top">@dog.Weight @dog.WeightUnits</td>
+                                <td valign="top">@dog.BreedingStatus.GetEnumDisplayName()</td>
+                                <td valign="top">@dog.CountryOfOrigin.GetEnumDisplayName()</td>
+                                <td valign="top">@dog.CountryOfResidence.GetEnumDisplayName()</td>
+                            </tr>
+                        </tbody>
+                    }
+                </table>
+
+            </div>
+            </div>
+        <div class="col-auto">
+            <div class="table-responsive-sm">
+                <table class="table table-bordered border-dark align-self-auto">
+                    <thead class="table-primary">
+                    <th colspan="5">
+                        <p>Basic information</p>
+                    </th>
+                    </thead>
+                    <thead class="table-primary">
+                    <tr>
+                        <th>Breed</th>
+                        <th>Date of birth</th>
+                        <th>Sex</th>
+                        <th>Colour</th>
+                        <th>Breeder</th>
                     </tr>
-                    </tbody>
-                }
-            </table>
-            <table class="table table-bordered border-dark">
-                <thead class="table-primary">
-                <th colspan="5">
-                    <p>BreedingInformation</p>
-                </th>
-                </thead>
-                <thead class="table-primary">
-                <tr>
-                    <th>Height</th>
-                    <th>Weight</th>
-                    <th>Breeding status</th>
-                    <th>Country of origin</th>
-                    <th>Country of residence</th>
-                </tr>
-                </thead>
-                @foreach (var dog in Model.BreedingInformations)
-                {
+                    </thead>
                     <tbody>
                     <tr class="table-bordered bg-white">
-                        <td valign="top">@dog.Height @dog.HeightUnits</td>
-                        <td valign="top">@dog.Weight @dog.WeightUnits</td>
-                        <td valign="top">@dog.BreedingStatus.GetEnumDisplayName()</td>
-                        <td valign="top">@dog.CountryOfOrigin.GetEnumDisplayName()</td>
-                        <td valign="top">@dog.CountryOfResidence.GetEnumDisplayName()</td>
+                        <td valign="top">@Model.Breed.GetEnumDisplayName()</td>
+                        <td valign="top">@Model.DateOfBirth?.ToShortDateString()</td>
+                        <td valign="top">@Model.SexDog.GetEnumDisplayName()</td>
+                        <td valign="top">@Model.Color.GetEnumDisplayName()</td>
+                        <td valign="top">@Model.BreederName</td>
                     </tr>
                     </tbody>
-                }
-            </table>
+                </table>
+                </div>
+            </div>
         </div>
-        <div class="col-4">
-            <table class="table table-bordered border-dark align-self-auto">
-                <thead class="table-primary">
-                <th colspan="5">
-                    <p>Basic information</p>
-                </th>
-                </thead>
-                <thead class="table-primary">
-                <tr>
-                    <th>Breed</th>
-                    <th>Date of birth</th>
-                    <th>Sex</th>
-                    <th>Colour</th>
-                    <th>Breeder</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="table-bordered bg-white">
-                    <td valign="top">@Model.Breed.GetEnumDisplayName()</td>
-                    <td valign="top">@Model.DateOfBirth?.ToShortDateString()</td>
-                    <td valign="top">@Model.SexDog.GetEnumDisplayName()</td>
-                    <td valign="top">@Model.Color.GetEnumDisplayName()</td>
-                    <td valign="top">@Model.BreederName</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
 </div>
+
 <div class="col-12 alert alert-primary active">
-<h2>@Model.PedigreeName</h2>
+    <h2>@Model.PedigreeName</h2>
 </div>

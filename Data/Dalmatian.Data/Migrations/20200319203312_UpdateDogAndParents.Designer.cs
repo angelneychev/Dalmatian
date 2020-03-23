@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dalmatian.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200310093707_EditDataModel")]
-    partial class EditDataModel
+    [Migration("20200319203312_UpdateDogAndParents")]
+    partial class UpdateDogAndParents
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -370,6 +370,9 @@ namespace Dalmatian.Data.Migrations
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("FatherDogId")
+                        .HasColumnType("int");
+
                     b.Property<string>("ImagesUrl")
                         .HasColumnType("nvarchar(max)");
 
@@ -378,6 +381,9 @@ namespace Dalmatian.Data.Migrations
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("MotherDogId")
+                        .HasColumnType("int");
 
                     b.Property<string>("OwnerName")
                         .HasColumnType("nvarchar(max)");
@@ -390,7 +396,11 @@ namespace Dalmatian.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("FatherDogId");
+
                     b.HasIndex("IsDeleted");
+
+                    b.HasIndex("MotherDogId");
 
                     b.ToTable("Dogs");
                 });
@@ -548,24 +558,13 @@ namespace Dalmatian.Data.Migrations
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DogId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("FatherDogId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("MotherDogId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("DogId");
 
                     b.HasIndex("IsDeleted");
 
@@ -803,7 +802,7 @@ namespace Dalmatian.Data.Migrations
             modelBuilder.Entity("Dalmatian.Data.Models.ClubRegisterNumber", b =>
                 {
                     b.HasOne("Dalmatian.Data.Models.Dog", "Dog")
-                        .WithMany()
+                        .WithMany("ClubRegisterNumbers")
                         .HasForeignKey("DogId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -822,6 +821,17 @@ namespace Dalmatian.Data.Migrations
                         .HasForeignKey("DogMaleId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Dalmatian.Data.Models.Dog", b =>
+                {
+                    b.HasOne("Dalmatian.Data.Models.Dog", "Father")
+                        .WithMany("SubFathers")
+                        .HasForeignKey("FatherDogId");
+
+                    b.HasOne("Dalmatian.Data.Models.Dog", "Mother")
+                        .WithMany("SubMothers")
+                        .HasForeignKey("MotherDogId");
                 });
 
             modelBuilder.Entity("Dalmatian.Data.Models.HealthInformation", b =>
@@ -853,15 +863,6 @@ namespace Dalmatian.Data.Migrations
                     b.HasOne("Dalmatian.Data.Models.ConfirmationOfMating", "ConfirmationOfMating")
                         .WithMany()
                         .HasForeignKey("ConfirmationOfMatingId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Dalmatian.Data.Models.Parent", b =>
-                {
-                    b.HasOne("Dalmatian.Data.Models.Dog", "Dog")
-                        .WithMany("Parents")
-                        .HasForeignKey("DogId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });

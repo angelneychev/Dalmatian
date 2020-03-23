@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Dalmatian.Data.Migrations
 {
-    public partial class EditDataModel : Migration
+    public partial class UpdateDogAndParents : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -61,11 +61,41 @@ namespace Dalmatian.Data.Migrations
                     DateOfDeath = table.Column<DateTime>(nullable: true),
                     Color = table.Column<int>(nullable: false),
                     OwnerName = table.Column<string>(nullable: true),
-                    BreederName = table.Column<string>(nullable: true)
+                    BreederName = table.Column<string>(nullable: true),
+                    FatherDogId = table.Column<int>(nullable: true),
+                    MotherDogId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Dogs", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Dogs_Dogs_FatherDogId",
+                        column: x => x.FatherDogId,
+                        principalTable: "Dogs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Dogs_Dogs_MotherDogId",
+                        column: x => x.MotherDogId,
+                        principalTable: "Dogs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Parents",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    ModifiedOn = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    DeletedOn = table.Column<DateTime>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Parents", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -210,31 +240,6 @@ namespace Dalmatian.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Parents",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedOn = table.Column<DateTime>(nullable: false),
-                    ModifiedOn = table.Column<DateTime>(nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: false),
-                    DeletedOn = table.Column<DateTime>(nullable: true),
-                    DogId = table.Column<int>(nullable: false),
-                    FatherDogId = table.Column<int>(nullable: true),
-                    MotherDogId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Parents", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Parents_Dogs_DogId",
-                        column: x => x.DogId,
-                        principalTable: "Dogs",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "RegistrationDogNumbers",
                 columns: table => new
                 {
@@ -372,9 +377,19 @@ namespace Dalmatian.Data.Migrations
                 column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Dogs_FatherDogId",
+                table: "Dogs",
+                column: "FatherDogId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Dogs_IsDeleted",
                 table: "Dogs",
                 column: "IsDeleted");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Dogs_MotherDogId",
+                table: "Dogs",
+                column: "MotherDogId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_HealthInformations_DogId",
@@ -410,11 +425,6 @@ namespace Dalmatian.Data.Migrations
                 name: "IX_Litters_IsDeleted",
                 table: "Litters",
                 column: "IsDeleted");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Parents_DogId",
-                table: "Parents",
-                column: "DogId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Parents_IsDeleted",

@@ -1,4 +1,6 @@
-﻿namespace Dalmatian.Web
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace Dalmatian.Web
 {
     using System.Reflection;
 
@@ -50,7 +52,10 @@
             mvcBuilder.AddRazorRuntimeCompilation();
             */
 
-            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddControllersWithViews(options =>
+            {
+                options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+            }).AddRazorRuntimeCompilation();
             services.AddRazorPages();
 
             services.AddSingleton(this.configuration);

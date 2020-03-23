@@ -9,9 +9,14 @@
         public void Configure(EntityTypeBuilder<Dog> dog)
         {
             dog
-                .HasMany(a => a.Parents)
-                .WithOne(b => b.Dog)
-                .HasForeignKey(b => b.DogId);
+                .HasMany(d => d.SubFathers)
+                .WithOne(d => d.Father)
+                .HasForeignKey(d => d.FatherDogId);
+
+            dog
+                .HasMany(d => d.SubMothers)
+                .WithOne(d => d.Mother)
+                .HasForeignKey(d => d.MotherDogId);
 
             dog
                 .HasMany(a => a.BreedingInformations)

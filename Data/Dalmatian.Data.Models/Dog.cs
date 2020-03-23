@@ -14,7 +14,7 @@
             this.BreedingInformations = new HashSet<BreedingInformation>();
             this.HealthInformations = new HashSet<HealthInformation>();
             this.RegistrationDogNumbers = new HashSet<RegistrationDogNumber>();
-            this.Parents = new HashSet<Parent>();
+            this.ClubRegisterNumbers = new HashSet<ClubRegisterNumber>();
         }
 
         public string PedigreeName { get; set; }
@@ -35,14 +35,24 @@
 
         public string BreederName { get; set; }
 
-        public virtual ICollection<Parent> Parents { get; set; }
+        public int? FatherDogId { get; set; }
+
+        public virtual Dog Father { get; set; }
+
+        public int? MotherDogId { get; set; }
+
+        public virtual Dog Mother { get; set; }
+
+        public ICollection<Dog> SubFathers { get; set; }
+
+        public ICollection<Dog> SubMothers { get; set; }
 
         public ICollection<ClubRegisterNumber> ClubRegisterNumbers { get; set; }
 
-        public virtual ICollection<BreedingInformation> BreedingInformations { get; set; }
+        public ICollection<BreedingInformation> BreedingInformations { get; set; }
 
-        public virtual ICollection<HealthInformation> HealthInformations { get; set; }
+        public ICollection<HealthInformation> HealthInformations { get; set; }
 
-        public virtual ICollection<RegistrationDogNumber> RegistrationDogNumbers { get; set; }
+        public ICollection<RegistrationDogNumber> RegistrationDogNumbers { get; set; }
     }
 }
