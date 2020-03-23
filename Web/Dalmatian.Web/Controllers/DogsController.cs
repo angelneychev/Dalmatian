@@ -18,14 +18,12 @@ namespace Dalmatian.Web.Controllers
         private readonly IDogsService dogsService;
         private readonly IDeletableEntityRepository<Dog> dogsRepository;
         private readonly UserManager<ApplicationUser> userManager;
-        private readonly IClubRegisterNumberService clubRegisterNumberService;
 
-        public DogsController(IDogsService dogsService, IDeletableEntityRepository<Dog> dogsRepository, UserManager<ApplicationUser> userManager, IClubRegisterNumberService clubRegisterNumberService)
+        public DogsController(IDogsService dogsService, IDeletableEntityRepository<Dog> dogsRepository, UserManager<ApplicationUser> userManager)
         {
             this.dogsService = dogsService;
             this.dogsRepository = dogsRepository;
             this.userManager = userManager;
-            this.clubRegisterNumberService = clubRegisterNumberService;
         }
 
         public IActionResult ByDogName(string pedigreeName)
@@ -64,23 +62,6 @@ namespace Dalmatian.Web.Controllers
             var user = await this.userManager.GetUserAsync(this.User);
             var dogId = await this.dogsService.CreateAsync(input);
             var pedigreeName = this.dogsRepository.All().Where(x => x.Id == dogId).Select(x => x.PedigreeName).FirstOrDefault();
-
-            return this.Redirect($"/club-dogs/{pedigreeName.Replace(' ', '-')}");
-        }
-
-        [HttpPost]
-        [Authorize]
-        public async Task<IActionResult> CreateClubNumber(CreateClubRegisterNumber input)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return this.View(input);
-            }
-
-            var clubNumberId = this.clubRegisterNumberService.CreateClubNumberAsync(input);
-            //    var user = await this.userManager.GetUserAsync(this.User);
-            var dogId = await this.dogsService.CreateAsync(input);
-            var pedigreeName = this.dogsRepository.All().Where(x => x.Id == ).Select(x => x.PedigreeName).FirstOrDefault();
 
             return this.Redirect($"/club-dogs/{pedigreeName.Replace(' ', '-')}");
         }
