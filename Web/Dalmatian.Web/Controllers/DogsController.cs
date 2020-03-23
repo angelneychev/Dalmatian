@@ -77,12 +77,12 @@ namespace Dalmatian.Web.Controllers
                 return this.View(input);
             }
 
-            return "";
-        //    var user = await this.userManager.GetUserAsync(this.User);
-        //    var dogId = await this.dogsService.CreateAsync(input);
-        //    var pedigreeName = this.dogsRepository.All().Where(x => x.Id == dogId).Select(x => x.PedigreeName).FirstOrDefault();
+            var clubNumberId = this.clubRegisterNumberService.CreateClubNumberAsync(input);
+            //    var user = await this.userManager.GetUserAsync(this.User);
+            var dogId = await this.dogsService.CreateAsync(input);
+            var pedigreeName = this.dogsRepository.All().Where(x => x.Id == ).Select(x => x.PedigreeName).FirstOrDefault();
 
-        //    return this.Redirect($"/club-dogs/{pedigreeName.Replace(' ', '-')}");
-        //}
+            return this.Redirect($"/club-dogs/{pedigreeName.Replace(' ', '-')}");
+        }
     }
 }
