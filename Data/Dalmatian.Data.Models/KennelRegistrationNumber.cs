@@ -5,7 +5,7 @@
 
     using Dalmatian.Data.Common.Models;
 
-    public class RegistrationKennelNumber : BaseDeletableModel<int>
+    public class KennelRegistrationNumber : BaseDeletableModel<int>
     {
         public string RegistrationNumber { get; set; }
 
@@ -13,6 +13,6 @@
 
         public Dog Dog { get; set; }
 
-        public DateTime DateOfRegister { get; set; }
+        public DateTime DateOfKennelRegistration { get; set; }
     }
 }
