@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace Dalmatian.Web
+﻿namespace Dalmatian.Web
 {
     using System.Reflection;
 
@@ -14,10 +12,10 @@ namespace Dalmatian.Web
     using Dalmatian.Services.Mapping;
     using Dalmatian.Services.Messaging;
     using Dalmatian.Web.ViewModels;
-
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;

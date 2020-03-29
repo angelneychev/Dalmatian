@@ -9,7 +9,7 @@
     {
         public string RegistrationNumber { get; set; }
 
-        public DateTime DateOfRegistrationNumber { get; set; }
+        public DateTime? DateOfRegistrationNumber { get; set; }
 
         public int DogId { get; set; }
 

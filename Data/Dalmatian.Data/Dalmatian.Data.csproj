@@ -41,10 +41,16 @@
     <Compile Remove="Migrations\20200310093707_EditDataModel.Designer.cs" />
     <Compile Remove="Migrations\20200311191204_UpdateDateModelDogAndRegisterNumber.cs" />
     <Compile Remove="Migrations\20200311191204_UpdateDateModelDogAndRegisterNumber.Designer.cs" />
+    <Compile Remove="Migrations\20200319203312_UpdateDogAndParents.cs" />
+    <Compile Remove="Migrations\20200319203312_UpdateDogAndParents.Designer.cs" />
     <Compile Remove="Migrations\20200323182657_aaaaaaaaa.cs" />
     <Compile Remove="Migrations\20200323182657_aaaaaaaaa.Designer.cs" />
     <Compile Remove="Migrations\20200327195949_AddNew.cs" />
     <Compile Remove="Migrations\20200327195949_AddNew.Designer.cs" />
+    <Compile Remove="Migrations\20200327203336_RedesingDatabase.cs" />
+    <Compile Remove="Migrations\20200327203336_RedesingDatabase.Designer.cs" />
+    <Compile Remove="Migrations\20200328062210_RedsingDatabase.cs" />
+    <Compile Remove="Migrations\20200328062210_RedsingDatabase.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -4,6 +4,9 @@
 
     public enum Country
     {
+        [Display(Name = "Not available")]
+        Not_available = 0,
+
         [Display(Name = "Afghanistan")]
         AF = 10,
         [Display(Name = "Åland Islands")]

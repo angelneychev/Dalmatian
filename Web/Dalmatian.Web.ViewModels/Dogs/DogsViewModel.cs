@@ -1,9 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Dalmatian.Web.ViewModels.Dogs
+﻿namespace Dalmatian.Web.ViewModels.Dogs
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     using Dalmatian.Data.Models;
     using Dalmatian.Data.Models.Enum;

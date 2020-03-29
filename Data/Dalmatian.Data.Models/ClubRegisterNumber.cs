@@ -13,6 +13,6 @@
 
         public string ClubNumber { get; set; }
 
-        public DateTime DateOfClubRegister { get; set; }
+        public DateTime? DateOfClubRegister { get; set; }
     }
 }

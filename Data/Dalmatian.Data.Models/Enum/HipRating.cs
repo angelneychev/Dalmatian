@@ -6,6 +6,9 @@
 
     public enum HipRating
     {
+        [Display(Name = "Not available")]
+        Not_available = 0,
+
         [Display(Name = "OFA - Normal")]
         OFA_Normal = 10,
         [Display(Name = "OFA - Excellent")]

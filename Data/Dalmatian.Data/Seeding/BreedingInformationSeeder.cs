@@ -18,10 +18,10 @@
 
             var dogs = new List<(string HeightUnits, double Height, string WeightUnits, double Weight, string BreedingStatus, string CountryOfOrigin, string CountryOfResidence, int DogId)>
             {
-                ("cm", 60.0f, "kg", 30.0f, "Intact", "NO", "BG", 1),
-                ("cm", 57.0f, "kg", 27.0f, "Intact", "BG", "BG", 2),
-                ("cm", 62.5f, "kg", 34.0f, "Intact", "CZ", "BG", 3),
-                ("cm", 58.0f, "kg", 27.0f, "Intact", "RS", "BG", 4),
+                ("Cm", 60.0f, "Kg", 30.0f, "Intact", "NO", "BG", 1),
+                ("Cm", 57.0f, "Kg", 27.0f, "Intact", "BG", "BG", 2),
+                ("Cm", 62.5f, "Kg", 34.0f, "Intact", "CZ", "BG", 3),
+                ("Cm", 58.0f, "Kg", 27.0f, "Intact", "RS", "BG", 4),
             };
 
             foreach (var dog in dogs)

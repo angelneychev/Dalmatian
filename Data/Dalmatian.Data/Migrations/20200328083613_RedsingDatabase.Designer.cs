@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dalmatian.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200319203312_UpdateDogAndParents")]
-    partial class UpdateDogAndParents
+    [Migration("20200328083613_RedsingDatabase")]
+    partial class RedsingDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -276,6 +276,9 @@ namespace Dalmatian.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("DateOfClubRegister")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
@@ -416,6 +419,15 @@ namespace Dalmatian.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateOfBaer")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateOfElbowRating")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateOfHipRating")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeletedOn")
@@ -579,6 +591,9 @@ namespace Dalmatian.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateOfRegistrationNumber")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeletedOn")

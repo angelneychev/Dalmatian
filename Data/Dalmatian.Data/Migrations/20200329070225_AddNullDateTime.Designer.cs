@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dalmatian.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200327203336_RedesingDatabase")]
-    partial class RedesingDatabase
+    [Migration("20200329070225_AddNullDateTime")]
+    partial class AddNullDateTime
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -276,7 +276,7 @@ namespace Dalmatian.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateOfClubRegister")
+                    b.Property<DateTime?>("DateOfClubRegister")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeletedOn")
@@ -421,13 +421,13 @@ namespace Dalmatian.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateOfBaer")
+                    b.Property<DateTime?>("DateOfBaer")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateOfElbowRating")
+                    b.Property<DateTime?>("DateOfElbowRating")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateOfHealthTest")
+                    b.Property<DateTime?>("DateOfHipRating")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeletedOn")
@@ -591,6 +591,9 @@ namespace Dalmatian.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateOfRegistrationNumber")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeletedOn")

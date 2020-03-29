@@ -1,8 +1,10 @@
 ﻿namespace Dalmatian.Data.Models.Enum
 {
+    using System.ComponentModel.DataAnnotations;
+
     public enum ElbowRating
     {
-        NotDate = 0,
+        [Display(Name = "Not available")]
+        Not_available = 0,
     }
-
 }

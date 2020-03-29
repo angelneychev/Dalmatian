@@ -274,7 +274,7 @@ namespace Dalmatian.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateOfClubRegister")
+                    b.Property<DateTime?>("DateOfClubRegister")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeletedOn")
@@ -419,13 +419,13 @@ namespace Dalmatian.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateOfBaer")
+                    b.Property<DateTime?>("DateOfBaer")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateOfElbowRating")
+                    b.Property<DateTime?>("DateOfElbowRating")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateOfHealthTest")
+                    b.Property<DateTime?>("DateOfHipRating")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeletedOn")
@@ -589,6 +589,9 @@ namespace Dalmatian.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateOfRegistrationNumber")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeletedOn")

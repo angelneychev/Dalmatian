@@ -20,10 +20,10 @@
             var healthInformations =
                 new List<(int DogId, string Baer, string HipRating)>
                 {
-                    (1, "bilateral", "FCI_A1"),
-                    (2, "bilateral", "FCI_A1"),
-                    (3, "bilateral", "FCI_A1"),
-                    (4, "bilateral", "FCI_A1"),
+                    (1, "Bilateral", "FCI_A1"),
+                    (2, "Bilateral", "FCI_A1"),
+                    (3, "Bilateral", "FCI_A1"),
+                    (4, "Bilateral", "FCI_A1"),
                 };
 
             foreach (var dog in healthInformations)

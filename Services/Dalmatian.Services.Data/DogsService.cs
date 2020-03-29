@@ -36,7 +36,7 @@
 
         public T GetByName<T>(string pedigreeName)
         {
-            pedigreeName = Regex.Replace(pedigreeName, @"(\D\d)", String.Empty);
+            pedigreeName = Regex.Replace(pedigreeName, @"(\D\d)", string.Empty);
 
             pedigreeName = pedigreeName.Replace('-', ' ');
             var dogId = this.dogsRepository.All()
@@ -66,6 +66,53 @@
                 MotherDogId = input.MotherDogId,
                 //UserId= user.Id,
             };
+            await this.dogsRepository.AddAsync(dog);
+
+            var clubNumber = new ClubRegisterNumber()
+            {
+                ClubNumber = input.ClubNumber,
+                DateOfClubRegister = input.DateOfClubRegister,
+                DogId = dog.Id,
+            };
+
+            dog.ClubRegisterNumbers.Add(clubNumber);
+
+            var registrationDogNumber = new RegistrationDogNumber()
+            {
+                RegistrationNumber = input.RegistrationNumber,
+                DateOfRegistrationNumber = input.DateOfRegistrationNumber,
+                DogId = dog.Id,
+            };
+
+            dog.RegistrationDogNumbers.Add(registrationDogNumber);
+
+            var healthInformation = new HealthInformation()
+            {
+                Baer = input.Baer,
+                DateOfBaer = input.DateOfBaer,
+                HipRating = input.HipRating,
+                DateOfHipRating = input.DateOfHipRating,
+                ElbowRating = input.ElbowRating,
+                DateOfElbowRating = input.DateOfElbowRating,
+                OtherHealthTest = input.OtherHealthTest,
+                DogId = dog.Id,
+            };
+
+            dog.HealthInformations.Add(healthInformation);
+
+            var breedingInformation = new BreedingInformation()
+            {
+                HeightUnits = input.HeightUnits,
+                Height = input.Height,
+                WeightUnits = input.WeightUnits,
+                Weight = input.Weight,
+                BreedingStatus = input.BreedingStatus,
+                CountryOfOrigin = input.CountryOfOrigin,
+                CountryOfResidence = input.CountryOfResidence,
+                DogId = dog.Id,
+            };
+
+            dog.BreedingInformations.Add(breedingInformation);
 
             await this.dogsRepository.AddAsync(dog);
             await this.dogsRepository.SaveChangesAsync();

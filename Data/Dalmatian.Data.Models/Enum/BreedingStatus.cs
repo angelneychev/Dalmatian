@@ -4,6 +4,9 @@
 
     public enum BreedingStatus
     {
+        [Display(Name = "Not available")]
+        Not_available = 0,
+
         [Display(Name = "Intact")]
         Intact = 10,
 

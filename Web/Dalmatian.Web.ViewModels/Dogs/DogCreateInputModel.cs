@@ -1,12 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace Dalmatian.Web.ViewModels.Dogs
+﻿namespace Dalmatian.Web.ViewModels.Dogs
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Web.WebPages.Html;
-    using Dalmatian.Data.Models;
+
     using Dalmatian.Data.Models.Enum;
 
     public class DogCreateInputModel
@@ -24,9 +21,11 @@ namespace Dalmatian.Web.ViewModels.Dogs
 
         public string ImagesUrl { get; set; }
 
+        [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd MMM yyyy")]
         public DateTime? DateOfBirth { get; set; }
 
+        [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd MMM yyyy")]
         public DateTime? DateOfDeath { get; set; }
 
@@ -48,25 +47,35 @@ namespace Dalmatian.Web.ViewModels.Dogs
         //ClubRegisterNumber
         public string ClubNumber { get; set; }
 
-        public DateTime DateOfClubRegister { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy")]
+        public DateTime? DateOfClubRegister { get; set; }
 
         //RegistrationDogNumber
         public string RegistrationNumber { get; set; }
 
-        public DateTime DateOfRegistrationNumber { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy")]
+        public DateTime? DateOfRegistrationNumber { get; set; }
 
         //HealthInformation
         public Baer Baer { get; set; }
 
-        public DateTime DateOfBaer { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy")]
+        public DateTime? DateOfBaer { get; set; }
 
         public HipRating HipRating { get; set; }
 
-        public DateTime DateOfElbowRating { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy")]
+        public DateTime? DateOfHipRating { get; set; }
 
         public ElbowRating ElbowRating { get; set; }
 
-        public DateTime DateOfHealthTest { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy")]
+        public DateTime? DateOfElbowRating { get; set; }
 
         public string OtherHealthTest { get; set; }
 
@@ -84,7 +93,6 @@ namespace Dalmatian.Web.ViewModels.Dogs
         public Country CountryOfOrigin { get; set; }
 
         public Country CountryOfResidence { get; set; }
-
 
         public string Url => $"/club-dogs/{this.PedigreeName.Replace(' ', '-')}";
 

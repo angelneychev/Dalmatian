@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Dalmatian.Data.Migrations
 {
-    public partial class UpdateDogAndParents : Migration
+    public partial class RedsingDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -166,7 +166,8 @@ namespace Dalmatian.Data.Migrations
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     DogId = table.Column<int>(nullable: false),
-                    ClubNumber = table.Column<string>(nullable: true)
+                    ClubNumber = table.Column<string>(nullable: true),
+                    DateOfClubRegister = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -223,8 +224,11 @@ namespace Dalmatian.Data.Migrations
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     Baer = table.Column<int>(nullable: false),
+                    DateOfBaer = table.Column<DateTime>(nullable: false),
                     HipRating = table.Column<int>(nullable: false),
+                    DateOfHipRating = table.Column<DateTime>(nullable: false),
                     ElbowRating = table.Column<int>(nullable: false),
+                    DateOfElbowRating = table.Column<DateTime>(nullable: false),
                     OtherHealthTest = table.Column<string>(nullable: true),
                     DogId = table.Column<int>(nullable: false)
                 },
@@ -250,6 +254,7 @@ namespace Dalmatian.Data.Migrations
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     RegistrationNumber = table.Column<string>(nullable: true),
+                    DateOfRegistrationNumber = table.Column<DateTime>(nullable: false),
                     DogId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
