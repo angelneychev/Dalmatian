@@ -5,6 +5,7 @@
     using System.ComponentModel.DataAnnotations;
 
     using Dalmatian.Data.Models.Enum;
+    using Microsoft.AspNetCore.Http;
 
     public class DogCreateInputModel
     {
@@ -19,13 +20,14 @@
         [Required]
         public SexDog SexDog { get; set; }
 
-        public string ImagesUrl { get; set; }
+        [DataType(DataType.Upload)]
+        public IFormFile ImagesUrl { get; set; }
 
-        [DataType(DataType.Date)]
+        //[DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd MMM yyyy")]
         public DateTime? DateOfBirth { get; set; }
 
-        [DataType(DataType.Date)]
+        //[DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd MMM yyyy")]
         public DateTime? DateOfDeath { get; set; }
 

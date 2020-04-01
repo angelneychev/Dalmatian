@@ -5,9 +5,10 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-
+    using CloudinaryDotNet;
     using Dalmatian.Data.Common.Repositories;
     using Dalmatian.Data.Models;
+    using Dalmatian.Services.Data.Common;
     using Dalmatian.Services.Mapping;
     using Dalmatian.Web.ViewModels.ClubRegisterNumber;
     using Dalmatian.Web.ViewModels.Dogs;
@@ -15,10 +16,12 @@
     public class DogsService : IDogsService
     {
         private readonly IDeletableEntityRepository<Dog> dogsRepository;
+        private readonly Cloudinary cloudinary;
 
-        public DogsService(IDeletableEntityRepository<Dog> dogRepository)
+        public DogsService(IDeletableEntityRepository<Dog> dogRepository, Cloudinary cloudinary)
         {
             this.dogsRepository = dogRepository;
+            this.cloudinary = cloudinary;
         }
 
         public IEnumerable<T> GetAll<T>(int? count = null)
@@ -52,11 +55,14 @@
 
         public async Task<int> CreateAsync(DogCreateInputModel input)
         {
+            var imageUrl = await ApplicationCloudinary.UploadImage(this.cloudinary, input.ImagesUrl, input.PedigreeName);
+
             var dog = new Dog()
             {
                 PedigreeName = input.PedigreeName,
                 Breed = input.Breed,
                 SexDog = input.SexDog,
+                ImagesUrl = imageUrl,
                 DateOfBirth = input.DateOfBirth,
                 DateOfDeath = input.DateOfDeath,
                 Color = input.Color,

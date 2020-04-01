@@ -9,7 +9,7 @@
 
 <h1>@ViewData["Title"]</h1>
 <div class="container">
-    <form method="post" asp-action="CreateDog" class="alert alert-primary">
+    <form method="post" asp-action="CreateDog" class="alert alert-primary" enctype="multipart/form-data">
         @*<div class="alert alert-primary">*@
             <strong><h3>Basic dog information</h3></strong>
             <hr />
@@ -40,23 +40,24 @@
                 </div>
             </div>
             <div class="form-row">
-                <div class="col-md-2">
-                    <label for="ImagesUrl">Add photo</label>
-                    <input asp-for="ImagesUrl" class="form-control" />
-                    <span asp-validation-for="ImagesUrl"></span>
+                <div class="col-md-4">
+                    <label for="ImagesUrl" class="custom-file-label"> Add photo</label>
+                        <input type="file" asp-for="ImagesUrl" name="ImagesUrl" class="custom-file-input" />
+                        <span asp-validation-for="ImagesUrl" class="text-danger"></span>
+                    
                 </div>
-                <div class="col-md-5">
-                    <label for="FatherDogId">Father</label>
-                    <select asp-for="FatherDogId" asp-items="father" class="form-control"></select>
-                    <span asp-validation-for="FatherDogId"></span>
-                </div>
+                    <div class="col-md-4">
+                        <label for="FatherDogId">Father</label>
+                        <select asp-for="FatherDogId" asp-items="father" class="form-control"></select>
+                        <span asp-validation-for="FatherDogId"></span>
+                    </div>
 
-                <div class="col-md-5">
-                    <label for="MotherDogId">Mother</label>
-                    <select asp-for="MotherDogId" asp-items="mother" class="form-control"></select>
-                    <span asp-validation-for="MotherDogId"></span>
+                    <div class="col-md-4">
+                        <label for="MotherDogId">Mother</label>
+                        <select asp-for="MotherDogId" asp-items="mother" class="form-control"></select>
+                        <span asp-validation-for="MotherDogId"></span>
+                    </div>
                 </div>
-            </div>
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label for="DateOfBirth">Date of birth</label>
@@ -212,7 +213,7 @@
         <input type="submit" class="btn btn-primary" />
     </form>
 </div>
-<script type="text/javascript">
+@*<script type="text/javascript">
     (function () {
         'use strict';
         window.addEventListener('load', function () {
@@ -226,4 +227,4 @@
             }, false);
         }, false);
     })();
-</script> 
+</script>*@ 

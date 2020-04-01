@@ -1,7 +1,7 @@
 ﻿namespace Dalmatian.Web
 {
     using System.Reflection;
-
+    using CloudinaryDotNet;
     using Dalmatian.Data;
     using Dalmatian.Data.Common;
     using Dalmatian.Data.Common.Repositories;
@@ -56,7 +56,15 @@
             }).AddRazorRuntimeCompilation();
             services.AddRazorPages();
 
+            Account account = new Account(
+                this.configuration["Cloudinary:AppName"],
+                this.configuration["Cloudinary:AppKey"],
+                this.configuration["Cloudinary:AppSecret"]);
+
+            Cloudinary cloudinary = new Cloudinary(account);
+
             services.AddSingleton(this.configuration);
+            services.AddSingleton(cloudinary);
 
             // Data repositories
             services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
@@ -113,7 +121,7 @@
                 endpoints =>
                     {
                         endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-                        endpoints.MapControllerRoute("dogInfo", "club-dogs/{pedigreeName:minlength(1)}", new { controller= "Dogs", action = "ByDogName" });
+                        endpoints.MapControllerRoute("dogInfo", "club-dogs/{pedigreeName:minlength(1)}", new { controller = "Dogs", action = "ByDogName" });
                         endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapRazorPages();
                     });
