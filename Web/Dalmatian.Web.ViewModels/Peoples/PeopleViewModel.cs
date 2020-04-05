@@ -35,7 +35,5 @@
         public string Instagram { get; set; }
 
         public string Linkedin { get; set; }
-
-        public ICollection<Kennel> Kennels { get; set; }
     }
 }

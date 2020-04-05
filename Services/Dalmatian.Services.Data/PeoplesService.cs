@@ -8,12 +8,13 @@
     using Dalmatian.Data.Models;
     using Dalmatian.Services.Mapping;
     using Dalmatian.Web.ViewModels.Peoples;
+    using Microsoft.AspNetCore.Identity;
 
-    public class PeopleService : IPeopleService
+    public class PeoplesService : IPeoplesService
     {
         private readonly IDeletableEntityRepository<People> peopleRepository;
 
-        public PeopleService(IDeletableEntityRepository<People> peopleRepository)
+        public PeoplesService(IDeletableEntityRepository<People> peopleRepository)
         {
             this.peopleRepository = peopleRepository;
         }
@@ -48,10 +49,18 @@
                 Twitter = input.Twitter,
                 Instagram = input.Instagram,
                 Linkedin = input.Linkedin,
+                UserId = input.UserId,
             };
             await this.peopleRepository.AddAsync(people);
             await this.peopleRepository.SaveChangesAsync();
             return people.Id;
+        }
+
+        public PeopleViewModel Details(int id)
+        {
+            var people = this.peopleRepository.All().Where(x => x.Id == id).To<PeopleViewModel>().FirstOrDefault();
+
+            return people;
         }
     }
 }

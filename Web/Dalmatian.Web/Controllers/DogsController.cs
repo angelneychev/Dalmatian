@@ -65,5 +65,6 @@ namespace Dalmatian.Web.Controllers
 
             return this.Redirect($"/club-dogs/{pedigreeName.Replace(' ', '-') + "-" + dogId}");
         }
+
     }
 }

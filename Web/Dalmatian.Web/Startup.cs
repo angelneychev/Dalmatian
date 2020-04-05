@@ -78,7 +78,7 @@
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<IDogsService, DogsService>();
             services.AddTransient<IConfirmationOfMatingService, ConfirmationOfMatingService>();
-            services.AddTransient<IPeopleService, PeopleService>();
+            services.AddTransient<IPeoplesService, PeoplesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
