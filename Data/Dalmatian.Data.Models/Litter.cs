@@ -21,7 +21,7 @@
 
         public int NumberOfFemales { get; set; }
 
-        public Breeder Breeder { get; set; }
+        public People Breeder { get; set; }
 
         public int BreederId { get; set; }
 

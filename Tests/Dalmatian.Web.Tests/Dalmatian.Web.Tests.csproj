@@ -31,4 +31,8 @@
     <ProjectReference Include="..\..\Web\Dalmatian.Web\Dalmatian.Web.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\" />
+  </ItemGroup>
+
 </Project>

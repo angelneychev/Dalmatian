@@ -51,6 +51,14 @@
     <Compile Remove="Migrations\20200327203336_RedesingDatabase.Designer.cs" />
     <Compile Remove="Migrations\20200328062210_RedsingDatabase.cs" />
     <Compile Remove="Migrations\20200328062210_RedsingDatabase.Designer.cs" />
+    <Compile Remove="Migrations\20200405093033_EditTableKennel.cs" />
+    <Compile Remove="Migrations\20200405093033_EditTableKennel.Designer.cs" />
+    <Compile Remove="Migrations\20200405103437_UpdateTableKennelFields.cs" />
+    <Compile Remove="Migrations\20200405103437_UpdateTableKennelFields.Designer.cs" />
+    <Compile Remove="Migrations\20200405103800_UpdateTableKennelFields.cs" />
+    <Compile Remove="Migrations\20200405103800_UpdateTableKennelFields.Designer.cs" />
+    <Compile Remove="Migrations\20200405111607_UpdateTableKennelFields.cs" />
+    <Compile Remove="Migrations\20200405111607_UpdateTableKennelFields.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

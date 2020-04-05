@@ -39,7 +39,7 @@
 
         public T GetByName<T>(string pedigreeName)
         {
-            pedigreeName = Regex.Replace(pedigreeName, @"(\D\d)", string.Empty);
+            pedigreeName = Regex.Replace(pedigreeName, @"(\D\d+)", string.Empty);
 
             pedigreeName = pedigreeName.Replace('-', ' ');
             var dogId = this.dogsRepository.All()
@@ -72,8 +72,6 @@
                 MotherDogId = input.MotherDogId,
                 //UserId= user.Id,
             };
-            await this.dogsRepository.AddAsync(dog);
-
             var clubNumber = new ClubRegisterNumber()
             {
                 ClubNumber = input.ClubNumber,

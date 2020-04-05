@@ -9,16 +9,20 @@
     {
         public string RegistrationNumber { get; set; }
 
-        public Dog DogMale { get; set; }
+        public Dog DogFather { get; set; }
 
-        public int DogMaleId { get; set; }
+        public int DogFatherId { get; set; }
 
-        public Dog DogFemale { get; set; }
+        public Dog DogMother { get; set; }
 
-        public int DogFemaleId { get; set; }
+        public int DogMotherId { get; set; }
 
         public DateTime DateOfMating { get; set; }
 
         public TypeOfMating TypeOfMating { get; set; }
+
+        public string OwnerMaleDog { get; set; }
+
+        public string OwnerFemaleDog { get; set; }
     }
 }

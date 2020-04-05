@@ -63,7 +63,7 @@ namespace Dalmatian.Web.Controllers
             var dogId = await this.dogsService.CreateAsync(input);
             var pedigreeName = this.dogsRepository.All().Where(x => x.Id == dogId).Select(x => x.PedigreeName).FirstOrDefault();
 
-            return this.Redirect($"/club-dogs/{pedigreeName.Replace(' ', '-')}");
+            return this.Redirect($"/club-dogs/{pedigreeName.Replace(' ', '-') + "-" + dogId}");
         }
     }
 }

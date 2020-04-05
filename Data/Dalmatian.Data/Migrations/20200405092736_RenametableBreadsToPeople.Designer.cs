@@ -4,14 +4,16 @@ using Dalmatian.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Dalmatian.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200405092736_RenametableBreadsToPeople")]
+    partial class RenametableBreadsToPeople
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -410,9 +412,6 @@ namespace Dalmatian.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateOfRegistration")
-                        .HasColumnType("datetime2");
-
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
@@ -425,10 +424,7 @@ namespace Dalmatian.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PeopleCoOwnerId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PeopleOwnerId")
+                    b.Property<int>("PeopleId")
                         .HasColumnType("int");
 
                     b.Property<string>("RegistrationNumber")
@@ -438,9 +434,7 @@ namespace Dalmatian.Data.Migrations
 
                     b.HasIndex("IsDeleted");
 
-                    b.HasIndex("PeopleCoOwnerId");
-
-                    b.HasIndex("PeopleOwnerId");
+                    b.HasIndex("PeopleId");
 
                     b.ToTable("Kennels");
                 });
@@ -865,13 +859,9 @@ namespace Dalmatian.Data.Migrations
 
             modelBuilder.Entity("Dalmatian.Data.Models.Kennel", b =>
                 {
-                    b.HasOne("Dalmatian.Data.Models.People", "PeopleCoOwner")
-                        .WithMany()
-                        .HasForeignKey("PeopleCoOwnerId");
-
-                    b.HasOne("Dalmatian.Data.Models.People", "PeopleOwner")
-                        .WithMany()
-                        .HasForeignKey("PeopleOwnerId")
+                    b.HasOne("Dalmatian.Data.Models.People", "People")
+                        .WithMany("Kennels")
+                        .HasForeignKey("PeopleId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });

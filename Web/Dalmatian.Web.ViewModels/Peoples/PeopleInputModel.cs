@@ -1,24 +1,14 @@
-﻿namespace Dalmatian.Data.Models
+﻿namespace Dalmatian.Web.ViewModels.Peoples
 {
-    using System.Collections.Generic;
-
-    using Dalmatian.Data.Common.Models;
     using Dalmatian.Data.Models.Enum;
 
-    public class Breeder : BaseDeletableModel<int>
+    public class PeopleInputModel
     {
-        public Breeder()
-        {
-            this.Kennels = new HashSet<Kennel>();
-        }
-
         public string Firstname { get; set; }
 
         public string Middlename { get; set; }
 
         public string Lastname { get; set; }
-
-        public ApplicationUser User { get; set; }
 
         public string UserId { get; set; }
 
@@ -41,7 +31,5 @@
         public string Instagram { get; set; }
 
         public string Linkedin { get; set; }
-
-        public ICollection<Kennel> Kennels { get; set; }
     }
 }

@@ -39,11 +39,9 @@
         public string BreederName { get; set; }
 
         [Display(Name = "Father")]
-
         public int? FatherDogId { get; set; }
 
         [Display(Name = "Mother")]
-
         public int? MotherDogId { get; set; }
 
         //ClubRegisterNumber
@@ -95,8 +93,6 @@
         public Country CountryOfOrigin { get; set; }
 
         public Country CountryOfResidence { get; set; }
-
-        public string Url => $"/club-dogs/{this.PedigreeName.Replace(' ', '-')}";
 
         public IEnumerable<DogDropDownViewModel> Parents { get; set; }
     }

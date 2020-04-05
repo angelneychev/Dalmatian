@@ -1,0 +1,25 @@
+﻿@using Dalmatian.Web.ViewModels.Dogs
+@model Dalmatian.Web.ViewModels.ConfirmationOfMating.ConfirmationOfMatingViewModel
+
+@{
+    this.ViewData["Title"] = "Details";
+    string fa = String.Empty;
+    string ma = string.Empty;
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>ConfirmationOfMatingViewModel</h4>
+    <hr />
+
+    @Model.MotherDogId
+    <hr />
+    @Model.FatherDogId
+    <hr />
+    @Model.RegistrationNumber
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>
