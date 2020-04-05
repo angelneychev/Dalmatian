@@ -7,22 +7,22 @@
     using Dalmatian.Data.Common.Repositories;
     using Dalmatian.Data.Models;
     using Dalmatian.Services.Mapping;
-    using Dalmatian.Web.ViewModels.Peoples;
+    using Dalmatian.Web.ViewModels.Persons;
     using Microsoft.AspNetCore.Identity;
 
-    public class PeoplesService : IPeoplesService
+    public class PersonsService : IPersonsService
     {
-        private readonly IDeletableEntityRepository<People> peopleRepository;
+        private readonly IDeletableEntityRepository<Person> personRepository;
 
-        public PeoplesService(IDeletableEntityRepository<People> peopleRepository)
+        public PersonsService(IDeletableEntityRepository<Person> personRepository)
         {
-            this.peopleRepository = peopleRepository;
+            this.personRepository = personRepository;
         }
 
         public IEnumerable<T> GetAll<T>(int? count)
         {
-            IQueryable<People> query =
-                this.peopleRepository.All().OrderByDescending(x => x.CreatedOn);
+            IQueryable<Person> query =
+                this.personRepository.All().OrderByDescending(x => x.CreatedOn);
 
             if (count.HasValue)
             {
@@ -32,9 +32,9 @@
             return query.To<T>().ToList();
         }
 
-        public async Task<int> CreateAsync(PeopleInputModel input)
+        public async Task<int> CreateAsync(PersonInputModel input)
         {
-            var people = new People()
+            var person = new Person()
             {
                 Firstname = input.Firstname,
                 Middlename = input.Middlename,
@@ -51,14 +51,14 @@
                 Linkedin = input.Linkedin,
                 UserId = input.UserId,
             };
-            await this.peopleRepository.AddAsync(people);
-            await this.peopleRepository.SaveChangesAsync();
-            return people.Id;
+            await this.personRepository.AddAsync(person);
+            await this.personRepository.SaveChangesAsync();
+            return person.Id;
         }
 
-        public PeopleViewModel Details(int id)
+        public PersonViewModel Details(int id)
         {
-            var people = this.peopleRepository.All().Where(x => x.Id == id).To<PeopleViewModel>().FirstOrDefault();
+            var people = this.personRepository.All().Where(x => x.Id == id).To<PersonViewModel>().FirstOrDefault();
 
             return people;
         }

@@ -5,31 +5,31 @@
 
     using Dalmatian.Data.Models;
     using Dalmatian.Services.Data;
-    using Dalmatian.Web.ViewModels.Peoples;
+    using Dalmatian.Web.ViewModels.Persons;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
-    public class PeoplesController : Controller
+    public class ServicesController : Controller
     {
-        private readonly IPeoplesService peopleService;
+        private readonly IPersonsService personService;
         private readonly UserManager<ApplicationUser> userManager;
 
-        public PeoplesController(IPeoplesService peopleService, UserManager<ApplicationUser> userManager)
+        public ServicesController(IPersonsService personService, UserManager<ApplicationUser> userManager)
         {
-            this.peopleService = peopleService;
+            this.personService = personService;
             this.userManager = userManager;
         }
 
         [Authorize]
-        public IActionResult CreatePeople()
+        public IActionResult CreatePerson()
         {
             return this.View();
         }
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> CreatePeople(PeopleInputModel input)
+        public async Task<IActionResult> CreatePerson(PersonInputModel input)
         {
             var userEmail = await this.userManager.GetUserAsync(this.User);
             if (!this.ModelState.IsValid)
@@ -37,27 +37,27 @@
                 return this.View(input);
             }
 
-            if (input.Email == this.User.Identity.Name)
+            if (input.Email != null && input.Email == this.User.Identity.Name)
             {
                 input.UserId = this.userManager.GetUserId(this.User);
             }
 
-            var peopleId = await this.peopleService.CreateAsync(input);
+            var personId = await this.personService.CreateAsync(input);
 
            // this.TempData["InfoMessage"] = "Confirmation of People created!";
 
-            return this.RedirectToAction(nameof(this.Details), new { id = peopleId });
+            return this.RedirectToAction(nameof(this.Details), new { id = personId });
         }
 
         public IActionResult Details(int id)
         {
-            var peopleViewModel = this.peopleService.Details(id);
-            if (peopleViewModel == null)
+            var personViewModel = this.personService.Details(id);
+            if (personViewModel == null)
             {
                 return this.NotFound();
             }
 
-            return this.View(peopleViewModel);
+            return this.View(personViewModel);
         }
     }
 }

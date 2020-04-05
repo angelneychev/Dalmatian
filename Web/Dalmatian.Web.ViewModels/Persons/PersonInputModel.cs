@@ -1,4 +1,4 @@
-﻿namespace Dalmatian.Web.ViewModels.Peoples
+﻿namespace Dalmatian.Web.ViewModels.Persons
 {
     using System.ComponentModel.DataAnnotations;
 
@@ -6,7 +6,7 @@
     using Dalmatian.Data.Models.Enum;
     using Dalmatian.Services.Mapping;
 
-    public class PeopleInputModel : IMapTo<People>
+    public class PersonInputModel : IMapTo<Person>
     {
         [Required]
         [Display(Name = "* Firstname")]

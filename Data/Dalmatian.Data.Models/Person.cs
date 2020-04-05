@@ -5,7 +5,7 @@
     using Dalmatian.Data.Common.Models;
     using Dalmatian.Data.Models.Enum;
 
-    public class People : BaseDeletableModel<int>
+    public class Person : BaseDeletableModel<int>
     {
         //public People()
         //{

@@ -46,7 +46,7 @@
 
         public DbSet<Parent> Parents { get; set; }
 
-        public DbSet<People> Peoples { get; set; }
+        public DbSet<Person> Persons { get; set; }
 
         public DbSet<RegistrationDogNumber> RegistrationDogNumbers { get; set; }
 

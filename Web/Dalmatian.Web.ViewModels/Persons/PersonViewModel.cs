@@ -1,4 +1,4 @@
-﻿namespace Dalmatian.Web.ViewModels.Peoples
+﻿namespace Dalmatian.Web.ViewModels.Persons
 {
     using System.Collections.Generic;
 
@@ -6,7 +6,7 @@
     using Dalmatian.Data.Models.Enum;
     using Dalmatian.Services.Mapping;
 
-    public class PeopleViewModel : IMapFrom<People>
+    public class PersonViewModel : IMapFrom<Person>
     {
         public string Firstname { get; set; }
 

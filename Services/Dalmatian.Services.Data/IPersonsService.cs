@@ -3,14 +3,14 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using Dalmatian.Web.ViewModels.Peoples;
+    using Dalmatian.Web.ViewModels.Persons;
 
-    public interface IPeoplesService
+    public interface IPersonsService
     {
         IEnumerable<T> GetAll<T>(int? count = null);
 
-        Task<int> CreateAsync(PeopleInputModel input);
+        Task<int> CreateAsync(PersonInputModel input);
 
-        PeopleViewModel Details(int id);
+        PersonViewModel Details(int id);
     }
 }

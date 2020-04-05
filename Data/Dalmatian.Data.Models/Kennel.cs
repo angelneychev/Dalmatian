@@ -17,12 +17,12 @@
 
         public string City { get; set; }
 
-        public int PeopleOwnerId { get; set; }
+        public int PersonOwnerId { get; set; }
 
-        public People PeopleOwner { get; set; }
+        public Person PersonOwner { get; set; }
 
-        public int? PeopleCoOwnerId { get; set; }
+        public int? PersonCoOwnerId { get; set; }
 
-        public People PeopleCoOwner { get; set; }
+        public Person PersonCoOwner { get; set; }
     }
 }
