@@ -1,0 +1,79 @@
+﻿@using Dalmatian.Data.Models.Enum
+@model Dalmatian.Web.ViewModels.Kennels.KennelInputModel
+
+@{
+    ViewData["Title"] = "CreateKennel";
+    var person = Model.Persons.Select(x => new SelectListItem(x.FullName, x.Id.ToString()));
+}
+
+<h1>CreateKennel</h1>
+
+<h4>KennelInputModel</h4>
+<hr />
+<div class="container">
+    <form asp-action="CreateKennel" class="alert alert-primary">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-row">
+            <div class="col-md-4 mb-2">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="RegistrationNumber" class="control-label"></label>
+                <input asp-for="RegistrationNumber" class="form-control" />
+                <span asp-validation-for="RegistrationNumber" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="DateOfRegistration" class="control-label"></label>
+                <input asp-for="DateOfRegistration" class="form-control" />
+                <span asp-validation-for="DateOfRegistration" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4 mb-2">
+                <label asp-for="Country" class="control-label"></label>
+                <select asp-for="Country" asp-items="@Html.GetEnumSelectList<Country>()" class="form-control">
+                    <option value="Country">--Select--</option>
+                </select>
+                <span asp-validation-for="Country" class="text-danger"></span>
+            </div>
+            <div class="col-md-3">
+                <label asp-for="City" class="control-label"></label>
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="col-md-5">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6 mb-2">
+                <label asp-for="PersonOwnerId" class="control-label"></label>
+                <select asp-for="PersonOwnerId" asp-items="person" class="form-control">
+                    <option value="PersonOwnerId">--Select--</option>
+                </select>
+                <span asp-validation-for="PersonOwnerId" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="PersonCoOwnerId" class="control-label"></label>
+                <select asp-for="PersonCoOwnerId" asp-items="person" class="form-control">
+                    <option value="PersonCoOwnerId">--Select--</option>
+                </select>
+                <span asp-validation-for="PersonCoOwnerId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -10,12 +10,12 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
-    public class ServicesController : Controller
+    public class PersonsController : Controller
     {
         private readonly IPersonsService personService;
         private readonly UserManager<ApplicationUser> userManager;
 
-        public ServicesController(IPersonsService personService, UserManager<ApplicationUser> userManager)
+        public PersonsController(IPersonsService personService, UserManager<ApplicationUser> userManager)
         {
             this.personService = personService;
             this.userManager = userManager;
@@ -58,6 +58,16 @@
             }
 
             return this.View(personViewModel);
+        }
+
+        public IActionResult Index()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IActionResult Edit()
+        {
+            throw new NotImplementedException();
         }
     }
 }
