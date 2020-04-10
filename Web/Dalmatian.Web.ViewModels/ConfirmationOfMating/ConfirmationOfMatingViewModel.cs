@@ -24,6 +24,10 @@
         [DataType(DataType.Date)]
         public DateTime DateOfMating { get; set; }
 
+        [Display(Name = "* Estimated date of birth")]
+        [DataType(DataType.Date)]
+        public DateTime EstimatedDateOfBirth { get; set; }
+
         public TypeOfMating TypeOfMating { get; set; }
 
         public string OwnerMaleDog { get; set; }

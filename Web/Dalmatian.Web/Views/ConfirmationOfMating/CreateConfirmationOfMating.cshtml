@@ -15,17 +15,22 @@
     <form method="post" asp-action="CreateConfirmationOfMating" class="alert alert-primary">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-row">
-            <div class="col-md-4 mb-2">
+            <div class="col-md-3 mb-2">
                 <label asp-for="RegistrationNumber" class="control-label"></label>
                 <input asp-for="RegistrationNumber" class="form-control" />
                 <span asp-validation-for="RegistrationNumber" class="text-danger"></span>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <label asp-for="DateOfMating" class="control-label"></label>
                 <input asp-for="DateOfMating" class="form-control" />
                 <span asp-validation-for="DateOfMating" class="text-danger"></span>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
+                <label asp-for="EstimatedDateOfBirth" class="control-label"></label>
+                <input asp-for="EstimatedDateOfBirth" class="form-control" />
+                <span asp-validation-for="EstimatedDateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="col-md-3">
                 <label asp-for="TypeOfMating" class="control-label"></label>
                 <select asp-for="TypeOfMating" asp-items="@Html.GetEnumSelectList<TypeOfMating>()" class="form-control">
                     <option value="TypeOfMating">--Select--</option>

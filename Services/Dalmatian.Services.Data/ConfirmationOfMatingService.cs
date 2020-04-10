@@ -23,6 +23,7 @@
             var confirmationOfMating = new ConfirmationOfMating()
             {
                 DateOfMating = input.DateOfMating,
+                EstimatedDateOfBirth = input.EstimatedDateOfBirth,
                 RegistrationNumber = input.RegistrationNumber,
                 TypeOfMating = input.TypeOfMating,
                 DogFatherId = input.DogFatherId,
@@ -46,6 +47,7 @@
                     FatherDogId = x.DogFatherId,
                     MotherDogId = x.DogMotherId,
                     DateOfMating = x.DateOfMating,
+                    EstimatedDateOfBirth = x.EstimatedDateOfBirth,
                     TypeOfMating = x.TypeOfMating,
                     OwnerFemaleDog = x.OwnerFemaleDog,
                     OwnerMaleDog = x.OwnerMaleDog,

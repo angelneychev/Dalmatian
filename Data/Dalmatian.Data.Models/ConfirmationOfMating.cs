@@ -19,6 +19,8 @@
 
         public DateTime DateOfMating { get; set; }
 
+        public DateTime EstimatedDateOfBirth { get; set; }
+
         public TypeOfMating TypeOfMating { get; set; }
 
         public string OwnerMaleDog { get; set; }

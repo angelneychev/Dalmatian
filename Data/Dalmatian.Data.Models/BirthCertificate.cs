@@ -1,6 +1,8 @@
 ﻿namespace Dalmatian.Data.Models
 {
-    public class BirthCertificate
+    using Dalmatian.Data.Common.Models;
+
+    public class BirthCertificate : BaseDeletableModel<int>
     {
     }
 }

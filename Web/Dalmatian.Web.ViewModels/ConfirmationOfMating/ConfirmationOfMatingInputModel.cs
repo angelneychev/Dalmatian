@@ -28,6 +28,11 @@ namespace Dalmatian.Web.ViewModels.ConfirmationOfMating
         public DateTime DateOfMating { get; set; }
 
         [Required]
+        [Display(Name = "* Estimated date of birth")]
+        [DataType(DataType.Date)]
+        public DateTime EstimatedDateOfBirth { get; set; }
+
+        [Required]
         [Display(Name = "* Type of mating")]
         public TypeOfMating TypeOfMating { get; set; }
 
