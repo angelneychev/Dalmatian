@@ -1,6 +1,7 @@
 ﻿namespace Dalmatian.Web
 {
     using System.Reflection;
+
     using CloudinaryDotNet;
     using Dalmatian.Data;
     using Dalmatian.Data.Common;
@@ -80,6 +81,7 @@
             services.AddTransient<IConfirmationOfMatingService, ConfirmationOfMatingService>();
             services.AddTransient<IPersonsService, PersonsService>();
             services.AddTransient<IKennelsService, KennelsService>();
+            services.AddTransient<IBirthCertificatesService, BirthCertificatesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

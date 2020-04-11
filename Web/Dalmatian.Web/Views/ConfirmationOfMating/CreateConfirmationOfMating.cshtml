@@ -1,10 +1,11 @@
 ﻿@using Dalmatian.Data.Models.Enum
+@using System.Collections.Immutable
 @model Dalmatian.Web.ViewModels.ConfirmationOfMating.ConfirmationOfMatingInputModel
 
 @{
     this.ViewData["Title"] = "CreateConfirmationOfMating";
-    var father = Model.Parents.Where(x => x.SexDog == SexDog.Male).Select(x => new SelectListItem(x.PedigreeName, x.Id.ToString()));
-    var mother = Model.Parents.Where(x => x.SexDog == SexDog.Female).Select(x => new SelectListItem(x.PedigreeName, x.Id.ToString()));
+    var sire = Model.Parents.Where(x => x.SexDog == SexDog.Male).Select(x => new SelectListItem(x.PedigreeName, x.Id.ToString()));
+    var dame = Model.Parents.Where(x => x.SexDog == SexDog.Female).Select(x => new SelectListItem(x.PedigreeName, x.Id.ToString()));
 }
 
 <h1>CreateConfirmationOfMating</h1>
@@ -15,12 +16,12 @@
     <form method="post" asp-action="CreateConfirmationOfMating" class="alert alert-primary">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-row">
-            <div class="col-md-3 mb-2">
+            <div class="col-md-5 mb-2">
                 <label asp-for="RegistrationNumber" class="control-label"></label>
                 <input asp-for="RegistrationNumber" class="form-control" />
                 <span asp-validation-for="RegistrationNumber" class="text-danger"></span>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <label asp-for="DateOfMating" class="control-label"></label>
                 <input asp-for="DateOfMating" class="form-control" />
                 <span asp-validation-for="DateOfMating" class="text-danger"></span>
@@ -30,7 +31,7 @@
                 <input asp-for="EstimatedDateOfBirth" class="form-control" />
                 <span asp-validation-for="EstimatedDateOfBirth" class="text-danger"></span>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <label asp-for="TypeOfMating" class="control-label"></label>
                 <select asp-for="TypeOfMating" asp-items="@Html.GetEnumSelectList<TypeOfMating>()" class="form-control">
                     <option value="TypeOfMating">--Select--</option>
@@ -41,15 +42,15 @@
         <div class="form-row">
             <div class="col-md-6 mb-2">
                 <label asp-for="DogFatherId" class="control-label"></label>
-                <select asp-for="DogFatherId" asp-items="father" class="form-control">
-                    <option value="father">--Select--</option>
+                <select asp-for="DogFatherId" asp-items="sire" class="form-control">
+                    <option value="">--Select--</option>
                 </select>
                 <span asp-validation-for="DogFatherId" class="text-danger"></span>
             </div>
             <div class="col-md-6 mb-2">
                 <label asp-for="DogMotherId" class="control-label"></label>
-                <select asp-for="DogMotherId" asp-items="mother" class="form-control">
-                    <option value="father">--Select--</option>
+                <select asp-for="DogMotherId" asp-items="dame" class="form-control">
+                    <option value="DogMotherId">--Select--</option>
                 </select>
                 <span asp-validation-for="DogMotherId" class="text-danger"></span>
             </div>

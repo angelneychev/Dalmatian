@@ -3,6 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using System.Web.WebPages.Html;
 
     using Dalmatian.Data.Models.Enum;
     using Dalmatian.Web.ViewModels.Dogs;
@@ -44,5 +46,20 @@
         public string OwnerFemaleDog { get; set; }
 
         public IEnumerable<DogDropDownViewModel> Parents { get; set; }
+
+        //public IEnumerable<SelectListItem> SelectSires =>
+        //    this.Parents.Where(x => x.SexDog == SexDog.Male).Select(x => new SelectListItem
+        //    {
+        //        Value = x.Id.ToString(),
+        //        Text = x.PedigreeName,
+                
+        //    }).ToList();
+
+        //public IEnumerable<SelectListItem> SelectDames =>
+        //    this.Parents.Where(x => x.SexDog == SexDog.Female).Select(x => new SelectListItem
+        //    {
+        //        Value = x.Id.ToString(),
+        //        Text = x.PedigreeName,
+        //    }).ToList();
     }
 }

@@ -35,6 +35,8 @@
                               new RegistrationDogNumberSeeder(),
                               new PersonSeeder(),
                               new KennelSeeder(),
+                              new ConfirmationOfMatingSeeder(),
+                              new BirthCertificateSeeding(),
                           };
 
             foreach (var seeder in seeders)

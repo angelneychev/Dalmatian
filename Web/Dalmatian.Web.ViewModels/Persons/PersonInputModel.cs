@@ -13,7 +13,7 @@
         public string Firstname { get; set; }
 
         [Required]
-        [Display(Name = "* Middlename")]
+        [Display(Name = "Middlename")]
         public string Middlename { get; set; }
 
         [Required]
@@ -34,7 +34,7 @@
         public string Phone { get; set; }
 
         [Required]
-        [Display(Name = "* Website")]
+        [Display(Name = "Website")]
         public string Website { get; set; }
 
         [Required]
@@ -49,16 +49,16 @@
         [Display(Name = "* Address")]
         public string Address { get; set; }
 
-        [Display(Name = "* Facebook")]
+        [Display(Name = "Facebook")]
         public string Facebook { get; set; }
 
-        [Display(Name = "* Twitter")]
+        [Display(Name = "Twitter")]
         public string Twitter { get; set; }
 
-        [Display(Name = "* Instagram")]
+        [Display(Name = "Instagram")]
         public string Instagram { get; set; }
 
-        [Display(Name = "* Linkedin")]
+        [Display(Name = "Linkedin")]
         public string Linkedin { get; set; }
     }
 }

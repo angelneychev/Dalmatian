@@ -37,6 +37,7 @@
         public IActionResult CreateConfirmationOfMating()
         {
             var parents = this.dogsService.GetAll<DogDropDownViewModel>();
+
             var viewModel = new ConfirmationOfMatingInputModel
             {
                 Parents = parents,

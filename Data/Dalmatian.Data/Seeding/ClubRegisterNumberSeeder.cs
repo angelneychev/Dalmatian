@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace Dalmatian.Data.Seeding
+﻿namespace Dalmatian.Data.Seeding
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using Dalmatian.Data.Models;
@@ -20,9 +19,9 @@ namespace Dalmatian.Data.Seeding
                 new List<(int DogId, string ClubNumber)>
                 {
                     (1, "10193"),
-                    //(2, "bilateral"),
-                    //(3, "bilateral"),
-                    //(4, "bilateral"),
+                    (2, "10103"),
+                    (3, "10203"),
+                    (4, "10153"),
                 };
             foreach (var number in clubRegisterNumbers)
             {
@@ -32,7 +31,6 @@ namespace Dalmatian.Data.Seeding
                     ClubNumber = number.ClubNumber,
                 });
             }
-
         }
     }
 }

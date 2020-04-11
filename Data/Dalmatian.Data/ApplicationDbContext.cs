@@ -52,6 +52,8 @@
 
         public DbSet<ReportOfLitter> ReportOfLitters { get; set; }
 
+        public DbSet<BirthCertificate> BirthCertificates { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
