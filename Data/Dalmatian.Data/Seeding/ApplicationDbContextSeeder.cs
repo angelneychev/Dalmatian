@@ -33,6 +33,8 @@
                               new BreedingInformationSeeder(),
                               new HealthInformationSeeder(),
                               new RegistrationDogNumberSeeder(),
+                              new PersonSeeder(),
+                              new KennelSeeder(),
                           };
 
             foreach (var seeder in seeders)

@@ -58,4 +58,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Controllers\" />
+  </ItemGroup>
 </Project>

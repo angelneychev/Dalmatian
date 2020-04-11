@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using Dalmatian.Web.ViewModels.Dogs;
-
-namespace Dalmatian.Web.ViewModels.ConfirmationOfMating
+﻿namespace Dalmatian.Web.ViewModels.ConfirmationOfMating
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using Dalmatian.Data.Models.Enum;
+    using Dalmatian.Web.ViewModels.Dogs;
 
     public class ConfirmationOfMatingInputModel
     {

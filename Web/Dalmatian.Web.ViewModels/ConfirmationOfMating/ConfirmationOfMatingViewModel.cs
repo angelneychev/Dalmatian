@@ -21,10 +21,11 @@
         [Display(Name = "Mother")]
         public int MotherDogId { get; set; }
 
+        [Display(Name = "Date of mating")]
         [DataType(DataType.Date)]
         public DateTime DateOfMating { get; set; }
 
-        [Display(Name = "* Estimated date of birth")]
+        [Display(Name = "Estimated date of birth")]
         [DataType(DataType.Date)]
         public DateTime EstimatedDateOfBirth { get; set; }
 
