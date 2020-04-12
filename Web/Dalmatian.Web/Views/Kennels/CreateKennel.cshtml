@@ -3,8 +3,8 @@
 
 @{
     ViewData["Title"] = "CreateKennel";
-   // var person = Model.Persons.Select(x => new SelectListItem(x.FullName, x.Id.ToString()));
-    var personOwner = Model.Persons.Select(x => new SelectListItem(x.FullName, x.Id.ToString()));
+    var person = Model.Persons.Select(x => new SelectListItem(x.FullName, x.Id.ToString())).ToList();
+    //var personOwner = Model.Persons.Select(x => new SelectListItem(x.FullName, x.Id.ToString()));
 }
 
 <h1>CreateKennel</h1>
@@ -53,14 +53,14 @@
         <div class="form-row">
             <div class="col-md-6 mb-2">
                 <label asp-for="PersonOwnerId" class="control-label"></label>
-                <select asp-for="PersonOwnerId" asp-items="personOwner" class="form-control">
+                <select asp-for="PersonOwnerId" asp-items="person" class="form-control">
                     <option value="">--Select--</option>
                 </select>
                 <span asp-validation-for="PersonOwnerId" class="text-danger"></span>
             </div>
             <div class="col-md-6">
                 <label asp-for="PersonCoOwnerId" class="control-label"></label>
-                <select asp-for="PersonCoOwnerId" asp-items="personOwner" class="form-control">
+                <select asp-for="PersonCoOwnerId" asp-items="person" class="form-control">
                     <option value="">--Select--</option>
                 </select>
                 <span asp-validation-for="PersonCoOwnerId" class="text-danger"></span>

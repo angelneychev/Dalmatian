@@ -1,4 +1,6 @@
-﻿namespace Dalmatian.Services.Data
+﻿using Dalmatian.Web.ViewModels.Home;
+
+namespace Dalmatian.Services.Data
 {
     using System;
     using System.Collections.Generic;
@@ -122,5 +124,25 @@
             await this.dogsRepository.SaveChangesAsync();
             return dog.Id;
         }
+
+        public IEnumerable<T> SearchDogs<T>(string search)
+        {
+            IQueryable<Dog> dogSearch = this.dogsRepository.All().Where(x => x.PedigreeName.Contains(search));
+
+            return dogSearch.To<T>().ToList();
+        }
     }
 }
+
+//public IEnumerable<T> GetAll<T>(int? count = null)
+//{
+//IQueryable<Dog> query =
+//        this.dogsRepository.All().OrderBy(x => x.CreatedOn);
+
+//    if (count.HasValue)
+//{
+//    query = query.Take(count.Value);
+//}
+
+//return query.To<T>().ToList();
+//}

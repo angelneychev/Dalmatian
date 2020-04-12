@@ -39,9 +39,9 @@
                 return this.View(input);
             }
 
-            var personId = await this.kennelService.CreateAsync(input);
+            var kennelId = await this.kennelService.CreateAsync(input);
 
-            return this.RedirectToAction(nameof(this.Details), new { id = personId });
+            return this.RedirectToAction(nameof(this.Details), new { id = kennelId });
         }
 
         public IActionResult Details(int id)

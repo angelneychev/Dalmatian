@@ -11,37 +11,96 @@
 </div>
 <div class="container-fluid">
     <div class="row">
-        <div class="table">
-            <table class="table">
-                <thead>
-                    <tr class="thead-dark">
-                        <th scope="col">#</th>
-                        <th scope="col">Dog Name</th>
-                        <th scope="col">Sex</th>
-                        <th scope="col">DateOfBirth</th>
-                        <th scope="col">DateOfDeath</th>
-                        <th scope="col">Breeder Name</th>
-                        <th scope="col">Owner Name</th>
+        <div class="col-md-4 mb-2">
+            <form asp-action="Index" method="POST">
+                <div class="row input-group">
+                    <input type="text" name="search" id="search" class="form-control" />
+                    <div class="input-group-btn">
+                        <input type="submit" class="btn btn-primary" value="Search" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        </div>
+        <div class="row">
+            <div class="table">
+                <table class="table">
+                    <thead>
+                        <tr class="thead-dark">
+                            <th scope="col">#</th>
+                            <th scope="col">Dog Name</th>
+                            <th scope="col">Sex</th>
+                            <th scope="col">DateOfBirth</th>
+                            <th scope="col">DateOfDeath</th>
+                            <th scope="col">Breeder Name</th>
+                            <th scope="col">Owner Name</th>
 
-                    </tr>
-                </thead>
-                <tbody>
-                @{ int countRow = 1;}
-                @foreach (var dog in Model.Dogs)
-                {
-                    <tr>
-                        <td>@countRow.</td>
-                        <td><a class="" href="@dog.Url">@dog.PedigreeName</a></td>
-                        <td>@dog.SexDog</td>
-                        <td>@dog.DateOfBirth?.ToShortDateString()</td>
-                        <td>@dog.DateOfDeath?.ToShortDateString()</td>
-                        <td>@dog.BreederName</td>
-                        <td>@dog.OwnerName</td>
-                    </tr>
-                    countRow++;
-                    }
-                </tbody>
-            </table>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ int countRow = 1;}
+                        @foreach (var dog in Model.Dogs)
+                        {
+                            <tr>
+                                <td>@countRow.</td>
+                                <td><a class="" href="@dog.Url">@dog.PedigreeName</a></td>
+                                <td>@dog.SexDog</td>
+                                <td>@dog.DateOfBirth?.ToShortDateString()</td>
+                                <td>@dog.DateOfDeath?.ToShortDateString()</td>
+                                <td>@dog.BreederName</td>
+                                <td>@dog.OwnerName</td>
+                            </tr>
+                            countRow++;
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
+@section Scripts{
+    <script>
+        var options = {
+
+            url: function(search) {
+                return "/AutocompleteResult";
+            },
+
+            getValue: function(element) {
+                return element.name;
+            },
+
+            template: {
+                type: "description",
+                fields: {
+                    description: "color"
+                }
+            },
+
+            list: {
+                match: {
+                    enabled: false
+                },
+                sort: {
+                    enabled: true
+                }
+            },
+
+            ajaxSettings: {
+                dataType: "json",
+                method: "POST",
+                data: {
+                    dataType: "json"
+                }
+            },
+
+            preparePostData: function(data) {
+                data.search = $("#search").val();
+                return data;
+            },
+
+            requestDelay: 400
+        };
+
+        $("#search").easyAutocomplete(options);
+    </script>\
+    }

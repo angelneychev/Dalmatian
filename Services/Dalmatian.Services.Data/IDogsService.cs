@@ -1,4 +1,7 @@
-﻿namespace Dalmatian.Services.Data
+﻿using Dalmatian.Data.Models;
+using Dalmatian.Web.ViewModels.Home;
+
+namespace Dalmatian.Services.Data
 {
     using System;
     using System.Collections.Generic;
@@ -16,5 +19,7 @@
         T GetByName<T>(string pedigreeName);
 
         Task<int> CreateAsync(DogCreateInputModel input);
+
+        IEnumerable<T> SearchDogs<T>(string search);
     }
 }

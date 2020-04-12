@@ -1,4 +1,6 @@
-﻿namespace Dalmatian.Web.Controllers
+﻿using System.Collections.Immutable;
+
+namespace Dalmatian.Web.Controllers
 {
     using System.Diagnostics;
     using System.Linq;
@@ -20,14 +22,30 @@
             this.dogsService = dogsService;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string search = null)
         {
+            if (!string.IsNullOrEmpty(search))
+            {
+                var searchDogs = new IndexViewModel()
+                {
+                    Dogs = this.dogsService.SearchDogs<IndexDogsViewModel>(search),
+                };
+
+                return this.View(searchDogs);
+            }
+
             var viewModel = new IndexViewModel
             {
                 Dogs = this.dogsService.GetAll<IndexDogsViewModel>(),
             };
 
+
             return this.View(viewModel);
+        }
+
+        public IActionResult AutocompleteResult(string search)
+        {
+            return this.Json(this.dogsService.SearchDogs<IndexDogsViewModel>(search));
         }
 
         public IActionResult Privacy()
