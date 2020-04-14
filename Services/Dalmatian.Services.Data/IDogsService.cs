@@ -1,15 +1,8 @@
-﻿using Dalmatian.Data.Models;
-using Dalmatian.Web.ViewModels.Home;
-
-namespace Dalmatian.Services.Data
+﻿namespace Dalmatian.Services.Data
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
 
-    using Dalmatian.Data.Models.Enum;
-    using Dalmatian.Web.ViewModels.ClubRegisterNumber;
     using Dalmatian.Web.ViewModels.Dogs;
 
     public interface IDogsService
@@ -21,5 +14,9 @@ namespace Dalmatian.Services.Data
         Task<int> CreateAsync(DogCreateInputModel input);
 
         IEnumerable<T> SearchDogs<T>(string search);
+
+        //IEnumerable<DogFatherViewModel> DogFather(int id);
+
+        //List<T> SireDogName<T>(int? id);
     }
 }

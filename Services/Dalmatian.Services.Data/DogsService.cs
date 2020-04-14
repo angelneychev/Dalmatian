@@ -1,4 +1,5 @@
 ﻿using Dalmatian.Web.ViewModels.Home;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 
 namespace Dalmatian.Services.Data
 {
@@ -7,6 +8,7 @@ namespace Dalmatian.Services.Data
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
+
     using CloudinaryDotNet;
     using Dalmatian.Data.Common.Repositories;
     using Dalmatian.Data.Models;
@@ -44,16 +46,43 @@ namespace Dalmatian.Services.Data
             pedigreeName = Regex.Replace(pedigreeName, @"(\D\d+)", string.Empty);
 
             pedigreeName = pedigreeName.Replace('-', ' ');
-            var dogId = this.dogsRepository.All()
+            var fatherDogId = this.dogsRepository.All()
                 .Where(x => x.PedigreeName == pedigreeName)
-                .Select(x => x.Id);
+                .Select(x => x.FatherDogId).FirstOrDefault();
 
             var dogName = this.dogsRepository.All()
                 .Where(x => x.PedigreeName == pedigreeName)
                 .To<T>().FirstOrDefault();
 
+            //var dogSireName = this.dogsRepository.All()
+            //    .Where(x => x.FatherDogId == dogId.FirstOrDefault())
+            //    .Select(x => x.PedigreeName);
+           // var dogSireName = this.SireDogName(fatherDogId);
+
+
+
             return dogName;
         }
+
+        public IEnumerable<T> SearchDogs<T>(string search)
+        {
+            IQueryable<Dog> dogSearch = this.dogsRepository.All().Where(x => x.PedigreeName.Contains(search));
+
+            return dogSearch.To<T>().ToList();
+        }
+
+        //public IEnumerable<DogFatherViewModel> SireDogName(int? sireName)
+        //{   
+        //    var fatherDogName = this.dogsRepository.All()
+        //        .Where(x => x.FatherDogId == sireName && x.Id == x.FatherDogId)
+        //        .Select(x => x.PedigreeName).FirstOrDefault();
+
+        //    //IQueryable<string> sire = this.dogsRepository.All()
+        //    //    .Where(x => x.FatherDogId == sireName && x.Id == dogName)
+        //    //    .Select(x => x.PedigreeName);
+
+        //    return fatherDogName;
+        //}
 
         public async Task<int> CreateAsync(DogCreateInputModel input)
         {
@@ -125,24 +154,13 @@ namespace Dalmatian.Services.Data
             return dog.Id;
         }
 
-        public IEnumerable<T> SearchDogs<T>(string search)
-        {
-            IQueryable<Dog> dogSearch = this.dogsRepository.All().Where(x => x.PedigreeName.Contains(search));
 
-            return dogSearch.To<T>().ToList();
-        }
+        //public IEnumerable<Dog> DogFather(int id)
+        //{
+        //    return this.dogsRepository.All().Where(x => x.Id == id)
+        //        .Where(x => x.Id == id)
+        //        .Select(x => x.PedigreeName)
+        //        .FirstOrDefault();
+        //}
     }
 }
-
-//public IEnumerable<T> GetAll<T>(int? count = null)
-//{
-//IQueryable<Dog> query =
-//        this.dogsRepository.All().OrderBy(x => x.CreatedOn);
-
-//    if (count.HasValue)
-//{
-//    query = query.Take(count.Value);
-//}
-
-//return query.To<T>().ToList();
-//}

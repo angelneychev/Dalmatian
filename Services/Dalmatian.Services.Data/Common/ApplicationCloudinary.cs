@@ -13,7 +13,8 @@
         public static async Task<string> UploadImage(Cloudinary cloudinary, IFormFile imagesUrl, string pedigreeName)
         {
             byte[] destinationImage;
-            using (var memoryStream = new MemoryStream())
+
+            using  (var memoryStream = new MemoryStream())
             {
                 await imagesUrl.CopyToAsync(memoryStream);
                 destinationImage = memoryStream.ToArray();
@@ -21,7 +22,6 @@
 
             using (var ms = new MemoryStream(destinationImage))
             {
-                // Cloudinary doesn't work with &
                 pedigreeName = pedigreeName.Replace("&", "And").Replace(" ", "-").Replace("'s", "-s");
 
                 var uploadParams = new ImageUploadParams()

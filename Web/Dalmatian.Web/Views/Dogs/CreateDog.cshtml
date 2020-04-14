@@ -27,15 +27,14 @@
                 </div>
                 <div class="col-md-2">
                     <label for="SexDog">SexDog</label>
-                    <select asp-for="SexDog" asp-items="@Html.GetEnumSelectList<SexDog>()" class="form-control">
-                    </select>
+                    <select asp-for="SexDog" asp-items="@Html.GetEnumSelectList<SexDog>()" class="form-control"></select>
                     <span asp-validation-for="SexDog" class="text-danger"></span>
                 </div>
 
                 <div class="col-md-3">
                     <label for="Color">Color</label>
                     <select asp-for="Color" asp-items="@Html.GetEnumSelectList<Color>()" class="form-control">
-                    </select>
+        </select>
                     <span asp-validation-for="Color" class="text-danger"></span>
                 </div>
             </div>
@@ -48,13 +47,17 @@
                 </div>
                     <div class="col-md-4">
                         <label for="FatherDogId">Father</label>
-                        <select asp-for="FatherDogId" asp-items="father" class="form-control"></select>
+                        <select asp-for="FatherDogId" asp-items="father" class="form-control">
+                            <option value="">--Select--</option>
+                        </select>
                         <span asp-validation-for="FatherDogId"></span>
                     </div>
 
                     <div class="col-md-4">
                         <label for="MotherDogId">Mother</label>
-                        <select asp-for="MotherDogId" asp-items="mother" class="form-control"></select>
+                        <select asp-for="MotherDogId" asp-items="mother" class="form-control">
+                            <option value="">--Select--</option>
+                        </select>
                         <span asp-validation-for="MotherDogId"></span>
                     </div>
                 </div>

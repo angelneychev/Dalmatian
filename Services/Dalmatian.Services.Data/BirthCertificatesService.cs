@@ -1,13 +1,12 @@
-﻿using System.Linq;
-using Dalmatian.Services.Mapping;
-
-namespace Dalmatian.Services.Data
+﻿namespace Dalmatian.Services.Data
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Dalmatian.Data.Common.Repositories;
     using Dalmatian.Data.Models;
+    using Dalmatian.Services.Mapping;
     using Dalmatian.Web.ViewModels.BirthCertificate;
 
     public class BirthCertificatesService : IBirthCertificatesService
@@ -43,7 +42,7 @@ namespace Dalmatian.Services.Data
                 NumberOfMales = input.NumberOfMales,
                 NumberOfFemales = input.NumberOfFemales,
                 PersonId = input.PersonId,
-                KennelId=input.KennelId,
+                KennelId = input.KennelId,
                 LetterOfLitter = input.LetterOfLitter,
             };
             await this.birthCertificateSRepository.AddAsync(birthCertificate);

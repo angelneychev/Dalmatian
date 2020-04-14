@@ -5,7 +5,6 @@
 @{
     this.ViewData["Title"] = $"Welcome to {GlobalConstants.SystemName!}";
 }
-
 <div class="text-left">
     <h1 class="display-4">@this.ViewData["Title"]</h1>
 </div>
@@ -14,75 +13,70 @@
         <div class="col-md-4 mb-2">
             <form asp-action="Index" method="POST">
                 <div class="row input-group">
-                    <input type="text" name="search" id="search" class="form-control" />
+                    <input type="text" name="search" id="search" class="form-control easy-autocomplete" />
                     <div class="input-group-btn">
                         <input type="submit" class="btn btn-primary" value="Search" />
                     </div>
                 </div>
             </form>
         </div>
-        </div>
-        <div class="row">
-            <div class="table">
-                <table class="table">
-                    <thead>
-                        <tr class="thead-dark">
-                            <th scope="col">#</th>
-                            <th scope="col">Dog Name</th>
-                            <th scope="col">Sex</th>
-                            <th scope="col">DateOfBirth</th>
-                            <th scope="col">DateOfDeath</th>
-                            <th scope="col">Breeder Name</th>
-                            <th scope="col">Owner Name</th>
+    </div>
+    <div class="row">
+        <div class="table">
+            <table class="table">
+                <thead>
+                    <tr class="thead-dark">
+                        <th scope="col">#</th>
+                        <th scope="col">Dog Name</th>
+                        <th scope="col">Sex</th>
+                        <th scope="col">DateOfBirth</th>
+                        <th scope="col">DateOfDeath</th>
+                        <th scope="col">Breeder Name</th>
+                        <th scope="col">Owner Name</th>
 
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ int countRow = 1;}
+                    @foreach (var dog in Model.Dogs)
+                    {
+                        <tr>
+                            <td>@countRow.</td>
+                            <td><a class="" href="@dog.Url">@dog.PedigreeName</a></td>
+                            <td>@dog.SexDog</td>
+                            <td>@dog.DateOfBirth?.ToShortDateString()</td>
+                            <td>@dog.DateOfDeath?.ToShortDateString()</td>
+                            <td>@dog.BreederName</td>
+                            <td>@dog.OwnerName</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @{ int countRow = 1;}
-                        @foreach (var dog in Model.Dogs)
-                        {
-                            <tr>
-                                <td>@countRow.</td>
-                                <td><a class="" href="@dog.Url">@dog.PedigreeName</a></td>
-                                <td>@dog.SexDog</td>
-                                <td>@dog.DateOfBirth?.ToShortDateString()</td>
-                                <td>@dog.DateOfDeath?.ToShortDateString()</td>
-                                <td>@dog.BreederName</td>
-                                <td>@dog.OwnerName</td>
-                            </tr>
-                            countRow++;
-                        }
-                    </tbody>
-                </table>
-            </div>
+                        countRow++;
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
-@section Scripts{
-    <script>
+</div>
+@*@section Scripts {
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function(search) {
+                $('#search').autocomplete({
+                    source: 'Index'
+                });
+            });
+        </script>
+    }*@
+@*@section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/easy-autocomplete/1.3.5/jquery.easy-autocomplete.min.js"></script>
+    <script type="text/javascript">
         var options = {
-
-            url: function(search) {
-                return "/AutocompleteResult";
+            url: function (search) {
+                return "AutocompleteResult";
             },
 
-            getValue: function(element) {
+            getValue: function (element) {
                 return element.name;
-            },
-
-            template: {
-                type: "description",
-                fields: {
-                    description: "color"
-                }
-            },
-
-            list: {
-                match: {
-                    enabled: false
-                },
-                sort: {
-                    enabled: true
-                }
             },
 
             ajaxSettings: {
@@ -93,7 +87,7 @@
                 }
             },
 
-            preparePostData: function(data) {
+            preparePostData: function (data) {
                 data.search = $("#search").val();
                 return data;
             },
@@ -102,5 +96,5 @@
         };
 
         $("#search").easyAutocomplete(options);
-    </script>\
-    }
+    </script>
+}*@

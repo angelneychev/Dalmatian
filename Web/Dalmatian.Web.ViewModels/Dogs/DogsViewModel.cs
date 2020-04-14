@@ -32,6 +32,20 @@
 
         public string BreederName { get; set; }
 
+        public int? FatherDogId { get; set; }
+
+        public Dog Father { get; set; }
+
+        public int? MotherDogId { get; set; }
+
+        public Dog Mother { get; set; }
+
+        public ICollection<Dog> SubFathers { get; set; }
+
+        public ICollection<Dog> SubMothers { get; set; }
+
+        public IEnumerable<DogFatherViewModel> DogFatherView { get; set; }
+
         public IEnumerable<ParentViewModel> Parents { get; set; }
 
         public IEnumerable<BreedingInformation> BreedingInformations { get; set; }

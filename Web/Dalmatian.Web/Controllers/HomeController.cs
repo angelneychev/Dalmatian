@@ -1,14 +1,8 @@
-﻿using System.Collections.Immutable;
-
-namespace Dalmatian.Web.Controllers
+﻿namespace Dalmatian.Web.Controllers
 {
     using System.Diagnostics;
-    using System.Linq;
 
-    using Dalmatian.Data.Common.Repositories;
-    using Dalmatian.Data.Models;
     using Dalmatian.Services.Data;
-    using Dalmatian.Services.Mapping;
     using Dalmatian.Web.ViewModels;
     using Dalmatian.Web.ViewModels.Home;
     using Microsoft.AspNetCore.Mvc;
@@ -38,12 +32,11 @@ namespace Dalmatian.Web.Controllers
             {
                 Dogs = this.dogsService.GetAll<IndexDogsViewModel>(),
             };
-
-
             return this.View(viewModel);
         }
 
-        public IActionResult AutocompleteResult(string search)
+        [HttpPost]
+        public JsonResult AutocompleteResult(string search)
         {
             return this.Json(this.dogsService.SearchDogs<IndexDogsViewModel>(search));
         }

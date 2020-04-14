@@ -1,18 +1,22 @@
 ﻿@using Dalmatian.Web.Infrastructure
 @using Dalmatian.Web.ViewModels.Dogs
+@using WebSharper.JavaScript
 
 @model DogsViewModel
 @{
     ViewData["Title"] = Model.PedigreeName;
+    //string father = Model.Father.PedigreeName;
+    //string mother = Model.Mother.PedigreeName;
 }
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 alert alert-primary active">
             <h2>@Model.PedigreeName</h2>
         </div>
+        <div class="col-12 alert alert-primary active">
+        </div>
     </div>
     <div class="row">
-
         <div class="col-auto">
             <div class="table-responsive">
                 <table class="table table-bordered border-dark">
@@ -46,6 +50,8 @@
                             <th>Sex</th>
                             <th>Colour</th>
                             <th>Breeder</th>
+                            <th>Sire</th>
+                            <th>Dame</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -55,6 +61,18 @@
                             <td valign="top">@Model.SexDog.GetEnumDisplayName()</td>
                             <td valign="top">@Model.Color.GetEnumDisplayName()</td>
                             <td valign="top">@Model.BreederName</td>
+                            <td valign="top">
+                                @if (Model.FatherDogId != null)
+                                {
+                                    @Model.Father.PedigreeName;
+                                }
+                            </td>
+                            <td valign="top">
+                                @if (Model.MotherDogId != null)
+                                {
+                                    @Model.Mother.PedigreeName;
+                                }
+                            </td>
                         </tr>
                     </tbody>
                 </table>

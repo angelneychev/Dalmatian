@@ -37,11 +37,11 @@
 
         public int? FatherDogId { get; set; }
 
-        public virtual Dog Father { get; set; }
+        public Dog Father { get; set; }
 
         public int? MotherDogId { get; set; }
 
-        public virtual Dog Mother { get; set; }
+        public Dog Mother { get; set; }
 
         public ICollection<Dog> SubFathers { get; set; }
 
@@ -54,5 +54,7 @@
         public ICollection<HealthInformation> HealthInformations { get; set; }
 
         public ICollection<RegistrationDogNumber> RegistrationDogNumbers { get; set; }
+
+
     }
 }

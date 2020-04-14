@@ -23,58 +23,59 @@
         [DataType(DataType.Upload)]
         public IFormFile ImagesUrl { get; set; }
 
-        //[DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy")]
+        [Display(Name = "Date of birth")]
+        [DataType(DataType.Date)]
         public DateTime? DateOfBirth { get; set; }
 
-        //[DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy")]
+        [Display(Name = "Date of death")]
+        [DataType(DataType.Date)]
         public DateTime? DateOfDeath { get; set; }
 
         [Required]
+        [Display(Name = "* Color")]
         public Color Color { get; set; }
 
         public string OwnerName { get; set; }
 
         public string BreederName { get; set; }
 
-        [Display(Name = "Father")]
+        [Display(Name = "Sire")]
         public int? FatherDogId { get; set; }
 
-        [Display(Name = "Mother")]
+        [Display(Name = "Dame")]
         public int? MotherDogId { get; set; }
 
         //ClubRegisterNumber
         public string ClubNumber { get; set; }
 
+        [Display(Name = "Date of registration")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy")]
         public DateTime? DateOfClubRegister { get; set; }
 
         //RegistrationDogNumber
         public string RegistrationNumber { get; set; }
 
+        [Display(Name = "Date of registration")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy")]
         public DateTime? DateOfRegistrationNumber { get; set; }
 
         //HealthInformation
         public Baer Baer { get; set; }
 
+        [Display(Name = "Date of Baer test")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy")]
         public DateTime? DateOfBaer { get; set; }
 
         public HipRating HipRating { get; set; }
 
+        [Display(Name = "Date of Hip Rating test")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy")]
         public DateTime? DateOfHipRating { get; set; }
 
         public ElbowRating ElbowRating { get; set; }
 
+        [Display(Name = "Date of ElbowRating test")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy")]
         public DateTime? DateOfElbowRating { get; set; }
 
         public string OtherHealthTest { get; set; }
