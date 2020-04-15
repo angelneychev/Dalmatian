@@ -7,27 +7,25 @@ namespace Dalmatian.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.Sql(
-                @"CREATE FULLTEXT CATALOG PedigreeName
+                @"CREATE FULLTEXT CATALOG DogPedigreeName
                   GO
                   CREATE FULLTEXT INDEX ON Dogs
                    (
-                    Title
-                       Language 1033,
-                    Content
+                    PedigreeName
                        Language 1033
                    )
                   KEY INDEX PK_Dogs
                   ON
-                  PedigreeNameFullTextIndex
+                  DogPedigreeName
                   ",
                 true);
-        }
+        }// BG Language 1026
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.Sql(
                 @"DROP FULLTEXT INDEX ON Dogs
-                  DROP FULLTEXT CATALOG PedigreeNameFullTextIndex",
+                  DROP FULLTEXT CATALOG DogPedigreeName",
                 true);
         }
     }
