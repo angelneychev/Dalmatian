@@ -1,9 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Dalmatian.Data.Models
+﻿namespace Dalmatian.Data.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Linq;
 
     using Dalmatian.Data.Common.Models;

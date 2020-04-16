@@ -18,7 +18,7 @@
         public ElbowRating ElbowRating { get; set; }
 
         public DateTime? DateOfElbowRating { get; set; }
-
+        
         public string OtherHealthTest { get; set; }
 
         public int DogId { get; set; }

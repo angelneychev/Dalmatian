@@ -1,12 +1,14 @@
 ﻿namespace Dalmatian.Data.Models
 {
     using System;
+    using System.ComponentModel.DataAnnotations;
 
     using Dalmatian.Data.Common.Models;
     using Dalmatian.Data.Models.Enum;
 
     public class BirthCertificate : BaseDeletableModel<int>
     {
+        [MaxLength(20)]
         public string RegistrationNumber { get; set; }
 
         public DateTime DateOfBirth { get; set; }
