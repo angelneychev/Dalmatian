@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Dalmatian.Web.ViewModels.ClubRegisterNumber;
+using Dalmatian.Web.ViewModels.Persons;
 
 namespace Dalmatian.Web.Controllers
 {
@@ -18,12 +19,14 @@ namespace Dalmatian.Web.Controllers
         private readonly IDogsService dogsService;
         private readonly IDeletableEntityRepository<Dog> dogsRepository;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IPersonsService personsService;
 
-        public DogsController(IDogsService dogsService, IDeletableEntityRepository<Dog> dogsRepository, UserManager<ApplicationUser> userManager)
+        public DogsController(IDogsService dogsService, IDeletableEntityRepository<Dog> dogsRepository, UserManager<ApplicationUser> userManager, IPersonsService personsService)
         {
             this.dogsService = dogsService;
             this.dogsRepository = dogsRepository;
             this.userManager = userManager;
+            this.personsService = personsService;
         }
 
         public IActionResult ByDogName(string pedigreeName)
@@ -43,9 +46,13 @@ namespace Dalmatian.Web.Controllers
         public IActionResult CreateDog()
         {
             var parents = this.dogsService.GetAll<DogDropDownViewModel>();
+
+            var person = this.personsService.GetAll<PersonDropDownViewModel>();
+
             var viewModel = new DogCreateInputModel
             {
                 Parents = parents,
+                Persons = person,
             };
             return this.View(viewModel);
         }

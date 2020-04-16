@@ -20,8 +20,8 @@
             var kennels = new List<(string Name, string RegistrationNumber, string DateOfRegistration,
                 string Country, string City, string Address, int PersonOwnerId)>
             {
-                ("Spotmaniac","01215/02", "2000-04-05 18:05:55","BG", "ivan@gmail", "Sofia", 1),
-                ("Divalinor","01815/00", "2001-04-05 18:05:55","BG", "ivan@gmail", "Plovdiv", 2),
+                ("Spotmaniac","01215/02", "2000-04-05 18:05:55","BG", "ivan@gmail", "Sofia", 2),
+                ("Divalinor","01815/00", "2001-04-05 18:05:55","BG", "ivan@gmail", "Plovdiv", 1),
             };
 
             foreach (var kennel in kennels)

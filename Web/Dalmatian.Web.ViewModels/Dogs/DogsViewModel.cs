@@ -28,9 +28,13 @@
 
         public Color Color { get; set; }
 
-        public string OwnerName { get; set; }
+        public int? PersonOwnerId { get; set; }
 
-        public string BreederName { get; set; }
+        public Person PersonOwner { get; set; }
+
+        public int? PersonBreederId { get; set; }
+
+        public Person PersonBreeder { get; set; }
 
         public int? FatherDogId { get; set; }
 

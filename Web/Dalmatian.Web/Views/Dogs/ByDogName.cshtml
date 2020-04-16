@@ -60,7 +60,7 @@
                             <td valign="top">@Model.DateOfBirth?.ToShortDateString()</td>
                             <td valign="top">@Model.SexDog.GetEnumDisplayName()</td>
                             <td valign="top">@Model.Color.GetEnumDisplayName()</td>
-                            <td valign="top">@Model.BreederName</td>
+                            <td valign="top">@Model.PersonOwner.Firstname @Model.PersonOwner.Lastname @Model.PersonOwner.Middlename</td>
                             <td valign="top">
                                 @if (Model.FatherDogId != null)
                                 {
@@ -162,7 +162,7 @@
                             <td valign="top">@Model.DateOfBirth?.ToShortDateString()</td>
                             <td valign="top">@Model.SexDog.GetEnumDisplayName()</td>
                             <td valign="top">@Model.Color.GetEnumDisplayName()</td>
-                            <td valign="top">@Model.BreederName</td>
+                            <td valign="top">@Model.PersonOwner.Firstname @Model.PersonOwner.Lastname @Model.PersonOwner.Middlename</td>
                         </tr>
                     </tbody>
                 </table>

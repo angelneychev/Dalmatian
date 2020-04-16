@@ -1,4 +1,6 @@
-﻿namespace Dalmatian.Data.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Dalmatian.Data.Models
 {
     using System;
     using System.Collections.Generic;
@@ -17,6 +19,7 @@
             this.ClubRegisterNumbers = new HashSet<ClubRegisterNumber>();
         }
 
+        [MaxLength(250)]
         public string PedigreeName { get; set; }
 
         public Breed Breed { get; set; }
@@ -31,9 +34,13 @@
 
         public Color Color { get; set; }
 
-        public string OwnerName { get; set; }
+        public int? PersonOwnerId { get; set; }
 
-        public string BreederName { get; set; }
+        public Person PersonOwner { get; set; }
+
+        public int? PersonBreederId { get; set; }
+
+        public Person PersonBreeder { get; set; }
 
         public int? FatherDogId { get; set; }
 

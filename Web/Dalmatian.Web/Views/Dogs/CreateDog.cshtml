@@ -5,6 +5,7 @@
     this.ViewData["Title"] = "Add the Dog";
     var father = Model.Parents.Where(x => x.SexDog == SexDog.Male).Select(x => new SelectListItem(x.PedigreeName, x.Id.ToString()));
     var mother = Model.Parents.Where(x => x.SexDog == SexDog.Female).Select(x => new SelectListItem(x.PedigreeName, x.Id.ToString()));
+    var person = Model.Persons.Select(x => new SelectListItem(x.FullName, x.Id.ToString())).ToList();
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -75,14 +76,18 @@
                 </div>
 
                 <div class="col-md-3">
-                    <label for="OwnerName">Owner</label>
-                    <input asp-for="OwnerName" class="form-control" />
-                    <span asp-validation-for="OwnerName"></span>
+                    <label asp-for="PersonOwnerId" class="control-label"></label>
+                    <select asp-for="PersonOwnerId" asp-items="person" class="form-control">
+                        <option value="">--Select--</option>
+                    </select>
+                    <span asp-validation-for="PersonOwnerId"></span>
                 </div>
                 <div class="col-md-3">
-                    <label for="BreederName">Breeder</label>
-                    <input asp-for="BreederName" class="form-control" />
-                    <span asp-validation-for="BreederName"></span>
+                    <label asp-for="PersonBreederId" class="control-label"></label>
+                    <select asp-for="PersonBreederId" asp-items="person" class="form-control">
+                        <option value="">--Select--</option>
+                    </select>
+                    <span asp-validation-for="PersonBreederId"></span>
                 </div>
             </div>
             <hr />

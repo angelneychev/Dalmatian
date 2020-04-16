@@ -4,7 +4,9 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    using Dalmatian.Data.Models;
     using Dalmatian.Data.Models.Enum;
+    using Dalmatian.Web.ViewModels.Persons;
     using Microsoft.AspNetCore.Http;
 
     public class DogCreateInputModel
@@ -35,9 +37,13 @@
         [Display(Name = "* Color")]
         public Color Color { get; set; }
 
-        public string OwnerName { get; set; }
+        public int? PersonOwnerId { get; set; }
 
-        public string BreederName { get; set; }
+        public Person PersonOwner { get; set; }
+
+        public int? PersonBreederId { get; set; }
+
+        public Person PersonBreeder { get; set; }
 
         [Display(Name = "Sire")]
         public int? FatherDogId { get; set; }
@@ -96,5 +102,7 @@
         public Country CountryOfResidence { get; set; }
 
         public IEnumerable<DogDropDownViewModel> Parents { get; set; }
+
+        public IEnumerable<PersonDropDownViewModel> Persons { get; set; }
     }
 }
