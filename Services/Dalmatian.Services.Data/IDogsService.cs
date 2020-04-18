@@ -1,4 +1,6 @@
-﻿namespace Dalmatian.Services.Data
+﻿using System.Linq;
+
+namespace Dalmatian.Services.Data
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -15,8 +17,6 @@
 
         IEnumerable<T> SearchDogs<T>(string search);
 
-        //IEnumerable<DogFatherViewModel> DogFather(int id);
-
-        //List<T> SireDogName<T>(int? id);
+        IEnumerable<T> FindByLitterListDog<T>(int id);
     }
 }

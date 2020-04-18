@@ -46,8 +46,30 @@
                             <td>@dog.SexDog</td>
                             <td>@dog.DateOfBirth?.ToShortDateString()</td>
                             <td>@dog.DateOfDeath?.ToShortDateString()</td>
-                            <td>@dog.BreederName</td>
-                            <td>@dog.OwnerName</td>
+                            <td>
+                                @if (dog.PersonBreederId != null)
+                                {
+                                    <span>
+                                        @dog.PersonBreeder.Firstname
+                                        @dog.PersonBreeder.Middlename
+                                        @dog.PersonBreeder.Lastname
+                                    </span>
+
+                                }
+                                                    </td>
+                            
+                            <td>
+                                @if (@dog.PersonOwnerId != null)
+                                {
+                                    <span>
+                                         @dog.PersonOwner.Firstname
+                                         @dog.PersonOwner.Middlename
+                                         @dog.PersonOwner.Lastname
+                                    </span>
+                                }
+
+
+                                                    </td>
                         </tr>
                         countRow++;
                     }

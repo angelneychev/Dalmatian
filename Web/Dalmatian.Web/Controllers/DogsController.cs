@@ -1,15 +1,17 @@
-﻿using System.Linq;
-using Dalmatian.Web.ViewModels.ClubRegisterNumber;
-using Dalmatian.Web.ViewModels.Persons;
+﻿using System.Collections.Generic;
 
 namespace Dalmatian.Web.Controllers
 {
+    using System;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Dalmatian.Data.Common.Repositories;
     using Dalmatian.Data.Models;
     using Dalmatian.Services.Data;
+    using Dalmatian.Web.ViewModels.ClubRegisterNumber;
     using Dalmatian.Web.ViewModels.Dogs;
+    using Dalmatian.Web.ViewModels.Persons;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -31,16 +33,14 @@ namespace Dalmatian.Web.Controllers
 
         public IActionResult ByDogName(string pedigreeName)
         {
-            var viewMode = this.dogsService.GetByName<DogsViewModel>(pedigreeName);
 
-            return this.View(viewMode);
+            var parents = this.dogsService.GetAll<DogDropDownViewModel>();
+            var dogName = this.dogsService.GetByName<DogsViewModel>(pedigreeName);
+            var litter = this.dogsService.FindByLitterListDog<LitterListDogViewModel>(dogName.Id);
+
+            dogName.DogLitterList = litter;
+            return this.View(dogName);
         }
-
-        //public IActionResult ById(int Id)
-        //{
-        //    ////TODO: read the dog
-        //    return this.View();
-        //}
 
         [Authorize]
         public IActionResult CreateDog()
@@ -48,7 +48,6 @@ namespace Dalmatian.Web.Controllers
             var parents = this.dogsService.GetAll<DogDropDownViewModel>();
 
             var person = this.personsService.GetAll<PersonDropDownViewModel>();
-
             var viewModel = new DogCreateInputModel
             {
                 Parents = parents,

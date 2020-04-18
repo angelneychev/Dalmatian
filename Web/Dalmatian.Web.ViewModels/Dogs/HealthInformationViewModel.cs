@@ -1,4 +1,6 @@
-﻿namespace Dalmatian.Web.ViewModels.Dogs
+﻿using System;
+
+namespace Dalmatian.Web.ViewModels.Dogs
 {
     using System.Collections.Generic;
 
@@ -8,18 +10,24 @@
 
     public class HealthInformationViewModel : IMapFrom<HealthInformation>
     {
-    public int Id { get; set; }
+        public int Id { get; set; }
 
-    public int DogId { get; set; }
+        public int DogId { get; set; }
 
-    public Baer Baer { get; set; }
+        public Baer Baer { get; set; }
 
-    public HipRating HipRating { get; set; }
+        public DateTime? DateOfBaer { get; set; }
 
-    public ElbowRating ElbowRating { get; set; }
+        public HipRating HipRating { get; set; }
 
-    public string OtherHealthTest { get; set; }
+        public DateTime? DateOfHipRating { get; set; }
 
-    public virtual ICollection<Dog> Dogs { get; set; }
+        public ElbowRating ElbowRating { get; set; }
+
+        public DateTime? DateOfElbowRating { get; set; }
+
+        public string OtherHealthTest { get; set; }
+
+        public virtual ICollection<Dog> Dogs { get; set; }
     }
 }

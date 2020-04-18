@@ -1,4 +1,7 @@
-﻿using Dalmatian.Web.ViewModels.Home;
+﻿using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
+using Dalmatian.Web.ViewModels.Home;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 
 namespace Dalmatian.Services.Data
@@ -54,13 +57,6 @@ namespace Dalmatian.Services.Data
                 .Where(x => x.PedigreeName == pedigreeName)
                 .To<T>().FirstOrDefault();
 
-            //var dogSireName = this.dogsRepository.All()
-            //    .Where(x => x.FatherDogId == dogId.FirstOrDefault())
-            //    .Select(x => x.PedigreeName);
-           // var dogSireName = this.SireDogName(fatherDogId);
-
-
-
             return dogName;
         }
 
@@ -71,18 +67,15 @@ namespace Dalmatian.Services.Data
             return dogSearch.To<T>().ToList();
         }
 
-        //public IEnumerable<DogFatherViewModel> SireDogName(int? sireName)
-        //{   
-        //    var fatherDogName = this.dogsRepository.All()
-        //        .Where(x => x.FatherDogId == sireName && x.Id == x.FatherDogId)
-        //        .Select(x => x.PedigreeName).FirstOrDefault();
+        public IEnumerable<T> FindByLitterListDog<T>(int id)
+        {
+            var litter = this.dogsRepository.All()
+                .Include(f => f.SubFathers)
+                .Include(m => m.SubMothers)
+                .Where(x => x.FatherDogId == id || x.MotherDogId == id);
+           return litter.To<T>().ToList();
 
-        //    //IQueryable<string> sire = this.dogsRepository.All()
-        //    //    .Where(x => x.FatherDogId == sireName && x.Id == dogName)
-        //    //    .Select(x => x.PedigreeName);
-
-        //    return fatherDogName;
-        //}
+        }
 
         public async Task<int> CreateAsync(DogCreateInputModel input)
         {

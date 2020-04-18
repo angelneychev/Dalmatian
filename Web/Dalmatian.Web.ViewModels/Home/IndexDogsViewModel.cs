@@ -23,6 +23,16 @@
 
         public DateTime? DateOfDeath { get; set; }
 
+        public int? PersonOwnerId { get; set; }
+
+        public Person PersonOwner { get; set; }
+
+        public int? PersonBreederId { get; set; }
+
+        public Person PersonBreeder { get; set; }
+
+        public int? FatherDogId { get; set; }
+
         public string Url => $"/club-dogs/{ this.PedigreeName.Replace(' ', '-') + "-" + this.Id}";
     }
 }

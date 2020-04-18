@@ -14,15 +14,19 @@
         public int Id { get; set; }
 
         [Required]
+        [Display(Name = "* Dog name for Pedigree")]
         public string PedigreeName { get; set; }
 
         [Required]
+        [Display(Name = "* Breed")]
         public Breed Breed { get; set; }
 
         [Required]
+        [Display(Name = "* Sex")]
         public SexDog SexDog { get; set; }
 
         [DataType(DataType.Upload)]
+        [Display(Name = "Add photo dog")]
         public IFormFile ImagesUrl { get; set; }
 
         [Display(Name = "Date of birth")]
@@ -37,10 +41,12 @@
         [Display(Name = "* Color")]
         public Color Color { get; set; }
 
+        [Display(Name = "Owner")]
         public int? PersonOwnerId { get; set; }
 
         public Person PersonOwner { get; set; }
 
+        [Display(Name = "Breeder")]
         public int? PersonBreederId { get; set; }
 
         public Person PersonBreeder { get; set; }
@@ -52,6 +58,7 @@
         public int? MotherDogId { get; set; }
 
         //ClubRegisterNumber
+        [Display(Name = "Club register number")]
         public string ClubNumber { get; set; }
 
         [Display(Name = "Date of registration")]
@@ -66,39 +73,50 @@
         public DateTime? DateOfRegistrationNumber { get; set; }
 
         //HealthInformation
+        [Display(Name = "Baer test")]
         public Baer Baer { get; set; }
 
-        [Display(Name = "Date of Baer test")]
+        [Display(Name = "Date of test")]
         [DataType(DataType.Date)]
         public DateTime? DateOfBaer { get; set; }
 
+        [Display(Name = "Hip Rating test")]
         public HipRating HipRating { get; set; }
 
-        [Display(Name = "Date of Hip Rating test")]
+        [Display(Name = "Date of test")]
         [DataType(DataType.Date)]
         public DateTime? DateOfHipRating { get; set; }
 
+        [Display(Name = "Elbow Rating test")]
         public ElbowRating ElbowRating { get; set; }
 
-        [Display(Name = "Date of ElbowRating test")]
+        [Display(Name = "Date of test")]
         [DataType(DataType.Date)]
         public DateTime? DateOfElbowRating { get; set; }
 
+        [Display(Name = "Other healthg test")]
         public string OtherHealthTest { get; set; }
 
         //BreedingInformation
+        [Display(Name = "Units")]
         public HeightUnits HeightUnits { get; set; }
 
+        [Display(Name = "Height")]
         public double Height { get; set; }
 
+        [Display(Name = "Units")]
         public WeightUnits WeightUnits { get; set; }
 
+        [Display(Name = "Weight")]
         public double Weight { get; set; }
 
+        [Display(Name = "Breeding status")]
         public BreedingStatus BreedingStatus { get; set; }
 
+        [Display(Name = "Country of origins")]
         public Country CountryOfOrigin { get; set; }
 
+        [Display(Name = "Country of residence")]
         public Country CountryOfResidence { get; set; }
 
         public IEnumerable<DogDropDownViewModel> Parents { get; set; }

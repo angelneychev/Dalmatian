@@ -1,4 +1,6 @@
-﻿namespace Dalmatian.Web.ViewModels.Dogs
+﻿using System.Linq;
+
+namespace Dalmatian.Web.ViewModels.Dogs
 {
     using System;
     using System.Collections.Generic;
@@ -8,7 +10,7 @@
     using Dalmatian.Data.Models.Enum;
     using Dalmatian.Services.Mapping;
 
-    public class DogsViewModel : IMapFrom<Dog>
+    public class DogsViewModel : IMapFrom<Dog>, IMapTo<Dog>
     {
         public int Id { get; set; }
 
@@ -44,9 +46,15 @@
 
         public Dog Mother { get; set; }
 
+        public string FatherUrl => $"/club-dogs/{ this.Father.PedigreeName.Replace(' ', '-') + "-" + this.Father.Id}";
+
+        public string MotherUrl => $"/club-dogs/{ this.Mother.PedigreeName.Replace(' ', '-') + "-" + this.Mother.Id}";
+
         public ICollection<Dog> SubFathers { get; set; }
 
         public ICollection<Dog> SubMothers { get; set; }
+
+        public IQueryable<Dog> Dogs { get; set; }
 
         public IEnumerable<DogFatherViewModel> DogFatherView { get; set; }
 
@@ -59,5 +67,8 @@
         public IEnumerable<HealthInformationViewModel> HealthInformations { get; set; }
 
         public IEnumerable<RegistrationDogNumberViewModel> RegistrationDogNumbers { get; set; }
+
+        public IEnumerable<LitterListDogViewModel> DogLitterList = new HashSet<LitterListDogViewModel>();
+
     }
 }
