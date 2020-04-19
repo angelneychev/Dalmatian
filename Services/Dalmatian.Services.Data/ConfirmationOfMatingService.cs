@@ -39,8 +39,8 @@
 
         public ConfirmationOfMatingViewModel Details(int id)
         {
-            var conf = confirmationOfMatingRepository.All().Where(x => x.Id == id)
-                .Select(x=> new ConfirmationOfMatingViewModel()
+            var conf = this.confirmationOfMatingRepository.All().Where(x => x.Id == id)
+                .Select(x => new ConfirmationOfMatingViewModel()
                 {
                     Id = x.Id,
                     RegistrationNumber = x.RegistrationNumber,

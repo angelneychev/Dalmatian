@@ -8,7 +8,7 @@
     using Dalmatian.Data.Models.Enum;
     using Dalmatian.Services.Mapping;
 
-    public sealed class LitterListDogViewModel : BaseDeletableModel<int>, IMapFrom<Dog>
+    public sealed class SiblingDogViewModel : BaseDeletableModel<int>, IMapFrom<Dog>
     {
         public string PedigreeName { get; set; }
 
@@ -34,7 +34,7 @@
 
         public Person PersonBreeder { get; set; }
 
-        public string OffspringUrl => $"/club-dogs/{ this.PedigreeName.Replace(' ', '-') + "-" + this.Id}";
+        public string SiblingUrl => $"/club-dogs/{ this.PedigreeName.Replace(' ', '-') + "-" + this.Id}";
 
         public ICollection<Dog> SubFathers = new List<Dog>();
 

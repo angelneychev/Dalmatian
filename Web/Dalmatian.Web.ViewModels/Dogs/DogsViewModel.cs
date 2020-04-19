@@ -70,5 +70,6 @@ namespace Dalmatian.Web.ViewModels.Dogs
 
         public IEnumerable<LitterListDogViewModel> DogLitterList = new HashSet<LitterListDogViewModel>();
 
+        public IEnumerable<SiblingDogViewModel> SiblingDogViewModels = new HashSet<SiblingDogViewModel>();
     }
 }

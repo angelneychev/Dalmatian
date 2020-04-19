@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Dalmatian.Web.Controllers
+﻿namespace Dalmatian.Web.Controllers
 {
     using System;
     using System.Linq;
@@ -37,8 +35,11 @@ namespace Dalmatian.Web.Controllers
             var parents = this.dogsService.GetAll<DogDropDownViewModel>();
             var dogName = this.dogsService.GetByName<DogsViewModel>(pedigreeName);
             var litter = this.dogsService.FindByLitterListDog<LitterListDogViewModel>(dogName.Id);
+            var siblings =
+                this.dogsService.FindBySiblingsDog<SiblingDogViewModel>(dogName.Id);
 
             dogName.DogLitterList = litter;
+            dogName.SiblingDogViewModels = siblings;
             return this.View(dogName);
         }
 
@@ -71,6 +72,5 @@ namespace Dalmatian.Web.Controllers
 
             return this.Redirect($"/club-dogs/{pedigreeName.Replace(' ', '-') + "-" + dogId}");
         }
-
     }
 }

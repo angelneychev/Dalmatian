@@ -1,10 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
-using Dalmatian.Web.ViewModels.Home;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
-
-namespace Dalmatian.Services.Data
+﻿namespace Dalmatian.Services.Data
 {
     using System;
     using System.Collections.Generic;
@@ -17,8 +11,8 @@ namespace Dalmatian.Services.Data
     using Dalmatian.Data.Models;
     using Dalmatian.Services.Data.Common;
     using Dalmatian.Services.Mapping;
-    using Dalmatian.Web.ViewModels.ClubRegisterNumber;
     using Dalmatian.Web.ViewModels.Dogs;
+    using Microsoft.EntityFrameworkCore;
 
     public class DogsService : IDogsService
     {
@@ -62,7 +56,7 @@ namespace Dalmatian.Services.Data
 
         public IEnumerable<T> SearchDogs<T>(string search)
         {
-            IQueryable<Dog> dogSearch = this.dogsRepository.All().Where(x => x.PedigreeName.Contains(search));
+            var dogSearch = this.dogsRepository.All().Where(x => x.PedigreeName.Contains(search));
 
             return dogSearch.To<T>().ToList();
         }
@@ -73,8 +67,30 @@ namespace Dalmatian.Services.Data
                 .Include(f => f.SubFathers)
                 .Include(m => m.SubMothers)
                 .Where(x => x.FatherDogId == id || x.MotherDogId == id);
-           return litter.To<T>().ToList();
+            return litter.To<T>().ToList();
+        }
 
+        public IEnumerable<T> FindBySiblingsDog<T>(int id)
+        {
+            var fatherId = this.dogsRepository.All().Where(x => x.Id == id)
+                .Select(x => x.FatherDogId).First();
+
+            var motherId = this.dogsRepository.All().Where(x => x.Id == id)
+                .Select(x => x.MotherDogId).First();
+
+            var dateOfBirth = this.dogsRepository.All().Where(x => x.Id == id)
+                .Select(x => x.DateOfBirth).First();
+
+            var siblings = this.dogsRepository.All()
+                .Include(f => f.SubFathers)
+                .Include(m => m.SubMothers)
+                .Where(x => x.FatherDogId != null 
+                            && x.FatherDogId == fatherId
+                            && x.MotherDogId != null
+                            && x.MotherDogId == motherId
+                            && x.DateOfBirth == dateOfBirth
+                            && x.Id != id);
+            return siblings.To<T>().ToList();
         }
 
         public async Task<int> CreateAsync(DogCreateInputModel input)
@@ -96,6 +112,7 @@ namespace Dalmatian.Services.Data
                 MotherDogId = input.MotherDogId,
                 //UserId= user.Id,
             };
+
             var clubNumber = new ClubRegisterNumber()
             {
                 ClubNumber = input.ClubNumber,
@@ -146,14 +163,5 @@ namespace Dalmatian.Services.Data
             await this.dogsRepository.SaveChangesAsync();
             return dog.Id;
         }
-
-
-        //public IEnumerable<Dog> DogFather(int id)
-        //{
-        //    return this.dogsRepository.All().Where(x => x.Id == id)
-        //        .Where(x => x.Id == id)
-        //        .Select(x => x.PedigreeName)
-        //        .FirstOrDefault();
-        //}
     }
 }

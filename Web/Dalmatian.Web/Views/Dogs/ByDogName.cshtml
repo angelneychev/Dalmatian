@@ -18,7 +18,7 @@
                 <h2>@Model.PedigreeName</h2>
             </div>
             <div class="col-12 alert alert-primary active">
- 
+
             </div>
         </div>
 
@@ -86,11 +86,6 @@
                                     <a class="" href="@Model.MotherUrl"> @Model.Mother.PedigreeName</a>
                                 }
                             </td>
-                        <tr class="table-bordered bg-white">
-                            <td>
-                            </td>
-                        </tr>
-                        </tr>
                     </table>
                 </div>
             </div>
@@ -147,7 +142,7 @@
                                     @Model.ClubRegisterNumbers.Select(x => x.ClubNumber).FirstOrDefault()
                                 </td>
                                 <td valign="top">
-                                    @Model.RegistrationDogNumbers.Select(x => x.RegistrationNumber).FirstOrDefault();
+                                    @Model.RegistrationDogNumbers.Select(x => x.RegistrationNumber).FirstOrDefault()
                                 </td>
                             </tr>
                         </tbody>
@@ -226,7 +221,71 @@
             </div>
 
         </div>
+        <div class="row">
+            <div class="col-auto">
+                <div class="table-responsive-sm">
+                    <table class="table table-bordered border-dark">
+                        <thead class="table-primary">
+                            <tr>
+                                <h4>Sibling</h4>
+                            </tr>
+                        </thead>
+                        <thead class="table-primary">
+                            <tr>
+                                <th>Name</th>
+                                <th>Date of birth</th>
+                                <th>Sex</th>
+                                <th>Colour</th>
+                                <th>Owner</th>
+                                <th>Breeder</th>
+                                <th>Breed kennel club register number</th>
+                                <th>Kennel club register number</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var dogView in Model.SiblingDogViewModels)
+                            {
 
+                                <tr class="table-bordered bg-white">
+                                    <td valign="top">
+                                        <a class="" href="@dogView.SiblingUrl">@dogView.PedigreeName</a>
+                                    </td>
+                                    <td valign="top">@dogView.DateOfBirth?.ToShortDateString()</td>
+                                    <td valign="top">@dogView.SexDog.GetEnumDisplayName()</td>
+                                    <td valign="top">@dogView.Color.GetEnumDisplayName()</td>
+                                    <td valign="top">
+                                        @if (dogView.PersonOwnerId != null)
+                                        {
+                                            <span>
+                                                @dogView.PersonOwner.Firstname
+                                                @dogView.PersonOwner.Lastname
+                                                @dogView.PersonOwner.Middlename
+                                            </span>
+                                        }
+                                    </td>
+                                    <td valign="top">
+                                        @if (dogView.PersonBreederId != null)
+                                        {
+                                            <span>
+                                                @dogView.PersonBreeder.Firstname
+                                                @dogView.PersonBreeder.Lastname
+                                                @dogView.PersonBreeder.Middlename
+                                            </span>
+                                        }
+                                    </td>
+                                    <td valign="top">
+                                        @dogView.ClubRegisterNumbers.Select(x => x.ClubNumber).FirstOrDefault()
+                                    </td>
+                                    <td valign="top">
+                                        @dogView.RegistrationDogNumbers.Select(x => x.RegistrationNumber).FirstOrDefault()
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-auto">
                 <div class="table-responsive-sm">
@@ -249,49 +308,51 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach (var dogView in Model.DogLitterList)
-                        {
-                     
-                            <tr class="table-bordered bg-white">
-                                <td valign="top">@dogView.PedigreeName</td>
-                                <td valign="top">@dogView.DateOfBirth?.ToShortDateString()</td>
-                                <td valign="top">@dogView.SexDog.GetEnumDisplayName()</td>
-                                <td valign="top">@dogView.Color.GetEnumDisplayName()</td>
-                                <td valign="top">
-                                    @if (dogView.PersonOwnerId != null)
-                                    {
-                                        <span>
-                                            @dogView.PersonOwner.Firstname
-                                            @dogView.PersonOwner.Lastname
-                                            @dogView.PersonOwner.Middlename
-                                        </span>
-                                    }
-                                </td>
-                                <td valign="top">
-                                    @if (dogView.PersonBreederId != null)
-                                    {
-                                        <span>
-                                            @dogView.PersonBreeder.Firstname
-                                            @dogView.PersonBreeder.Lastname
-                                            @dogView.PersonBreeder.Middlename
-                                        </span>
-                                    }
-                                </td>
-                                <td valign="top">
-                                    @dogView.ClubRegisterNumbers.Select(x => x.ClubNumber).FirstOrDefault()
-                                </td>
-                                <td valign="top">
-                                    @dogView.RegistrationDogNumbers.Select(x => x.RegistrationNumber).FirstOrDefault();
-                                </td>
-                            </tr>
-                        }
+                            @foreach (var dogView in Model.DogLitterList)
+                            {
+
+                                <tr class="table-bordered bg-white">
+                                    <td valign="top">
+                                        <a class="" href="@dogView.OffspringUrl">@dogView.PedigreeName</a>
+                                    </td>
+                                    <td valign="top">@dogView.DateOfBirth?.ToShortDateString()</td>
+                                    <td valign="top">@dogView.SexDog.GetEnumDisplayName()</td>
+                                    <td valign="top">@dogView.Color.GetEnumDisplayName()</td>
+                                    <td valign="top">
+                                        @if (dogView.PersonOwnerId != null)
+                                        {
+                                            <span>
+                                                @dogView.PersonOwner.Firstname
+                                                @dogView.PersonOwner.Lastname
+                                                @dogView.PersonOwner.Middlename
+                                            </span>
+                                        }
+                                    </td>
+                                    <td valign="top">
+                                        @if (dogView.PersonBreederId != null)
+                                        {
+                                            <span>
+                                                @dogView.PersonBreeder.Firstname
+                                                @dogView.PersonBreeder.Lastname
+                                                @dogView.PersonBreeder.Middlename
+                                            </span>
+                                        }
+                                    </td>
+                                    <td valign="top">
+                                        @dogView.ClubRegisterNumbers.Select(x => x.ClubNumber).FirstOrDefault()
+                                    </td>
+                                    <td valign="top">
+                                        @dogView.RegistrationDogNumbers.Select(x => x.RegistrationNumber).FirstOrDefault()
+                                    </td>
+                                </tr>
+                            }
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
 
- 
+
     </div>
 
 <div class="col-12 alert alert-primary active">

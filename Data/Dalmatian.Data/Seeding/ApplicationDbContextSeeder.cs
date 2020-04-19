@@ -27,14 +27,15 @@
                           {
                               new RolesSeeder(),
                               new SettingsSeeder(),
+                              new UserSeeder(),
                               new PersonSeeder(),
                               new DogSeeder(),
+                              new KennelSeeder(),
                               new ParentSeeder(),
                               new ClubRegisterNumberSeeder(),
                               new BreedingInformationSeeder(),
                               new HealthInformationSeeder(),
                               new RegistrationDogNumberSeeder(),
-                              new KennelSeeder(),
                               new ConfirmationOfMatingSeeder(),
                               new BirthCertificateSeeding(),
                           };

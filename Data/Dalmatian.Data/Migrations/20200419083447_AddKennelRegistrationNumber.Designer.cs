@@ -4,14 +4,16 @@ using Dalmatian.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Dalmatian.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200419083447_AddKennelRegistrationNumber")]
+    partial class AddKennelRegistrationNumber
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -522,6 +524,44 @@ namespace Dalmatian.Data.Migrations
                     b.ToTable("Kennels");
                 });
 
+            modelBuilder.Entity("Dalmatian.Data.Models.KennelRegistrationNumber", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateOfKennelRegistration")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DogId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("RegistrationNumber")
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DogId");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.ToTable("KennelRegistrationNumbers");
+                });
+
             modelBuilder.Entity("Dalmatian.Data.Models.Litter", b =>
                 {
                     b.Property<int>("Id")
@@ -963,6 +1003,15 @@ namespace Dalmatian.Data.Migrations
                     b.HasOne("Dalmatian.Data.Models.Person", "PersonOwner")
                         .WithMany()
                         .HasForeignKey("PersonOwnerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Dalmatian.Data.Models.KennelRegistrationNumber", b =>
+                {
+                    b.HasOne("Dalmatian.Data.Models.Dog", "Dog")
+                        .WithMany()
+                        .HasForeignKey("DogId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });

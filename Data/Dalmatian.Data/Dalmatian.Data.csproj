@@ -59,6 +59,10 @@
     <Compile Remove="Migrations\20200405103800_UpdateTableKennelFields.Designer.cs" />
     <Compile Remove="Migrations\20200405111607_UpdateTableKennelFields.cs" />
     <Compile Remove="Migrations\20200405111607_UpdateTableKennelFields.Designer.cs" />
+    <Compile Remove="Migrations\20200419072335_wwwwwwwwwwww.cs" />
+    <Compile Remove="Migrations\20200419072335_wwwwwwwwwwww.Designer.cs" />
+    <Compile Remove="Migrations\20200419072613_AddKennelRegistrationNumber.cs" />
+    <Compile Remove="Migrations\20200419072613_AddKennelRegistrationNumber.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

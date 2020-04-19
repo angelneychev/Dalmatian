@@ -1,4 +1,7 @@
-﻿namespace Dalmatian.Web
+﻿using System.Security.Principal;
+using Microsoft.AspNetCore.Identity;
+
+namespace Dalmatian.Web
 {
     using System.Reflection;
 
