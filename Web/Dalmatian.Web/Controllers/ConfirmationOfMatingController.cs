@@ -33,7 +33,7 @@
             return this.View(confirmationOfMatingViewModel);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Administrator, ClubMember")]
         public IActionResult CreateConfirmationOfMating()
         {
             var parents = this.dogsService.GetAll<DogDropDownViewModel>();
@@ -46,7 +46,7 @@
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Administrator, ClubMember")]
         public async Task<IActionResult> CreateConfirmationOfMating(ConfirmationOfMatingInputModel input)
         {
             if (!this.ModelState.IsValid)

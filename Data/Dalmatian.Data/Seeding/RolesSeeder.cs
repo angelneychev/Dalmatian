@@ -75,7 +75,7 @@
                 }
             }
 
-            if (!userRole.UserName.Contains("elena@gmail.com"))
+            if (!userRole.UserName.Contains("user@gmail.com"))
             {
                 var user = new ApplicationUser()
                 {

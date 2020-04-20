@@ -21,14 +21,14 @@
             this.userManager = userManager;
         }
 
-        [Authorize]
+        [Authorize(Roles = "Administrator, ClubMember")]
         public IActionResult CreatePerson()
         {
             return this.View();
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Administrator, ClubMember")]
         public async Task<IActionResult> CreatePerson(PersonInputModel input)
         {
             var userEmail = await this.userManager.GetUserAsync(this.User);
@@ -65,6 +65,7 @@
             throw new NotImplementedException();
         }
 
+        [Authorize(Roles = "Administrator, ClubMember")]
         public IActionResult Edit()
         {
             throw new NotImplementedException();

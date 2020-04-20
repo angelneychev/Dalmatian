@@ -30,7 +30,7 @@
         }
 
         // GET
-        [Authorize]
+        [Authorize(Roles = "Administrator, ClubMember")]
         public IActionResult CreateBirthCertificate()
         {
             var person = this.personsService.GetAll<PersonDropDownViewModel>();
@@ -49,7 +49,7 @@
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Administrator, ClubMember")]
         public async Task<IActionResult> CreateBirthCertificate(BirthCertificateInputModel input)
         {
             if (!this.ModelState.IsValid)
@@ -78,6 +78,7 @@
             throw new System.NotImplementedException();
         }
 
+        [Authorize(Roles = "Administrator, ClubMember")]
         public IActionResult Edit()
         {
             throw new System.NotImplementedException();

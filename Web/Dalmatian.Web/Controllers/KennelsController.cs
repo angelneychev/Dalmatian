@@ -19,7 +19,7 @@
             this.personsService = personsService;
         }
 
-        [Authorize]
+        [Authorize(Roles = "Administrator, ClubMember")]    
         public IActionResult CreateKennel()
         {
             var person = this.personsService.GetAll<PersonDropDownViewModel>();
@@ -31,7 +31,7 @@
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Administrator, ClubMember")]
         public async Task<IActionResult> CreateKennel(KennelInputModel input)
         {
             if (!this.ModelState.IsValid)

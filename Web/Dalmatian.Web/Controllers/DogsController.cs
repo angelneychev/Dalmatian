@@ -43,7 +43,7 @@
             return this.View(dogName);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Administrator, ClubMember")]
         public IActionResult CreateDog()
         {
             var parents = this.dogsService.GetAll<DogDropDownViewModel>();
@@ -58,7 +58,7 @@
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Administrator, ClubMember")]
         public async Task<IActionResult> CreateDog(DogCreateInputModel input)
         {
             if (!this.ModelState.IsValid)
