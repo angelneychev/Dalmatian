@@ -63,6 +63,8 @@
     <Compile Remove="Migrations\20200419072335_wwwwwwwwwwww.Designer.cs" />
     <Compile Remove="Migrations\20200419072613_AddKennelRegistrationNumber.cs" />
     <Compile Remove="Migrations\20200419072613_AddKennelRegistrationNumber.Designer.cs" />
+    <Compile Remove="Migrations\20200420110901_AddContactFormAndIdentity.cs" />
+    <Compile Remove="Migrations\20200420110901_AddContactFormAndIdentity.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

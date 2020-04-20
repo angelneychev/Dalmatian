@@ -23,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\Dalmatian.Data.Models\Dalmatian.Data.Models.csproj" />
     <ProjectReference Include="..\..\Services\Dalmatian.Services.Mapping\Dalmatian.Services.Mapping.csproj" />
+    <ProjectReference Include="..\Dalmatian.Web.Infrastructure\Dalmatian.Web.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

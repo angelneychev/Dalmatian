@@ -61,5 +61,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\Controllers\" />
+    <Folder Include="Views\Contacts\NewFolder\" />
   </ItemGroup>
 </Project>

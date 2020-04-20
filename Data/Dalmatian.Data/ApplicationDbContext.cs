@@ -48,6 +48,8 @@
 
         public DbSet<Person> Persons { get; set; }
 
+        public DbSet<ContactFormEntry> ContactFormEntries { get; set; }
+
         public DbSet<RegistrationDogNumber> RegistrationDogNumbers { get; set; }
 
         public DbSet<ReportOfLitter> ReportOfLitters { get; set; }
