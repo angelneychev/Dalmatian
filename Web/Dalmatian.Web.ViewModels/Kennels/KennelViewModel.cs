@@ -8,6 +8,8 @@
 
     public class KennelViewModel : IMapFrom<Kennel>
     {
+        public int Id { get; set; }
+
         public string Name { get; set; }
 
         public string RegistrationNumber { get; set; }
@@ -23,5 +25,9 @@
         public int PersonOwnerId { get; set; }
 
         public int? PersonCoOwnerId { get; set; }
+
+        public Person PersonOwner { get; set; }
+
+        public Person PersonCoOwner { get; set; }
     }
 }

@@ -12,5 +12,11 @@
         Task<int> CreateAsync(KennelInputModel input);
 
         KennelViewModel Details(int id);
+
+        Task<bool> DoesIdExits(int id);
+
+        KennelEditModel GetById(int id);
+
+        Task UpdateKennel(KennelEditModel input);
     }
 }
