@@ -1,4 +1,6 @@
-﻿namespace Dalmatian.Web.Controllers
+﻿using System.Linq;
+
+namespace Dalmatian.Web.Controllers
 {
     using System;
     using System.Threading.Tasks;
@@ -19,6 +21,29 @@
         {
             this.personService = personService;
             this.userManager = userManager;
+        }
+
+        [Authorize]
+        public IActionResult Index(string search = null)
+        {
+            if (!string.IsNullOrEmpty(search))
+            {
+                var searchPersons = new PersonsAllViewModel()
+                {
+                    Persons = this.personService.SearchPersons<PersonViewModel>(search),
+                };
+
+                return this.View(searchPersons);
+            }
+
+            var persons = this.personService.GetAll<PersonViewModel>().ToList();
+
+            var viewModel = new PersonsAllViewModel()
+            {
+                Persons = persons,
+            };
+
+            return this.View(viewModel);
         }
 
         [Authorize(Roles = "Administrator, ClubMember")]
@@ -49,6 +74,7 @@
             return this.RedirectToAction(nameof(this.Details), new { id = personId });
         }
 
+        [Authorize]
         public IActionResult Details(int id)
         {
             var personViewModel = this.personService.Details(id);
@@ -60,15 +86,33 @@
             return this.View(personViewModel);
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        [Authorize(Roles = "Administrator, ClubMember")]
+        public async Task<IActionResult> Edit(int id)
         {
-            throw new NotImplementedException();
+
+            if (!await this.personService.DoesIdExits(id))
+            {
+                return this.NotFound();
+            }
+
+            var model = this.personService.GetByPersonId(id);
+
+            return this.View(model);
         }
 
+        [HttpPost]
         [Authorize(Roles = "Administrator, ClubMember")]
-        public IActionResult Edit()
+        public async Task<IActionResult> Edit(PersonEditModel input)
         {
-            throw new NotImplementedException();
+            if (!await this.personService.DoesIdExits(input.Id))
+            {
+                return this.NotFound();
+            }
+
+            await this.personService.UpdatePerson(input);
+
+            return this.RedirectToAction(nameof(this.Details), new { id = input.Id });
         }
     }
 }

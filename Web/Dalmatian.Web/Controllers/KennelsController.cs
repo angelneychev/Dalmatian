@@ -26,7 +26,6 @@
             this.userManager = userManager;
         }
 
-
         public IActionResult Index()
         {
             var kennels = this.kennelService.GetAll<KennelViewModel>().ToList();
@@ -37,13 +36,12 @@
 
             return this.View(viewModel);
         }
-        
 
         [Authorize(Roles = "Administrator, ClubMember")]
         public IActionResult CreateKennel()
         {
             var person = this.personsService.GetAll<PersonDropDownViewModel>();
-            
+
             var viewModel = new KennelInputModel
             {
                 Persons = person,
@@ -88,7 +86,7 @@
                 return this.NotFound();
             }
 
-            var model = this.kennelService.GetById(id);
+            var model = this.kennelService.GetByKennelId(id);
 
             model.Persons = person;
 
@@ -105,7 +103,6 @@
             }
 
             await this.kennelService.UpdateKennel(input);
-
 
             return this.RedirectToAction(nameof(this.Details), new { id = input.Id });
         }

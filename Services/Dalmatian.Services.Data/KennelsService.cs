@@ -1,8 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-
-namespace Dalmatian.Services.Data
+﻿namespace Dalmatian.Services.Data
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -13,6 +9,8 @@ namespace Dalmatian.Services.Data
     using Dalmatian.Services.Mapping;
     using Dalmatian.Web.ViewModels.Kennels;
     using Dalmatian.Web.ViewModels.Persons;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
 
     public class KennelsService : IKennelsService
     {
@@ -50,11 +48,11 @@ namespace Dalmatian.Services.Data
             return kennel;
         }
 
-        public KennelEditModel GetById(int id)
+        public KennelEditModel GetByKennelId(int id)
         {
           var kennelId = this.kennelRepository.All().Where(x => x.Id == id).To<KennelEditModel>().FirstOrDefault();
 
-            return kennelId;
+          return kennelId;
         }
 
         public async Task UpdateKennel(KennelEditModel input)

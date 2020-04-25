@@ -1,102 +1,71 @@
-﻿@model Dalmatian.Web.ViewModels.Persons.PersonViewModel
+﻿@using Dalmatian.Web.Infrastructure
+@model Dalmatian.Web.ViewModels.Persons.PersonViewModel
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<div class="container-fluid">
 
-<div>
-    <h4>PeopleViewModel</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Firstname)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Firstname)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Middlename)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Middlename)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Lastname)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Lastname)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UserId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UserId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Website)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Website)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Country)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Country)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.City)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Facebook)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Facebook)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Twitter)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Twitter)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Instagram)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Instagram)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Linkedin)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Linkedin)
-        </dd>
-    </dl>
+    <div class="row justify-content-md-center">
+        <div class="col-auto">
+            <div class="table-responsive-sm">
+                <table class="table table-bordered border-dark rounded-circle">
+                    <thead class="table-primary">
+                    <tr>
+                        <h4>Person Details</h4>
+                    </tr>
+                    </thead>
+                    <thead class="table-primary">
+                    <tr>
+                        <th valig="top">Name</th>
+                        <th valig="top">Country</th>
+                        <th valig="top">City</th>
+                        <th valig="top">Web site</th>
+                        <th valig="top">Phone</th>
+                        <th valig="top">Email</th>
+                        <th valig="top">Facebook</th>
+                        <th valig="top">Twitter</th>
+                        <th valig="top">Instagram</th>
+                        <th valig="top">Linkedin</th>
+                        <th valig="top">Edit</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="table-bordered bg-white">
+                        <td valig="top">
+                            <span>
+                                @Model.Firstname
+                                @Model.Lastname
+                                @Model.Middlename
+                            </span>
+                        </td>
+                        <td>@Model.Country.GetEnumDisplayName()</td>
+                        <td valig="top">@Model.City</td>
+                        <td valig="top">@Model.Website</td>
+                        <td valig="top">@Model.Phone</td>
+                        <td valig="top">@Model.Email</td>
+                        <td valig="top">@Model.Facebook</td>
+                        <td valig="top">@Model.Twitter</td>
+                        <td valign="top">@Model.Instagram</td>
+                        <td valign="top">@Model.Linkedin</td>
+
+                        <td valig="top">
+                        @if (this.User.Identity.Name == Model.Email || this.User.IsInRole("Administrator"))
+                        {
+                            <a class="btn btn-sm btn-primary " asp-action="Edit" asp-controller="Persons" asp-route-id="@Model.Id">Edit</a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-sm btn-outline-secondary disabled">Edit</a>
+                        }
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     <a asp-action="Index">Back to List</a>
 </div>

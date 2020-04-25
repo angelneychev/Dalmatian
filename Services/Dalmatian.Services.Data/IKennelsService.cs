@@ -13,9 +13,9 @@
 
         KennelViewModel Details(int id);
 
-        Task<bool> DoesIdExits(int id);
+        Task<bool> DoesIdExits(int id); 
 
-        KennelEditModel GetById(int id);
+        KennelEditModel GetByKennelId(int id);
 
         Task UpdateKennel(KennelEditModel input);
     }

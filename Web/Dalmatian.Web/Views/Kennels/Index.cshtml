@@ -10,65 +10,65 @@
             <div class="table-responsive-sm">
                 <table class="table table-bordered border-dark rounded-circle">
                     <thead class="table-primary">
-                        <tr>
-                            <h4>Kennel Details</h4>
-                        </tr>
+                    <tr>
+                        <h4>Kennel Details</h4>
+                    </tr>
                     </thead>
                     <thead class="table-primary">
-                        <tr>
-                            <th valig="top">Name</th>
-                            <th valig="top"> Registration number</th>
-                            <th valig="top">Date of registration</th>
-                            <th valig="top">Country</th>
-                            <th valig="top">City</th>
-                            <th valig="top">Owner</th>
-                            <th valig="top">Co Owner</th>
-                            <th valig="top">Web site</th>
-                            <th valig="top">Phone</th>
-                            <th valig="top">Email</th>
-                            <th valig="top">Edit</th>
-                        </tr>
+                    <tr>
+                        <th valig="top">Name</th>
+                        <th valig="top"> Registration number</th>
+                        <th valig="top">Date of registration</th>
+                        <th valig="top">Country</th>
+                        <th valig="top">City</th>
+                        <th valig="top">Owner</th>
+                        <th valig="top">Co Owner</th>
+                        <th valig="top">Web site</th>
+                        <th valig="top">Phone</th>
+                        <th valig="top">Email</th>
+                        <th valig="top">Edit</th>
+                    </tr>
                     </thead>
 
                     @foreach (var kennel in Model.Kennels)
                     {
                         <tbody>
-                            <tr class="table-bordered bg-white">
-                                <td valig="top">@kennel.Name</td>
-                                <td valig="top">@kennel.RegistrationNumber</td>
-                                    <td valig="top">@kennel.DateOfRegistration.ToShortDateString()</td>
-                                <td>@kennel.Country.GetEnumDisplayName()</td>
-                                <td valig="top">@kennel.City</td>
-                                <td valign="top">
+                        <tr class="table-bordered bg-white">
+                            <td valig="top">@kennel.Name</td>
+                            <td valig="top">@kennel.RegistrationNumber</td>
+                            <td valig="top">@kennel.DateOfRegistration.ToShortDateString()</td>
+                            <td>@kennel.Country.GetEnumDisplayName()</td>
+                            <td valig="top">@kennel.City</td>
+                            <td valign="top">
+                                <span>
+                                    @kennel.PersonOwner.Firstname
+                                    @kennel.PersonOwner.Lastname
+                                    @kennel.PersonOwner.Middlename
+                                </span>
+                            </td>
+                            <td valign="top">
+                                @if (kennel.PersonCoOwnerId != null)
+                                {
                                     <span>
-                                        @kennel.PersonOwner.Firstname
-                                        @kennel.PersonOwner.Lastname
-                                        @kennel.PersonOwner.Middlename
+                                        @kennel.PersonCoOwner.Firstname
+                                        @kennel.PersonCoOwner.Lastname
+                                        @kennel.PersonCoOwner.Middlename
                                     </span>
-                                </td>
-                                <td valign="top">
-                                    @if (kennel.PersonCoOwnerId != null)
-                                    {
-                                        <span>
-                                            @kennel.PersonCoOwner.Firstname
-                                            @kennel.PersonCoOwner.Lastname
-                                            @kennel.PersonCoOwner.Middlename
-                                        </span>
-                                    }
-                                </td>
-                                <td valig="top">@kennel.PersonOwner.Website</td>
-                                <td valig="top">@kennel.PersonOwner.Phone</td>
-                                <td valig="top">@kennel.PersonOwner.Email</td>
-                                <td valig="top">
-                                    @if (this.User.Identity.Name == kennel.PersonOwner.Email || this.User.IsInRole("Administrator"))
-                                    {
-                                        <a class="btn btn-sm btn-primary " asp-action="Edit" asp-controller="Kennels" asp-route-id="@kennel.Id">Edit</a>
-                                    }
-                                    else
-                                    {
-                                        <a class="btn btn-sm btn-outline-secondary disabled">Edit</a>
-                                    }
-                                </tr>
+                                }
+                            </td>
+                            <td valig="top">@kennel.PersonOwner.Website</td>
+                            <td valig="top">@kennel.PersonOwner.Phone</td>
+                            <td valig="top">@kennel.PersonOwner.Email</td>
+                            <td valig="top">
+                            @if (this.User.Identity.Name == kennel.PersonOwner.Email || this.User.IsInRole("Administrator"))
+                            {
+                                <a class="btn btn-sm btn-primary " asp-action="Edit" asp-controller="Kennels" asp-route-id="@kennel.Id">Edit</a>
+                            }
+                            else
+                            {
+                                <a class="btn btn-sm btn-outline-secondary disabled">Edit</a>
+                            }
+                        </tr>
                         </tbody>
                     }
                 </table>
@@ -76,20 +76,3 @@
         </div>
     </div>
 </div>
-
-@*<table class="table">
-        <thead>
-            <tr>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-    @foreach (var item in Model.Kennels) {
-            <tr>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                </td>
-            </tr>
-    }
-        </tbody>
-    </table>*@

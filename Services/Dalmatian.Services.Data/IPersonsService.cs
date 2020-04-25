@@ -12,5 +12,13 @@
         Task<int> CreateAsync(PersonInputModel input);
 
         PersonViewModel Details(int id);
+
+        IEnumerable<T> SearchPersons<T>(string search);
+
+        Task<bool> DoesIdExits(int id);
+
+        PersonEditModel GetByPersonId(int id);
+
+        Task UpdatePerson(PersonEditModel input);
     }
 }
