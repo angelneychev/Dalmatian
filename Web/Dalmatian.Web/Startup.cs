@@ -1,9 +1,7 @@
-﻿using System.Security.Principal;
-using Microsoft.AspNetCore.Identity;
-
-namespace Dalmatian.Web
+﻿namespace Dalmatian.Web
 {
     using System.Reflection;
+    using System.Security.Principal;
 
     using CloudinaryDotNet;
     using Dalmatian.Data;
@@ -19,6 +17,7 @@ namespace Dalmatian.Web
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;

@@ -50,6 +50,8 @@ namespace Dalmatian.Web.ViewModels.Dogs
 
         public string MotherUrl => $"/club-dogs/{ this.Mother.PedigreeName.Replace(' ', '-') + "-" + this.Mother.Id}";
 
+        public string RedirectUrl => $"/club-dogs/{ this.PedigreeName.Replace(' ', '-') + "-" + this.Id}";
+
         public ICollection<Dog> SubFathers { get; set; }
 
         public ICollection<Dog> SubMothers { get; set; }
@@ -69,7 +71,7 @@ namespace Dalmatian.Web.ViewModels.Dogs
         public IEnumerable<RegistrationDogNumberViewModel> RegistrationDogNumbers { get; set; }
 
         public IEnumerable<LitterListDogViewModel> DogLitterList = new HashSet<LitterListDogViewModel>();
-
+        
         public IEnumerable<SiblingDogViewModel> SiblingDogViewModels = new HashSet<SiblingDogViewModel>();
     }
 }

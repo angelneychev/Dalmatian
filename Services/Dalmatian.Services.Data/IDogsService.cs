@@ -18,5 +18,11 @@
         IEnumerable<T> FindByLitterListDog<T>(int id);
 
         IEnumerable<T> FindBySiblingsDog<T>(int id);
+
+        Task<bool> DoesIdExits(int id);
+
+        DogEditViewModel GetByDogId(int id);
+
+        Task UpdateDog(DogEditViewModel input);
     }
 }

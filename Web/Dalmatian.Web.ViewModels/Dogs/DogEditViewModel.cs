@@ -1,4 +1,5 @@
-﻿using Dalmatian.Services.Mapping;
+﻿using System.Linq;
+using AutoMapper;
 
 namespace Dalmatian.Web.ViewModels.Dogs
 {
@@ -8,10 +9,11 @@ namespace Dalmatian.Web.ViewModels.Dogs
 
     using Dalmatian.Data.Models;
     using Dalmatian.Data.Models.Enum;
+    using Dalmatian.Services.Mapping;
     using Dalmatian.Web.ViewModels.Persons;
     using Microsoft.AspNetCore.Http;
 
-    public class DogCreateInputModel : IMapTo<Dog>, IMapFrom<Dog>
+    public class DogEditViewModel : IMapFrom<Dog>, IMapTo<Dog>
     {
         public int Id { get; set; }
 
@@ -19,7 +21,8 @@ namespace Dalmatian.Web.ViewModels.Dogs
         [RegularExpression(
             @"[^\d^\`|^\~|^\!|^\@|^\#|^\%|^\^^|^\^$|\^*|^\(^|\)|^\+|^\=|^\[|^\{|^\]|^\}|^\||^\\|^\<|^\,|^\.|^\>|^\?|^\/|^\""|^\;|\:]+",
             ErrorMessage = "Characters or number are not allowed.")]
-        [MinLength(2), MaxLength(250)]
+        [MinLength(2)]
+        [MaxLength(250)]
         [Display(Name = "* Dog name for Pedigree")]
         public string PedigreeName { get; set; }
 
@@ -33,7 +36,7 @@ namespace Dalmatian.Web.ViewModels.Dogs
 
         [DataType(DataType.Upload)]
         [Display(Name = "Add photo dog")]
-        public IFormFile ImagesUrl { get; set; }
+        public string ImagesUrl { get; set; }
 
         [Display(Name = "Date of birth")]
         [DataType(DataType.Date)]
@@ -125,10 +128,22 @@ namespace Dalmatian.Web.ViewModels.Dogs
         [Display(Name = "Country of residence")]
         public Country CountryOfResidence { get; set; }
 
-        public string RedirectUrl => $"/club-dogs/{ this.PedigreeName.Replace(' ', '-') + "-" + this.Id}";
-
         public IEnumerable<DogDropDownViewModel> Parents { get; set; }
 
         public IEnumerable<PersonDropDownViewModel> Persons { get; set; }
+
+        //public ClubRegisterNumber ClubRegisterNumber { get; set; }
+
+        //  public string RedirectUrl => $"/club-dogs/{this.PedigreeName.Replace(' ', '-') + "-" + this.Id}";
+
+        //public void CreateMappings(IProfileExpression configuration)
+        //{
+        //    configuration.CreateMap<Dog, DogEditViewModel>()
+        //        .ForMember(x => x.ClubNumber), 
+        //    options =>
+        //        {
+        //            options.MapFrom(p => p.);
+        //        });
+        //}
     }
 }

@@ -46,20 +46,5 @@
         public string OwnerFemaleDog { get; set; }
 
         public IEnumerable<DogDropDownViewModel> Parents { get; set; }
-
-        //public IEnumerable<SelectListItem> SelectSires =>
-        //    this.Parents.Where(x => x.SexDog == SexDog.Male).Select(x => new SelectListItem
-        //    {
-        //        Value = x.Id.ToString(),
-        //        Text = x.PedigreeName,
-                
-        //    }).ToList();
-
-        //public IEnumerable<SelectListItem> SelectDames =>
-        //    this.Parents.Where(x => x.SexDog == SexDog.Female).Select(x => new SelectListItem
-        //    {
-        //        Value = x.Id.ToString(),
-        //        Text = x.PedigreeName,
-        //    }).ToList();
     }
 }

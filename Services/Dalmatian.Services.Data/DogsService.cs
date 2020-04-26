@@ -1,4 +1,7 @@
-﻿namespace Dalmatian.Services.Data
+﻿using System.Security.Cryptography.X509Certificates;
+using Dalmatian.Web.ViewModels.ClubRegisterNumber;
+
+namespace Dalmatian.Services.Data
 {
     using System;
     using System.Collections.Generic;
@@ -18,11 +21,25 @@
     {
         private readonly IDeletableEntityRepository<Dog> dogsRepository;
         private readonly Cloudinary cloudinary;
+        private readonly IDeletableEntityRepository<ClubRegisterNumber> clubRegisterNumberRepository;
+        private readonly IDeletableEntityRepository<RegistrationDogNumber> registrationDogNumberRepository;
+        private readonly IDeletableEntityRepository<HealthInformation> healthInformationRepository;
+        private readonly IDeletableEntityRepository<BreedingInformation> breedingInformationRepository;
 
-        public DogsService(IDeletableEntityRepository<Dog> dogRepository, Cloudinary cloudinary)
+        public DogsService(
+            IDeletableEntityRepository<Dog> dogRepository,
+            Cloudinary cloudinary,
+            IDeletableEntityRepository<ClubRegisterNumber> clubRegisterNumberRepository,
+            IDeletableEntityRepository<RegistrationDogNumber> registrationDogNumberRepository,
+            IDeletableEntityRepository<HealthInformation> healthInformationRepository,
+            IDeletableEntityRepository<BreedingInformation> breedingInformationRepository)
         {
             this.dogsRepository = dogRepository;
             this.cloudinary = cloudinary;
+            this.clubRegisterNumberRepository = clubRegisterNumberRepository;
+            this.registrationDogNumberRepository = registrationDogNumberRepository;
+            this.healthInformationRepository = healthInformationRepository;
+            this.breedingInformationRepository = breedingInformationRepository;
         }
 
         public IEnumerable<T> GetAll<T>(int? count = null)
@@ -84,13 +101,182 @@
             var siblings = this.dogsRepository.All()
                 .Include(f => f.SubFathers)
                 .Include(m => m.SubMothers)
-                .Where(x => x.FatherDogId != null 
+                .Where(x => x.FatherDogId != null
                             && x.FatherDogId == fatherId
                             && x.MotherDogId != null
                             && x.MotherDogId == motherId
                             && x.DateOfBirth == dateOfBirth
                             && x.Id != id);
             return siblings.To<T>().ToList();
+        }
+
+        public async Task<bool> DoesIdExits(int id)
+        {
+            var obj = await this.dogsRepository.All().FirstOrDefaultAsync(x => x.Id == id);
+            return obj != null;
+        }
+
+        public DogEditViewModel GetByDogId(int id)
+        {
+            var dog = this.dogsRepository.All().Where(x => x.Id == id).FirstOrDefault();
+            var clubRegisterNumber = this.clubRegisterNumberRepository.All().Where(x => x.DogId == id).FirstOrDefault();
+            var registrationNumber = this.registrationDogNumberRepository.All().Where(x => x.DogId == id).FirstOrDefault();
+            var healthInformation = this.healthInformationRepository.All().Where(x => x.DogId == id).FirstOrDefault();
+            var breedingInformation = this.breedingInformationRepository.All().Where(x => x.DogId == id).FirstOrDefault();
+
+            var dogId = new DogEditViewModel
+            {
+                PedigreeName = dog.PedigreeName,
+                Breed = dog.Breed,
+                SexDog = dog.SexDog,
+                DateOfBirth = dog.DateOfBirth,
+                DateOfDeath = dog.DateOfDeath,
+                Color = dog.Color,
+                PersonOwnerId = dog.PersonOwnerId,
+                PersonBreederId = dog.PersonBreederId,
+                FatherDogId = dog.FatherDogId,
+                MotherDogId = dog.MotherDogId,
+                ClubNumber = clubRegisterNumber.ClubNumber,
+                //ClubNumber = clubRegisterNumb
+                DateOfClubRegister = clubRegisterNumber.DateOfClubRegister,
+                RegistrationNumber = registrationNumber.RegistrationNumber,
+                DateOfRegistrationNumber = registrationNumber.DateOfRegistrationNumber,
+                Baer = healthInformation.Baer,
+                DateOfBaer = healthInformation.DateOfBaer,
+                HipRating = healthInformation.HipRating,
+                DateOfHipRating = healthInformation.DateOfHipRating,
+                ElbowRating = healthInformation.ElbowRating,
+                DateOfElbowRating = healthInformation.DateOfElbowRating,
+                OtherHealthTest = healthInformation.OtherHealthTest,
+                HeightUnits = breedingInformation.HeightUnits,
+                Height = breedingInformation.Height,
+                WeightUnits = breedingInformation.WeightUnits,
+                Weight = breedingInformation.Weight,
+                BreedingStatus = breedingInformation.BreedingStatus,
+                CountryOfOrigin = breedingInformation.CountryOfOrigin,
+                CountryOfResidence = breedingInformation.CountryOfOrigin,
+            };
+
+            //var dogId = this.dogsRepository.All()
+            //    .To<DogEditViewModel>(id)
+            //    .Select(x => new DogEditViewModel
+            //    {
+            //        PedigreeName = dog.PedigreeName,
+            //        Breed = dog.Breed,
+            //        SexDog = dog.SexDog,
+            //        DateOfBirth = dog.DateOfBirth,
+            //        DateOfDeath = dog.DateOfDeath,
+            //        Color = dog.Color,
+            //        PersonOwnerId = dog.PersonOwnerId,
+            //        PersonBreederId = dog.PersonBreederId,
+            //        FatherDogId = dog.FatherDogId,
+            //        MotherDogId = dog.MotherDogId,
+            //        ClubNumber = clubRegisterNumber.ClubNumber,
+            //        //ClubNumber = clubRegisterNumb
+            //        DateOfClubRegister = clubRegisterNumber.DateOfClubRegister,
+            //        RegistrationNumber = registrationNumber.RegistrationNumber,
+            //        DateOfRegistrationNumber = registrationNumber.DateOfRegistrationNumber,
+            //        Baer = healthInformation.Baer,
+            //        DateOfBaer = healthInformation.DateOfBaer,
+            //        HipRating = healthInformation.HipRating,
+            //        DateOfHipRating = healthInformation.DateOfHipRating,
+            //        ElbowRating = healthInformation.ElbowRating,
+            //        DateOfElbowRating = healthInformation.DateOfElbowRating,
+            //        OtherHealthTest = healthInformation.OtherHealthTest,
+            //        HeightUnits = breedingInformation.HeightUnits,
+            //        Height = breedingInformation.Height,
+            //        WeightUnits = breedingInformation.WeightUnits,
+            //        Weight = breedingInformation.Weight,
+            //        BreedingStatus = breedingInformation.BreedingStatus,
+            //        CountryOfOrigin = breedingInformation.CountryOfOrigin,
+            //        CountryOfResidence = breedingInformation.CountryOfOrigin,
+            //    }).FirstOrDefault();
+
+            return dogId;
+        }
+
+        public async Task UpdateDog(DogEditViewModel input)
+        {
+            //var imageUrl = await ApplicationCloudinary.UploadImage(this.cloudinary, input.ImagesUrl, input.PedigreeName);
+
+            var dog = this.dogsRepository.All().Where(x => x.Id == input.Id).FirstOrDefault(); ;
+
+            var clubNumber =
+                this.clubRegisterNumberRepository.All().Where(x => x.DogId == input.Id).FirstOrDefault();
+
+            var registrationDogNumber =
+                this.registrationDogNumberRepository.All().Where(x => x.DogId == input.Id).FirstOrDefault();
+
+            var healthInformation =
+                this.healthInformationRepository.All().Where(x => x.DogId == input.Id).FirstOrDefault();
+
+            var breedingInformation =
+                this.breedingInformationRepository.All().Where(x => x.DogId == input.Id).FirstOrDefault();
+
+            if (dog != null)
+            {
+                dog.PedigreeName = input.PedigreeName;
+                dog.Breed = input.Breed;
+                dog.SexDog = input.SexDog;
+                //dog.ImagesUrl = imageUrl;
+                dog.DateOfBirth = input.DateOfBirth;
+                dog.DateOfDeath = input.DateOfDeath;
+                dog.Color = input.Color;
+                dog.PersonOwnerId = input.PersonOwnerId;
+                dog.PersonBreederId = input.PersonBreederId;
+                dog.FatherDogId = input.FatherDogId;
+                dog.MotherDogId = input.MotherDogId;
+            }
+
+            if (clubNumber != null)
+            {
+                clubNumber.ClubNumber = input.ClubNumber;
+                clubNumber.DateOfClubRegister = input.DateOfClubRegister;
+                clubNumber.DogId = dog.Id;
+            }
+
+            if (registrationDogNumber != null)
+            {
+                registrationDogNumber.RegistrationNumber = input.RegistrationNumber;
+                registrationDogNumber.DateOfRegistrationNumber = input.DateOfRegistrationNumber;
+                registrationDogNumber.DogId = dog.Id;
+            }
+
+            if (healthInformation != null)
+            {
+                healthInformation.Baer = input.Baer;
+                healthInformation.DateOfBaer = input.DateOfBaer;
+                healthInformation.HipRating = input.HipRating;
+                healthInformation.DateOfHipRating = input.DateOfHipRating;
+                healthInformation.ElbowRating = input.ElbowRating;
+                healthInformation.DateOfElbowRating = input.DateOfElbowRating;
+                healthInformation.OtherHealthTest = input.OtherHealthTest;
+                healthInformation.DogId = dog.Id;
+            }
+
+            if (breedingInformation != null)
+            {
+                breedingInformation.HeightUnits = input.HeightUnits;
+                breedingInformation.Height = input.Height;
+                breedingInformation.WeightUnits = input.WeightUnits;
+                breedingInformation.Weight = input.Weight;
+                breedingInformation.BreedingStatus = input.BreedingStatus;
+                breedingInformation.CountryOfOrigin = input.CountryOfOrigin;
+                breedingInformation.CountryOfResidence = input.CountryOfResidence;
+                breedingInformation.DogId = dog.Id;
+            }
+
+            this.dogsRepository.Update(dog);
+            this.clubRegisterNumberRepository.Update(clubNumber);
+            this.registrationDogNumberRepository.Update(registrationDogNumber);
+            this.healthInformationRepository.Update(healthInformation);
+            this.breedingInformationRepository.Update(breedingInformation);
+
+            await this.dogsRepository.SaveChangesAsync();
+            await this.clubRegisterNumberRepository.SaveChangesAsync();
+            await this.registrationDogNumberRepository.SaveChangesAsync();
+            await this.healthInformationRepository.SaveChangesAsync();
+            await this.breedingInformationRepository.SaveChangesAsync();
         }
 
         public async Task<int> CreateAsync(DogCreateInputModel input)
@@ -163,5 +349,6 @@
             await this.dogsRepository.SaveChangesAsync();
             return dog.Id;
         }
+
     }
 }
