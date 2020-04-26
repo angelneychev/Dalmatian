@@ -1,4 +1,6 @@
-﻿namespace Dalmatian.Web.Controllers
+﻿using System.Linq;
+
+namespace Dalmatian.Web.Controllers
 {
     using System.Threading.Tasks;
 
@@ -29,7 +31,19 @@
             this.confirmationOfMatingService = confirmationOfMatingService;
         }
 
-        // GET
+        public IActionResult Index()
+        {
+            var birthCertificate =
+                this.birthCertificatesService.GetAll<BirthCertificateViewModel>().ToList();
+
+            var viewModel = new BirthCertificateAllModel()
+            {
+                BirthCertificates = birthCertificate,
+            };
+
+            return this.View(viewModel);
+        }
+
         [Authorize(Roles = "Administrator, ClubMember")]
         public IActionResult CreateBirthCertificate()
         {
@@ -65,6 +79,7 @@
         public IActionResult Details(int id)
         {
             var viewModel = this.birthCertificatesService.Details(id);
+
             if (viewModel == null)
             {
                 return this.NotFound();
@@ -73,15 +88,42 @@
             return this.View(viewModel);
         }
 
-        public IActionResult Index()
+        [Authorize(Roles = "Administrator, ClubMember")]
+        public async Task<IActionResult> Edit(int id)
         {
-            throw new System.NotImplementedException();
+            var person = this.personsService.GetAll<PersonDropDownViewModel>().ToList();
+
+            var kennel = this.kennelsService.GetAll<KennelsDropDownViewModel>().ToList();
+
+            var confirmationOfMating = this.confirmationOfMatingService.GetAll<ConfirmationOfMatingDropDownViewModel>().ToList();
+
+
+            if (!await this.birthCertificatesService.DoesIdExits(id))
+            {
+                return this.NotFound();
+            }
+
+            var model = this.birthCertificatesService.GetByBirthCertificateId(id);
+
+            model.Persons = person;
+            model.Kennels = kennel;
+            model.ConfirmationOfMatings = confirmationOfMating;
+
+            return this.View(model);
         }
 
+        [HttpPost]
         [Authorize(Roles = "Administrator, ClubMember")]
-        public IActionResult Edit()
+        public async Task<IActionResult> Edit(BirthCertificateEditModel input)
         {
-            throw new System.NotImplementedException();
+            if (!await this.birthCertificatesService.DoesIdExits(input.Id))
+            {
+                return this.NotFound();
+            }
+
+            await this.birthCertificatesService.UpdateBirthCertificate(input);
+
+            return this.RedirectToAction(nameof(this.Details), new { id = input.Id });
         }
     }
 }

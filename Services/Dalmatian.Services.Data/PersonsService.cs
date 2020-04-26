@@ -55,9 +55,8 @@ namespace Dalmatian.Services.Data
         public IEnumerable<T> SearchPersons<T>(string search)
         {
                 var personSearch = this.personRepository.All().Where(x => x.Firstname.Contains(search) || x.Middlename.Contains(search) || x.Lastname.Contains(search) || x.City.Contains(search) || x.Email.Contains(search) || x.Phone.Contains(search));
-                    //
-                return personSearch.To<T>().ToList();
 
+                return personSearch.To<T>().ToList();
         }
 
         public PersonEditModel GetByPersonId(int id)

@@ -1,8 +1,9 @@
 ﻿@using Dalmatian.Web.ViewModels.BirthCertificate;
-@model BirthCertificateViewModel
+@using Dalmatian.Web.Infrastructure
+@model BirthCertificateAllModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Index";
 }
 
 <div class="container-fluid">
@@ -29,27 +30,30 @@
                             <th valig="top">Edit</th>
                         </tr>
                     </thead>
+
+                    @foreach (var certificate in Model.BirthCertificates)
+                    {
                         <tbody>
                             <tr class="table-bordered bg-white">
-                                <td valig="top">@Model.RegistrationNumber</td>
-                                <td valig="top">@Model.LetterOfLitter</td>
-                                <td valig="top">@Model.DateOfBirth.ToShortDateString()</td>
-                                <td valig="top">@Model.ConfirmationOfMating.RegistrationNumber</td>
-                                <td valig="top">@Model.NumberOfPuppies</td>
-                                <td valig="top">@Model.NumberOfMales</td>
-                                <td valig="top">@Model.NumberOfFemales</td>
+                                <td valig="top">@certificate.RegistrationNumber</td>
+                                <td valig="top">@certificate.LetterOfLitter</td>
+                                <td valig="top">@certificate.DateOfBirth.ToShortDateString()</td>
+                                <td valig="top">@certificate.ConfirmationOfMating.RegistrationNumber</td>
+                                <td valig="top">@certificate.NumberOfPuppies</td>
+                                <td valig="top">@certificate.NumberOfMales</td>
+                                <td valig="top">@certificate.NumberOfFemales</td>
                                 <td valig="top">
                                     <span>
-                                        @Model.Person.Firstname
-                                        @Model.Person.Middlename
-                                        @Model.Person.Lastname
+                                        @certificate.Person.Firstname
+                                        @certificate.Person.Middlename
+                                        @certificate.Person.Lastname
                                     </span>
                                 </td>
-                                <td valig="top">@Model.Kennel.Name</td>
+                                <td valig="top">@certificate.Kennel.Name</td>
                                 <td valig="top">
                                     @if (this.User.IsInRole("Administrator"))
                                     {
-                                        <a class="btn btn-sm btn-primary " asp-action="Edit" asp-controller="BirthCertificates" asp-route-id="@Model.Id">Edit</a>
+                                        <a class="btn btn-sm btn-primary " asp-action="Edit" asp-controller="BirthCertificates" asp-route-id="@certificate.Id">Edit</a>
                                     }
                                     else
                                     {
@@ -57,6 +61,7 @@
                                     }
                             </tr>
                         </tbody>
+                    }
                 </table>
             </div>
         </div>

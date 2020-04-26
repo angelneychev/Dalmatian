@@ -1,16 +1,13 @@
-﻿using Dalmatian.Data.Models;
-
-namespace Dalmatian.Web.Areas.Identity.Pages.Account
+﻿namespace Dalmatian.Web.Areas.Identity.Pages.Account
 {
     using System;
     using System.Threading.Tasks;
 
+    using Dalmatian.Data.Models;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
-
-    using Dalmatian.Data.Models;
 
     [AllowAnonymous]
 #pragma warning disable SA1649 // File name should match first type name

@@ -44,27 +44,10 @@
 
         public ConfirmationOfMatingViewModel Details(int id)
         {
-            //var father = this.dogRepository.All().Include(x=>x.)
-
-            //var conf = this.confirmationOfMatingRepository.All().Where(x => x.Id == id)
-            //    .Select(x => new ConfirmationOfMatingDetailsModel()
-            //    {
-            //        Id = x.Id,
-            //        RegistrationNumber = x.RegistrationNumber,
-            //        DogFatherId = x.DogFatherId,
-            //        DogMotherId = x.DogMotherId,
-            //        DateOfMating = x.DateOfMating,
-            //        EstimatedDateOfBirth = x.EstimatedDateOfBirth,
-            //        TypeOfMating = x.TypeOfMating,
-            //        OwnerFemaleDog = x.OwnerFemaleDog,
-            //        OwnerMaleDog = x.OwnerMaleDog,
-            //    }).FirstOrDefault();
-            //return conf;
             var conf = this.confirmationOfMatingRepository.All().Where(x => x.Id == id)
                 .To<ConfirmationOfMatingViewModel>(id).First();
 
             return conf;
-
         }
 
         public ConfirmationOfMatingEditModel GetByConfirmationOfMatingId(int id)

@@ -72,7 +72,6 @@
 
             var confirmationOfMatingId = await this.confirmationOfMatingService.CreateAsync(input);
 
-            this.TempData["InfoMessage"] = "Confirmation of mating created!";
             return this.RedirectToAction(nameof(this.Details), new { id = confirmationOfMatingId });
         }
 
