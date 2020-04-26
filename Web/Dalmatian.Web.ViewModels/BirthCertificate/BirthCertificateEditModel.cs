@@ -1,16 +1,17 @@
-﻿namespace Dalmatian.Web.ViewModels.BirthCertificate
+﻿using Dalmatian.Services.Mapping;
+
+namespace Dalmatian.Web.ViewModels.BirthCertificate
 {
     using System;
     using System.Collections.Generic;
 
     using Dalmatian.Data.Models;
     using Dalmatian.Data.Models.Enum;
-    using Dalmatian.Services.Mapping;
     using Dalmatian.Web.ViewModels.ConfirmationOfMating;
     using Dalmatian.Web.ViewModels.Kennels;
     using Dalmatian.Web.ViewModels.Persons;
 
-    public class BirthCertificateInputModel : IMapTo<BirthCertificate>
+    public class BirthCertificateEditModel : IMapFrom<BirthCertificate>
     {
         public string RegistrationNumber { get; set; }
 
@@ -27,7 +28,7 @@
         public int PersonId { get; set; }
 
         public Person Person { get; set; }
-        
+
         public int KennelId { get; set; }
 
         public Kennel Kennel { get; set; }

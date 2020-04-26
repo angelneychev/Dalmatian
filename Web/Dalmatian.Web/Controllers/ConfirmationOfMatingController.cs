@@ -40,6 +40,7 @@
         public IActionResult Details(int id)
         {
             var confirmationOfMatingViewModel = this.confirmationOfMatingService.Details(id);
+
             if (confirmationOfMatingViewModel == null)
             {
                 return this.NotFound();

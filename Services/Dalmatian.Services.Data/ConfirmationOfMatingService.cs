@@ -13,10 +13,14 @@
     public class ConfirmationOfMatingService : IConfirmationOfMatingService
     {
         private readonly IDeletableEntityRepository<ConfirmationOfMating> confirmationOfMatingRepository;
+        private readonly IDeletableEntityRepository<Dog> dogRepository;
 
-        public ConfirmationOfMatingService(IDeletableEntityRepository<ConfirmationOfMating> confirmationOfMatingRepository)
+        public ConfirmationOfMatingService(
+            IDeletableEntityRepository<ConfirmationOfMating> confirmationOfMatingRepository,
+            IDeletableEntityRepository<Dog> dogRepository)
         {
             this.confirmationOfMatingRepository = confirmationOfMatingRepository;
+            this.dogRepository = dogRepository;
         }
 
         public async Task<int> CreateAsync(ConfirmationOfMatingInputModel input)
@@ -40,20 +44,27 @@
 
         public ConfirmationOfMatingViewModel Details(int id)
         {
+            //var father = this.dogRepository.All().Include(x=>x.)
+
+            //var conf = this.confirmationOfMatingRepository.All().Where(x => x.Id == id)
+            //    .Select(x => new ConfirmationOfMatingDetailsModel()
+            //    {
+            //        Id = x.Id,
+            //        RegistrationNumber = x.RegistrationNumber,
+            //        DogFatherId = x.DogFatherId,
+            //        DogMotherId = x.DogMotherId,
+            //        DateOfMating = x.DateOfMating,
+            //        EstimatedDateOfBirth = x.EstimatedDateOfBirth,
+            //        TypeOfMating = x.TypeOfMating,
+            //        OwnerFemaleDog = x.OwnerFemaleDog,
+            //        OwnerMaleDog = x.OwnerMaleDog,
+            //    }).FirstOrDefault();
+            //return conf;
             var conf = this.confirmationOfMatingRepository.All().Where(x => x.Id == id)
-                .Select(x => new ConfirmationOfMatingViewModel()
-                {
-                    Id = x.Id,
-                    RegistrationNumber = x.RegistrationNumber,
-                    DogFatherId = x.DogFatherId,
-                    DogMotherId = x.DogMotherId,
-                    DateOfMating = x.DateOfMating,
-                    EstimatedDateOfBirth = x.EstimatedDateOfBirth,
-                    TypeOfMating = x.TypeOfMating,
-                    OwnerFemaleDog = x.OwnerFemaleDog,
-                    OwnerMaleDog = x.OwnerMaleDog,
-                }).FirstOrDefault();
+                .To<ConfirmationOfMatingViewModel>(id).First();
+
             return conf;
+
         }
 
         public ConfirmationOfMatingEditModel GetByConfirmationOfMatingId(int id)

@@ -5,7 +5,7 @@
     using Dalmatian.Data.Models;
     using Dalmatian.Services.Mapping;
 
-    public class PersonsAllViewModel : IMapFrom<Kennel>, IMapFrom<ApplicationUser>
+    public class PersonsAllViewModel : IMapFrom<Person>, IMapFrom<ApplicationUser>
     {
         public IEnumerable<PersonViewModel> Persons { get; set; }
 
