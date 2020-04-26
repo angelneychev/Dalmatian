@@ -6,10 +6,14 @@
     using System.Linq;
     using System.Web.WebPages.Html;
 
+    using Dalmatian.Data.Models;
     using Dalmatian.Data.Models.Enum;
+    using Dalmatian.Services.Mapping;
     using Dalmatian.Web.ViewModels.Dogs;
+    using Dalmatian.Web.ViewModels.Kennels;
+    using Dalmatian.Web.ViewModels.Persons;
 
-    public class ConfirmationOfMatingInputModel
+    public class ConfirmationOfMatingInputModel : IMapTo<ConfirmationOfMating>
     {
         [Required]
         [Display(Name = "* Registration number confirmation of mating")]

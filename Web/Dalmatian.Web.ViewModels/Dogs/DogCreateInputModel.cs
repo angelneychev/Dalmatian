@@ -1,6 +1,4 @@
-﻿using Dalmatian.Services.Mapping;
-
-namespace Dalmatian.Web.ViewModels.Dogs
+﻿namespace Dalmatian.Web.ViewModels.Dogs
 {
     using System;
     using System.Collections.Generic;
@@ -8,6 +6,7 @@ namespace Dalmatian.Web.ViewModels.Dogs
 
     using Dalmatian.Data.Models;
     using Dalmatian.Data.Models.Enum;
+    using Dalmatian.Services.Mapping;
     using Dalmatian.Web.ViewModels.Persons;
     using Microsoft.AspNetCore.Http;
 
@@ -125,7 +124,7 @@ namespace Dalmatian.Web.ViewModels.Dogs
         [Display(Name = "Country of residence")]
         public Country CountryOfResidence { get; set; }
 
-        public string RedirectUrl => $"/club-dogs/{ this.PedigreeName.Replace(' ', '-') + "-" + this.Id}";
+        public string RedirectUrl => $"/club-dogs/{this.PedigreeName.Replace(' ', '-') + "-" + this.Id}";
 
         public IEnumerable<DogDropDownViewModel> Parents { get; set; }
 

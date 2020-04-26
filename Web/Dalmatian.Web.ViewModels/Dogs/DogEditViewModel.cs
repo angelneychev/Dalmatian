@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using AutoMapper;
-
-namespace Dalmatian.Web.ViewModels.Dogs
+﻿namespace Dalmatian.Web.ViewModels.Dogs
 {
     using System;
     using System.Collections.Generic;
@@ -131,19 +128,5 @@ namespace Dalmatian.Web.ViewModels.Dogs
         public IEnumerable<DogDropDownViewModel> Parents { get; set; }
 
         public IEnumerable<PersonDropDownViewModel> Persons { get; set; }
-
-        //public ClubRegisterNumber ClubRegisterNumber { get; set; }
-
-        //  public string RedirectUrl => $"/club-dogs/{this.PedigreeName.Replace(' ', '-') + "-" + this.Id}";
-
-        //public void CreateMappings(IProfileExpression configuration)
-        //{
-        //    configuration.CreateMap<Dog, DogEditViewModel>()
-        //        .ForMember(x => x.ClubNumber), 
-        //    options =>
-        //        {
-        //            options.MapFrom(p => p.);
-        //        });
-        //}
     }
 }

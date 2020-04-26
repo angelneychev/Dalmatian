@@ -13,7 +13,7 @@
 
         KennelViewModel Details(int id);
 
-        Task<bool> DoesIdExits(int id); 
+        Task<bool> DoesIdExits(int id);
 
         KennelEditModel GetByKennelId(int id);
 

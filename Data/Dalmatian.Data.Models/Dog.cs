@@ -60,7 +60,5 @@
         public ICollection<HealthInformation> HealthInformations { get; set; }
 
         public ICollection<RegistrationDogNumber> RegistrationDogNumbers { get; set; }
-
-
     }
 }

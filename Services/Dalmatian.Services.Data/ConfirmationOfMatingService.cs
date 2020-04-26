@@ -8,6 +8,7 @@
     using Dalmatian.Data.Models;
     using Dalmatian.Services.Mapping;
     using Dalmatian.Web.ViewModels.ConfirmationOfMating;
+    using Microsoft.EntityFrameworkCore;
 
     public class ConfirmationOfMatingService : IConfirmationOfMatingService
     {
@@ -44,8 +45,8 @@
                 {
                     Id = x.Id,
                     RegistrationNumber = x.RegistrationNumber,
-                    FatherDogId = x.DogFatherId,
-                    MotherDogId = x.DogMotherId,
+                    DogFatherId = x.DogFatherId,
+                    DogMotherId = x.DogMotherId,
                     DateOfMating = x.DateOfMating,
                     EstimatedDateOfBirth = x.EstimatedDateOfBirth,
                     TypeOfMating = x.TypeOfMating,
@@ -53,6 +54,40 @@
                     OwnerMaleDog = x.OwnerMaleDog,
                 }).FirstOrDefault();
             return conf;
+        }
+
+        public ConfirmationOfMatingEditModel GetByConfirmationOfMatingId(int id)
+        {
+            var confirmationOfMatingId = this.confirmationOfMatingRepository.All().Where(x => x.Id == id).To<ConfirmationOfMatingEditModel>().FirstOrDefault();
+
+            return confirmationOfMatingId;
+        }
+
+        public async Task UpdateConfirmationOfMating(ConfirmationOfMatingEditModel input)
+        {
+            var confirmationOfMating = this.confirmationOfMatingRepository.All().FirstOrDefault(x => x.Id == input.Id);
+
+            if (confirmationOfMating != null)
+            {
+                confirmationOfMating.RegistrationNumber = input.RegistrationNumber;
+                confirmationOfMating.DogFatherId = input.DogFatherId;
+                confirmationOfMating.DogMotherId = input.DogMotherId;
+                confirmationOfMating.DateOfMating = input.DateOfMating;
+                confirmationOfMating.EstimatedDateOfBirth = input.EstimatedDateOfBirth;
+                confirmationOfMating.TypeOfMating = input.TypeOfMating;
+                confirmationOfMating.OwnerMaleDog = input.OwnerMaleDog;
+                confirmationOfMating.OwnerFemaleDog = input.OwnerFemaleDog;
+            }
+
+            this.confirmationOfMatingRepository.Update(confirmationOfMating);
+
+            await this.confirmationOfMatingRepository.SaveChangesAsync();
+        }
+
+        public async Task<bool> DoesIdExits(int id)
+        {
+            var obj = await this.confirmationOfMatingRepository.All().FirstOrDefaultAsync(x => x.Id == id);
+            return obj != null;
         }
 
         public IEnumerable<T> GetAll<T>(int? count = null)

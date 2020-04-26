@@ -1,10 +1,9 @@
-﻿using System.Linq;
-
-namespace Dalmatian.Web.ViewModels.Dogs
+﻿namespace Dalmatian.Web.ViewModels.Dogs
 {
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Linq;
 
     using Dalmatian.Data.Models;
     using Dalmatian.Data.Models.Enum;
@@ -46,11 +45,11 @@ namespace Dalmatian.Web.ViewModels.Dogs
 
         public Dog Mother { get; set; }
 
-        public string FatherUrl => $"/club-dogs/{ this.Father.PedigreeName.Replace(' ', '-') + "-" + this.Father.Id}";
+        public string FatherUrl => $"/club-dogs/{this.Father.PedigreeName.Replace(' ', '-') + "-" + this.Father.Id}";
 
-        public string MotherUrl => $"/club-dogs/{ this.Mother.PedigreeName.Replace(' ', '-') + "-" + this.Mother.Id}";
+        public string MotherUrl => $"/club-dogs/{this.Mother.PedigreeName.Replace(' ', '-') + "-" + this.Mother.Id}";
 
-        public string RedirectUrl => $"/club-dogs/{ this.PedigreeName.Replace(' ', '-') + "-" + this.Id}";
+        public string RedirectUrl => $"/club-dogs/{this.PedigreeName.Replace(' ', '-') + "-" + this.Id}";
 
         public ICollection<Dog> SubFathers { get; set; }
 

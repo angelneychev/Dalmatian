@@ -18,5 +18,11 @@ namespace Dalmatian.Services.Data
         //IQueryable<string> Details(int id);
 
         ConfirmationOfMatingViewModel Details(int id);
+
+        Task<bool> DoesIdExits(int id);
+
+        ConfirmationOfMatingEditModel GetByConfirmationOfMatingId(int id);
+
+        Task UpdateConfirmationOfMating(ConfirmationOfMatingEditModel input);
     }
 }

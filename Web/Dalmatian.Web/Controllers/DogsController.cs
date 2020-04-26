@@ -50,6 +50,7 @@
             var parents = this.dogsService.GetAll<DogDropDownViewModel>();
 
             var person = this.personsService.GetAll<PersonDropDownViewModel>();
+
             var viewModel = new DogCreateInputModel
             {
                 Parents = parents,
@@ -68,11 +69,8 @@
             }
 
             var user = await this.userManager.GetUserAsync(this.User);
-            var dogId = await this.dogsService.CreateAsync(input);
-           // var pedigreeName1 = this.dogsService.GetAll<Dog>().Where(x => x.Id == dogId).Select(x => x.PedigreeName).First();
-            //var name = this.dogsService.GetByName<Dog>(input.PedigreeName);
 
-            //var pedigreeName = name.PedigreeName;
+            var dogId = await this.dogsService.CreateAsync(input);
 
             return this.Redirect($"/club-dogs/{ input.PedigreeName.Replace(' ', '-') + "-" + dogId}");
         }

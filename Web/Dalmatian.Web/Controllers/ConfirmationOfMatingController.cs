@@ -22,6 +22,21 @@
             this.confirmationOfMatingService = confirmationOfMatingService;
         }
 
+        public IActionResult Index()
+        {
+            var dogFather = this.dogsService.GetAll<DogsViewModel>().ToList();
+
+            var confirmationOfMatings =
+                this.confirmationOfMatingService.GetAll<ConfirmationOfMatingViewModel>().ToList();
+
+            var viewModel = new ConfirmationOfMatingAllViewModel()
+            {
+                ConfirmationOfMatings = confirmationOfMatings,
+            };
+
+            return this.View(viewModel);
+        }
+
         public IActionResult Details(int id)
         {
             var confirmationOfMatingViewModel = this.confirmationOfMatingService.Details(id);
@@ -60,14 +75,37 @@
             return this.RedirectToAction(nameof(this.Details), new { id = confirmationOfMatingId });
         }
 
-        public IActionResult Edit()
+        [Authorize(Roles = "Administrator, ClubMember")]
+        public async Task<IActionResult> Edit(int id)
         {
-            throw new NotImplementedException();
+            var parents = this.dogsService.GetAll<DogDropDownViewModel>();
+
+            if (!await this.confirmationOfMatingService.DoesIdExits(id))
+            {
+                return this.NotFound();
+            }
+
+            var model = this.confirmationOfMatingService.GetByConfirmationOfMatingId(id);
+
+            model.Parents = parents;
+
+            return this.View(model);
         }
 
-        public IActionResult Index()
+        [HttpPost]
+        [Authorize(Roles = "Administrator, ClubMember")]
+        public async Task<IActionResult> Edit(ConfirmationOfMatingEditModel input)
         {
-            throw new NotImplementedException();
+            var parents = this.dogsService.GetAll<DogDropDownViewModel>();
+
+            if (!await this.confirmationOfMatingService.DoesIdExits(input.Id))
+            {
+                return this.NotFound();
+            }
+
+            await this.confirmationOfMatingService.UpdateConfirmationOfMating(input);
+
+            return this.RedirectToAction(nameof(this.Details), new { id = input.Id });
         }
     }
 }

@@ -9,36 +9,44 @@
     using Dalmatian.Services.Mapping;
     using Dalmatian.Web.ViewModels.Dogs;
 
-    public class ConfirmationOfMatingViewModel : IMapFrom<ConfirmationOfMating>
+    public class ConfirmationOfMatingEditModel : IMapTo<ConfirmationOfMating>, IMapFrom<ConfirmationOfMating>
     {
         public int Id { get; set; }
 
+        [Required]
+        [Display(Name = "* Registration number confirmation of mating")]
         public string RegistrationNumber { get; set; }
 
+        [Required]
+        [Display(Name = "* Father")]
         public int DogFatherId { get; set; }
 
-        public Dog DogFather { get; set; }
-
+        [Required]
+        [Display(Name = "* Mother")]
         public int DogMotherId { get; set; }
 
-        public Dog DogMother { get; set; }
-
-        [Display(Name = "Date of mating")]
+        [Required]
+        [Display(Name = "* Date of mating")]
         [DataType(DataType.Date)]
         public DateTime DateOfMating { get; set; }
 
-        [Display(Name = "Estimated date of birth")]
+        [Required]
+        [Display(Name = "* Estimated date of birth")]
         [DataType(DataType.Date)]
         public DateTime EstimatedDateOfBirth { get; set; }
 
+        [Required]
+        [Display(Name = "* Type of mating")]
         public TypeOfMating TypeOfMating { get; set; }
 
+        [Required]
+        [Display(Name = "* Owner male dog")]
         public string OwnerMaleDog { get; set; }
 
+        [Required]
+        [Display(Name = "* Owner female dog")]
         public string OwnerFemaleDog { get; set; }
 
-        public string FatherUrl => $"/club-dogs/{this.DogFather.PedigreeName.Replace(' ', '-') + "-" + this.DogFather.Id}";
-
-        public string MotherUrl => $"/club-dogs/{this.DogMother.PedigreeName.Replace(' ', '-') + "-" + this.DogMother.Id}";
+        public IEnumerable<DogDropDownViewModel> Parents { get; set; }
     }
 }

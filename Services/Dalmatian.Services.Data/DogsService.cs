@@ -1,7 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using Dalmatian.Web.ViewModels.ClubRegisterNumber;
-
-namespace Dalmatian.Services.Data
+﻿namespace Dalmatian.Services.Data
 {
     using System;
     using System.Collections.Generic;
@@ -137,7 +134,6 @@ namespace Dalmatian.Services.Data
                 FatherDogId = dog.FatherDogId,
                 MotherDogId = dog.MotherDogId,
                 ClubNumber = clubRegisterNumber.ClubNumber,
-                //ClubNumber = clubRegisterNumb
                 DateOfClubRegister = clubRegisterNumber.DateOfClubRegister,
                 RegistrationNumber = registrationNumber.RegistrationNumber,
                 DateOfRegistrationNumber = registrationNumber.DateOfRegistrationNumber,
@@ -156,42 +152,6 @@ namespace Dalmatian.Services.Data
                 CountryOfOrigin = breedingInformation.CountryOfOrigin,
                 CountryOfResidence = breedingInformation.CountryOfOrigin,
             };
-
-            //var dogId = this.dogsRepository.All()
-            //    .To<DogEditViewModel>(id)
-            //    .Select(x => new DogEditViewModel
-            //    {
-            //        PedigreeName = dog.PedigreeName,
-            //        Breed = dog.Breed,
-            //        SexDog = dog.SexDog,
-            //        DateOfBirth = dog.DateOfBirth,
-            //        DateOfDeath = dog.DateOfDeath,
-            //        Color = dog.Color,
-            //        PersonOwnerId = dog.PersonOwnerId,
-            //        PersonBreederId = dog.PersonBreederId,
-            //        FatherDogId = dog.FatherDogId,
-            //        MotherDogId = dog.MotherDogId,
-            //        ClubNumber = clubRegisterNumber.ClubNumber,
-            //        //ClubNumber = clubRegisterNumb
-            //        DateOfClubRegister = clubRegisterNumber.DateOfClubRegister,
-            //        RegistrationNumber = registrationNumber.RegistrationNumber,
-            //        DateOfRegistrationNumber = registrationNumber.DateOfRegistrationNumber,
-            //        Baer = healthInformation.Baer,
-            //        DateOfBaer = healthInformation.DateOfBaer,
-            //        HipRating = healthInformation.HipRating,
-            //        DateOfHipRating = healthInformation.DateOfHipRating,
-            //        ElbowRating = healthInformation.ElbowRating,
-            //        DateOfElbowRating = healthInformation.DateOfElbowRating,
-            //        OtherHealthTest = healthInformation.OtherHealthTest,
-            //        HeightUnits = breedingInformation.HeightUnits,
-            //        Height = breedingInformation.Height,
-            //        WeightUnits = breedingInformation.WeightUnits,
-            //        Weight = breedingInformation.Weight,
-            //        BreedingStatus = breedingInformation.BreedingStatus,
-            //        CountryOfOrigin = breedingInformation.CountryOfOrigin,
-            //        CountryOfResidence = breedingInformation.CountryOfOrigin,
-            //    }).FirstOrDefault();
-
             return dogId;
         }
 
@@ -296,7 +256,6 @@ namespace Dalmatian.Services.Data
                 PersonBreederId = input.PersonBreederId,
                 FatherDogId = input.FatherDogId,
                 MotherDogId = input.MotherDogId,
-                //UserId= user.Id,
             };
 
             var clubNumber = new ClubRegisterNumber()
@@ -349,6 +308,5 @@ namespace Dalmatian.Services.Data
             await this.dogsRepository.SaveChangesAsync();
             return dog.Id;
         }
-
     }
 }
