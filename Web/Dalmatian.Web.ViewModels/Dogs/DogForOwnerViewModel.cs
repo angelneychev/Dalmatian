@@ -9,7 +9,7 @@
     using Dalmatian.Data.Models.Enum;
     using Dalmatian.Services.Mapping;
 
-    public class DogsViewModel : IMapFrom<Dog>, IMapTo<Dog>
+    public class DogForOwnerViewModel : IMapFrom<Dog>, IMapTo<Dog>
     {
         public int Id { get; set; }
 
@@ -63,7 +63,7 @@
 
         public IEnumerable<BreedingInformation> BreedingInformations { get; set; }
 
-        public IEnumerable<ClubRegisterNumber> ClubRegisterNumbers { get; set; }
+        public IEnumerable<Data.Models.ClubRegisterNumber> ClubRegisterNumbers { get; set; }
 
         public IEnumerable<HealthInformationViewModel> HealthInformations { get; set; }
 

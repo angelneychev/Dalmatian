@@ -157,7 +157,6 @@
 
         public async Task UpdateDog(DogEditViewModel input)
         {
-            //var imageUrl = await ApplicationCloudinary.UploadImage(this.cloudinary, input.ImagesUrl, input.PedigreeName);
 
             var dog = this.dogsRepository.All().Where(x => x.Id == input.Id).FirstOrDefault(); ;
 

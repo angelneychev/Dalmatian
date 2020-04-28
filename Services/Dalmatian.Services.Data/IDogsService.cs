@@ -1,4 +1,6 @@
-﻿namespace Dalmatian.Services.Data
+﻿using System.Collections;
+
+namespace Dalmatian.Services.Data
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;

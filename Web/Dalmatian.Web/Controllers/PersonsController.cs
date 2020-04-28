@@ -1,37 +1,41 @@
 ﻿namespace Dalmatian.Web.Controllers
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
     using Dalmatian.Data.Models;
     using Dalmatian.Services.Data;
+    using Dalmatian.Web.ViewModels.Dogs;
     using Dalmatian.Web.ViewModels.Persons;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore.Internal;
 
     public class PersonsController : Controller
     {
         private readonly IPersonsService personService;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IDogsService dogsService;
 
-        public PersonsController(IPersonsService personService, UserManager<ApplicationUser> userManager)
+
+        public PersonsController(IPersonsService personService, UserManager<ApplicationUser> userManager, IDogsService dogsService)
         {
             this.personService = personService;
             this.userManager = userManager;
+            this.dogsService = dogsService;
         }
 
         [Authorize(Roles = "Administrator, ClubMember")]
         public IActionResult Index(string search = null, int page = 1)
         {
-
             var allPersons = this.personService.AllPersons(page);
 
             var totalPage = this.personService.Total();
 
             if (!string.IsNullOrEmpty(search))
             {
-
                 var persons = this.personService.SearchPersons<PersonViewModel>(search);
 
                 var searchPersons = new PersonsAllViewModel()
@@ -77,7 +81,7 @@
 
             var personId = await this.personService.CreateAsync(input);
 
-           return this.RedirectToAction(nameof(this.Details), new { id = personId });
+            return this.RedirectToAction(nameof(this.Details), new { id = personId });
         }
 
         [Authorize(Roles = "Administrator, ClubMember")]
@@ -96,7 +100,6 @@
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int id)
         {
-
             if (!await this.personService.DoesIdExits(id))
             {
                 return this.NotFound();
@@ -119,6 +122,28 @@
             await this.personService.UpdatePerson(input);
 
             return this.RedirectToAction(nameof(this.Details), new { id = input.Id });
+        }
+
+        public IActionResult PersonToDog(int id)
+        {
+            var dogs = this.dogsService.GetAll<DogsViewModel>().Where(x => x.PersonOwnerId == id).ToList();
+
+            var person = this.personService.GetByPersonToDogId(id);
+
+            person.DogsViewModels = dogs;
+
+            return this.View(person);
+        }
+
+        public IActionResult BreederToDog(int id)
+        {
+            var dogs = this.dogsService.GetAll<DogsViewModel>().Where(x => x.PersonBreederId == id).ToList();
+
+            var breeder = this.personService.GetByBreederToDogId(id);
+
+            breeder.DogsViewModels = dogs;
+
+            return this.View(breeder);
         }
     }
 }

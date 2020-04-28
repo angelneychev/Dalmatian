@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Dalmatian.Data.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
-
-namespace Dalmatian.Web.Areas.Identity.Pages.Account.Manage
+﻿namespace Dalmatian.Web.Areas.Identity.Pages.Account.Manage
 {
+    using System.Threading.Tasks;
+
+    using Dalmatian.Data.Models;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.RazorPages;
+    using Microsoft.Extensions.Logging;
+
     public class ResetAuthenticatorModel : PageModel
     {
         UserManager<ApplicationUser> userManager;
@@ -31,13 +29,13 @@ namespace Dalmatian.Web.Areas.Identity.Pages.Account.Manage
 
         public async Task<IActionResult> OnGet()
         {
-            var user = await userManager.GetUserAsync(this.User);
+            var user = await this.userManager.GetUserAsync(this.User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{this.userManager.GetUserId(User)}'.");
+                return this.NotFound($"Unable to load user with ID '{this.userManager.GetUserId(this.User)}'.");
             }
 
-            return Page();
+            return this.Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -45,7 +43,7 @@ namespace Dalmatian.Web.Areas.Identity.Pages.Account.Manage
             var user = await this.userManager.GetUserAsync(this.User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{this.userManager.GetUserId(this.User)}'.");
+                return this.NotFound($"Unable to load user with ID '{this.userManager.GetUserId(this.User)}'.");
             }
 
             await this.userManager.SetTwoFactorEnabledAsync(user, false);
@@ -53,9 +51,9 @@ namespace Dalmatian.Web.Areas.Identity.Pages.Account.Manage
             this.logger.LogInformation("User with ID '{UserId}' has reset their authentication app key.", user.Id);
 
             await this.signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your authenticator app key has been reset, you will need to configure your authenticator app using the new key.";
+            this.StatusMessage = "Your authenticator app key has been reset, you will need to configure your authenticator app using the new key.";
 
-            return RedirectToPage("./EnableAuthenticator");
+            return this.RedirectToPage("./EnableAuthenticator");
         }
     }
 }

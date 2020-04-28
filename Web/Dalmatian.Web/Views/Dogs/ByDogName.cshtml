@@ -129,23 +129,27 @@
                                 <td valign="top">
                                     @if (Model.PersonOwnerId != null)
                                     {
-                                        <span>
-                                            @Model.PersonOwner.Firstname
-                                            @Model.PersonOwner.Lastname
-                                            @Model.PersonOwner.Middlename
-                                        </span>
-                                    }
-                                </td>
+                                        <a class="" asp-action="PersonToDog" asp-controller="Persons" asp-route-id="@Model.PersonOwnerId">
+                                    <span>
+                                        @Model.PersonOwner.Firstname
+                                        @Model.PersonOwner.Lastname
+                                        @Model.PersonOwner.Middlename
+                                    </span>
+                                    </a>
+                                            }
+                                    </td>
                                 <td valign="top">
                                     @if (Model.PersonBreederId != null)
                                     {
-                                        <span>
-                                            @Model.PersonBreeder.Firstname
-                                            @Model.PersonBreeder.Lastname
-                                            @Model.PersonBreeder.Middlename
-                                        </span>
-                                    }
-                                </td>
+                                        <a class="" asp-action="BreederToDog" asp-controller="Persons" asp-route-id="@Model.PersonBreederId">
+                                            <span>
+                                                @Model.PersonBreeder.Firstname
+                                                @Model.PersonBreeder.Lastname
+                                                @Model.PersonBreeder.Middlename
+                                            </span>
+                                            </a>
+                                            }
+                                    </td>
                                 <td valign="top">
                                     @Model.ClubRegisterNumbers.Select(x => x.ClubNumber).FirstOrDefault()
                                 </td>

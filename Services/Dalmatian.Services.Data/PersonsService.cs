@@ -1,9 +1,7 @@
-﻿using System.Collections.Immutable;
-using Microsoft.EntityFrameworkCore;
-
-namespace Dalmatian.Services.Data
+﻿namespace Dalmatian.Services.Data
 {
     using System.Collections.Generic;
+    using System.Collections.Immutable;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -12,6 +10,7 @@ namespace Dalmatian.Services.Data
     using Dalmatian.Services.Mapping;
     using Dalmatian.Web.ViewModels.Persons;
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
 
     public class PersonsService : IPersonsService
     {
@@ -59,7 +58,7 @@ namespace Dalmatian.Services.Data
         {
             var personSearch = this.personRepository.All().Where(x => x.Firstname.Contains(search) || x.Middlename.Contains(search) || x.Lastname.Contains(search) || x.City.Contains(search) || x.Email.Contains(search) || x.Phone.Contains(search));
 
-                return personSearch.To<T>().ToImmutableList();
+            return personSearch.To<T>().ToImmutableList();
         }
 
         public PersonEditModel GetByPersonId(int id)
@@ -67,6 +66,20 @@ namespace Dalmatian.Services.Data
             var personId = this.personRepository.All().Where(x => x.Id == id).To<PersonEditModel>().FirstOrDefault();
 
             return personId;
+        }
+
+        public PersonToDogs GetByPersonToDogId(int id)
+        {
+            var person = this.personRepository.All().To<PersonToDogs>(id).Where(x=>x.Id == id).FirstOrDefault();
+
+            return person;
+        }
+
+        public BreederToDogViewModel GetByBreederToDogId(int id)
+        {
+            var breeder = this.personRepository.All().To<BreederToDogViewModel>(id).Where(x => x.Id == id).FirstOrDefault();
+
+            return breeder;
         }
 
         public async Task UpdatePerson(PersonEditModel input)
@@ -82,7 +95,7 @@ namespace Dalmatian.Services.Data
                 person.City = input.City;
                 person.Country = input.Country;
                 person.Address = input.Address;
-                person.Facebook= input.Facebook;
+                person.Facebook = input.Facebook;
                 person.Twitter = input.Twitter;
                 person.Instagram = input.Instagram;
             }
@@ -128,5 +141,5 @@ namespace Dalmatian.Services.Data
 
             return person;
         }
-}
+    }
 }

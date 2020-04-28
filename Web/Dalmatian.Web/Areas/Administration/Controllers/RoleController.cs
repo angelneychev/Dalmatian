@@ -20,32 +20,32 @@
         [HttpGet]
         public IActionResult CreateRole()
         {
-            return View();
+            return this.View();
         }
 
         public async Task<IActionResult> CreateRole(CreateRoleViewModel model)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 var applicationRole = new ApplicationRole
                 {
-                    Name = model.RoleName
+                    Name = model.RoleName,
                 };
 
-                var result = await roleManager.CreateAsync(applicationRole);
+                var result = await this.roleManager.CreateAsync(applicationRole);
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("index", "Dashboard");
+                    return this.RedirectToAction("index", "Dashboard");
                 }
 
                 foreach (IdentityError error in result.Errors)
                 {
-                    ModelState.AddModelError("", error.Description);
+                    this.ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
 
-            return View(model);
+            return this.View(model);
         }
     }
 }

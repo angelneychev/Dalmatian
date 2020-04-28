@@ -25,35 +25,34 @@
         public IActionResult ListAllUsers()
         {
             var users = this.userManager.Users;
-            return View(users);
-
+            return this.View(users);
         }
 
         [HttpGet]
         public async Task<IActionResult> ManageUserRoles(string userId)
         {
-            ViewBag.userId = userId;
+            this.ViewBag.userId = userId;
 
-            var user = await userManager.FindByIdAsync(userId);
+            var user = await this.userManager.FindByIdAsync(userId);
 
             if (user == null)
             {
-                ViewData["Errorname"] = $"User with Id = {userId} cannot be found";
+                this.ViewData["Errorname"] = $"User with Id = {userId} cannot be found";
 
-                return NotFound();
+                return this.NotFound();
             }
 
             var model = new List<UserRolesViewModel>();
 
-            foreach (var role in roleManager.Roles)
+            foreach (var role in this.roleManager.Roles)
             {
                 var userRolesViewModel = new UserRolesViewModel
                 {
                     RoleId = role.Id,
-                    RoleName = role.Name
+                    RoleName = role.Name,
                 };
 
-                if (await userManager.IsInRoleAsync(user, role.Name))
+                if (await this.userManager.IsInRoleAsync(user, role.Name))
                 {
                     userRolesViewModel.IsSelected = true;
                 }
@@ -65,36 +64,37 @@
                 model.Add(userRolesViewModel);
             }
 
-            return View(model);
+            return this.View(model);
         }
 
         [HttpPost]
         public async Task<IActionResult> ManageUserRoles(List<UserRolesViewModel> model, string userId)
         {
-            var user = await userManager.FindByIdAsync(userId);
+            var user = await this.userManager.FindByIdAsync(userId);
 
             if (user == null)
             {
-                ViewBag.ErrorMessage = $"User with Id = {userId} cannot be found";
-                return NotFound();
+                this.ViewBag.ErrorMessage = $"User with Id = {userId} cannot be found";
+                return this.NotFound();
             }
 
-            var roles = await userManager.GetRolesAsync(user);
-            var result = await userManager.RemoveFromRolesAsync(user, roles);
+            var roles = await this.userManager.GetRolesAsync(user);
+            var result = await this.userManager.RemoveFromRolesAsync(user, roles);
 
             if (!result.Succeeded)
             {
-                ModelState.AddModelError("", "Cannot remove user existing roles");
-                return View(model);
+                this.ModelState.AddModelError(string.Empty, "Cannot remove user existing roles");
+                return this.View(model);
             }
 
-            result = await userManager.AddToRolesAsync(user,
+            result = await this.userManager.AddToRolesAsync(
+                user,
                 model.Where(x => x.IsSelected).Select(y => y.RoleName));
 
             if (!result.Succeeded)
             {
-                ModelState.AddModelError("", "Cannot add selected roles to user");
-                return View(model);
+                this.ModelState.AddModelError(string.Empty, "Cannot add selected roles to user");
+                return this.View(model);
             }
 
             return this.RedirectToAction(nameof(this.ListAllUsers)); //new { id = personId });

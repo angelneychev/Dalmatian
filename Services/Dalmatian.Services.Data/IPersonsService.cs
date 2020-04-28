@@ -24,5 +24,9 @@
         int Total();
 
         IEnumerable<PersonViewModel> AllPersons(int page = 1);
+
+        public PersonToDogs GetByPersonToDogId(int id);
+
+        public BreederToDogViewModel GetByBreederToDogId(int id);
     }
 }

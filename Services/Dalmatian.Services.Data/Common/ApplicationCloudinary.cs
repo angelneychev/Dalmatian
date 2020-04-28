@@ -14,13 +14,13 @@
         {
             byte[] destinationImage;
 
-            using  (var memoryStream = new MemoryStream())
+            await using (var memoryStream = new MemoryStream())
             {
                 await imagesUrl.CopyToAsync(memoryStream);
                 destinationImage = memoryStream.ToArray();
             }
 
-            using (var ms = new MemoryStream(destinationImage))
+            await using (var ms = new MemoryStream(destinationImage))
             {
                 pedigreeName = pedigreeName.Replace("&", "And").Replace(" ", "-").Replace("'s", "-s");
 

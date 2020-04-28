@@ -1,4 +1,9 @@
-﻿namespace Dalmatian.Web.Controllers
+﻿using System.Collections.Generic;
+using System.Linq;
+using Dalmatian.Web.ViewModels.Kennels;
+using Microsoft.EntityFrameworkCore.Internal;
+
+namespace Dalmatian.Web.Controllers
 {
 
     using System.Threading.Tasks;
