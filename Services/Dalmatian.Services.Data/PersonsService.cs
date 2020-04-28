@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Collections.Immutable;
+using Microsoft.EntityFrameworkCore;
 
 namespace Dalmatian.Services.Data
 {
@@ -14,6 +15,8 @@ namespace Dalmatian.Services.Data
 
     public class PersonsService : IPersonsService
     {
+        private const int PersonPageSize = 10;
+
         private readonly IDeletableEntityRepository<Person> personRepository;
 
         public PersonsService(IDeletableEntityRepository<Person> personRepository)
@@ -54,9 +57,9 @@ namespace Dalmatian.Services.Data
 
         public IEnumerable<T> SearchPersons<T>(string search)
         {
-                var personSearch = this.personRepository.All().Where(x => x.Firstname.Contains(search) || x.Middlename.Contains(search) || x.Lastname.Contains(search) || x.City.Contains(search) || x.Email.Contains(search) || x.Phone.Contains(search));
+            var personSearch = this.personRepository.All().Where(x => x.Firstname.Contains(search) || x.Middlename.Contains(search) || x.Lastname.Contains(search) || x.City.Contains(search) || x.Email.Contains(search) || x.Phone.Contains(search));
 
-                return personSearch.To<T>().ToList();
+                return personSearch.To<T>().ToImmutableList();
         }
 
         public PersonEditModel GetByPersonId(int id)
@@ -107,5 +110,23 @@ namespace Dalmatian.Services.Data
 
             return query.To<T>().ToList();
         }
-    }
+
+        public int Total() => this.personRepository.All().Count();
+
+        public IEnumerable<PersonViewModel> AllPersons(int page = 1)
+        {
+            if (page <= 0)
+            {
+                page = 1;
+            }
+
+            var person = this.personRepository.All()
+                .Skip((page - 1) * PersonPageSize)
+                .Take(PersonPageSize)
+                .To<PersonViewModel>()
+                .ToList();
+
+            return person;
+        }
+}
 }

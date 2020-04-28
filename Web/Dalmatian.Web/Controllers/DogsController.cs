@@ -1,7 +1,6 @@
 ﻿namespace Dalmatian.Web.Controllers
 {
-    using System;
-    using System.Linq;
+
     using System.Threading.Tasks;
 
     using Dalmatian.Data.Common.Repositories;
@@ -76,7 +75,7 @@
         }
 
         [HttpGet]
-        [Authorize(Roles = "Administrator, ClubMember")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int id)
         {
             if (!await this.dogsService.DoesIdExits(id))
@@ -97,7 +96,7 @@
         }
 
         [HttpPost]
-        [Authorize(Roles = "Administrator, ClubMember")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(DogEditViewModel input)
         {
             if (!await this.dogsService.DoesIdExits(input.Id))
@@ -106,8 +105,6 @@
             }
 
             await this.dogsService.UpdateDog(input);
-
-            //var pedigreeName = this.dogsService.GetAll<Dog>().Where(x => x.Id == input.Id).Select(x => x.PedigreeName).FirstOrDefault();
 
             return this.Redirect($"/club-dogs/{input.PedigreeName.Replace(' ', '-') + "-" + input.Id}");
         }

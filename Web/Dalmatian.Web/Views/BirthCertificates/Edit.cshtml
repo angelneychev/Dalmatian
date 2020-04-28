@@ -9,10 +9,8 @@
     var confirmationOfMatings = Model.ConfirmationOfMatings.Select(x => new SelectListItem(x.RegistrationNumber, x.Id.ToString()));
 }
 
-<h1>Edit</h1>
-
-<h4>BirthCertificateEditModel</h4>
 <div class="container">
+    <h1>Edit Birth Certificate</h1>
     <form asp-action="Edit" class="alert alert-primary">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-row">

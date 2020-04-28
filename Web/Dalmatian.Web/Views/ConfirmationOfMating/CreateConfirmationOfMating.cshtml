@@ -8,11 +8,8 @@
     var dame = Model.Parents.Where(x => x.SexDog == SexDog.Female).Select(x => new SelectListItem(x.PedigreeName, x.Id.ToString()));
 }
 
-<h1>CreateConfirmationOfMating</h1>
-
-<h4>ConfirmationOfMatingInputModel</h4>
-<hr />
 <div class="container">
+    <h1>Create Confirmation Of Mating</h1>
     <form method="post" asp-action="CreateConfirmationOfMating" class="alert alert-primary">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-row">
@@ -67,10 +64,10 @@
                 <span asp-validation-for="OwnerFemaleDog" class="text-danger"></span>
             </div>
         </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+
     </form>
 </div>
 

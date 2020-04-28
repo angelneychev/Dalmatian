@@ -22,6 +22,7 @@
             this.confirmationOfMatingService = confirmationOfMatingService;
         }
 
+        [Authorize(Roles = "Administrator, ClubMember")]
         public IActionResult Index()
         {
             var dogFather = this.dogsService.GetAll<DogsViewModel>().ToList();
@@ -37,6 +38,7 @@
             return this.View(viewModel);
         }
 
+        [Authorize(Roles = "Administrator, ClubMember")]
         public IActionResult Details(int id)
         {
             var confirmationOfMatingViewModel = this.confirmationOfMatingService.Details(id);
@@ -49,7 +51,7 @@
             return this.View(confirmationOfMatingViewModel);
         }
 
-        [Authorize(Roles = "Administrator, ClubMember")]
+        [Authorize(Roles = "Administrator")]
         public IActionResult CreateConfirmationOfMating()
         {
             var parents = this.dogsService.GetAll<DogDropDownViewModel>();
@@ -62,7 +64,7 @@
         }
 
         [HttpPost]
-        [Authorize(Roles = "Administrator, ClubMember")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> CreateConfirmationOfMating(ConfirmationOfMatingInputModel input)
         {
             if (!this.ModelState.IsValid)
@@ -75,7 +77,7 @@
             return this.RedirectToAction(nameof(this.Details), new { id = confirmationOfMatingId });
         }
 
-        [Authorize(Roles = "Administrator, ClubMember")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int id)
         {
             var parents = this.dogsService.GetAll<DogDropDownViewModel>();
@@ -93,7 +95,7 @@
         }
 
         [HttpPost]
-        [Authorize(Roles = "Administrator, ClubMember")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(ConfirmationOfMatingEditModel input)
         {
             var parents = this.dogsService.GetAll<DogDropDownViewModel>();

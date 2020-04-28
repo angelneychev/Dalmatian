@@ -1,7 +1,5 @@
 ﻿namespace Dalmatian.Web.Controllers
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -64,6 +62,7 @@
         }
 
         [Authorize]
+        [Authorize(Roles = "Administrator, ClubMember")]
         public IActionResult Details(int id)
         {
             var kennelViewModel = this.kennelService.Details(id);
@@ -76,7 +75,7 @@
         }
 
         [HttpGet]
-        [Authorize(Roles = "Administrator, ClubMember")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int id)
         {
             var person = this.personsService.GetAll<PersonDropDownViewModel>();
@@ -94,7 +93,7 @@
         }
 
         [HttpPost]
-        [Authorize(Roles = "Administrator, ClubMember")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(KennelEditModel input)
         {
             if (!await this.kennelService.DoesIdExits(input.Id))

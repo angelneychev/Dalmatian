@@ -1,8 +1,6 @@
-﻿using System.Linq;
-
-namespace Dalmatian.Web.Controllers
+﻿namespace Dalmatian.Web.Controllers
 {
-    using System;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Dalmatian.Data.Models;
@@ -23,24 +21,34 @@ namespace Dalmatian.Web.Controllers
             this.userManager = userManager;
         }
 
-        [Authorize]
-        public IActionResult Index(string search = null)
+        [Authorize(Roles = "Administrator, ClubMember")]
+        public IActionResult Index(string search = null, int page = 1)
         {
+
+            var allPersons = this.personService.AllPersons(page);
+
+            var totalPage = this.personService.Total();
+
             if (!string.IsNullOrEmpty(search))
             {
+
+                var persons = this.personService.SearchPersons<PersonViewModel>(search);
+
                 var searchPersons = new PersonsAllViewModel()
                 {
-                    Persons = this.personService.SearchPersons<PersonViewModel>(search),
+                    Persons = persons,
+                    Total = totalPage,
+                    CurrentPage = page,
                 };
 
                 return this.View(searchPersons);
             }
 
-            var persons = this.personService.GetAll<PersonViewModel>().ToList();
-
             var viewModel = new PersonsAllViewModel()
             {
-                Persons = persons,
+                Persons = allPersons,
+                Total = totalPage,
+                CurrentPage = page,
             };
 
             return this.View(viewModel);
@@ -69,12 +77,10 @@ namespace Dalmatian.Web.Controllers
 
             var personId = await this.personService.CreateAsync(input);
 
-           // this.TempData["InfoMessage"] = "Confirmation of People created!";
-
-            return this.RedirectToAction(nameof(this.Details), new { id = personId });
+           return this.RedirectToAction(nameof(this.Details), new { id = personId });
         }
 
-        [Authorize]
+        [Authorize(Roles = "Administrator, ClubMember")]
         public IActionResult Details(int id)
         {
             var personViewModel = this.personService.Details(id);
@@ -87,7 +93,7 @@ namespace Dalmatian.Web.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Administrator, ClubMember")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int id)
         {
 
@@ -102,7 +108,7 @@ namespace Dalmatian.Web.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Administrator, ClubMember")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(PersonEditModel input)
         {
             if (!await this.personService.DoesIdExits(input.Id))

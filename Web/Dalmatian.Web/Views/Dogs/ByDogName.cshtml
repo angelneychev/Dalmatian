@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-12 alert alert-primary active">
                 <h2>@Model.PedigreeName</h2>
-                @if ((this.User.Identity.Name != null && Model.PersonOwner.Email !=null) && this.User.Identity.Name == Model.PersonOwner.Email || this.User.IsInRole("Administrator"))
+                @if (this.User.IsInRole("Administrator"))
                 {
                     <a class="btn btn-sm btn-primary " asp-action="Edit" asp-controller="Dogs" asp-route-id="@Model.Id">Edit</a>
                 }

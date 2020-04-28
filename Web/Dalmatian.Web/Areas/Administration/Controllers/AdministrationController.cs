@@ -2,8 +2,8 @@
 {
     using Dalmatian.Common;
     using Dalmatian.Web.Controllers;
-
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]

@@ -60,7 +60,7 @@
                             <td valig="top">@kennel.PersonOwner.Phone</td>
                             <td valig="top">@kennel.PersonOwner.Email</td>
                             <td valig="top">
-                            @if (this.User.Identity.Name == kennel.PersonOwner.Email || this.User.IsInRole("Administrator"))
+                            @if (this.User.IsInRole("Administrator"))
                             {
                                 <a class="btn btn-sm btn-primary " asp-action="Edit" asp-controller="Kennels" asp-route-id="@kennel.Id">Edit</a>
                             }

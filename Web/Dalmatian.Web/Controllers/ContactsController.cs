@@ -16,7 +16,6 @@
         private readonly IRepository<ContactFormEntry> contactsRepository;
         private readonly IEmailSender emailSender;
 
-
         public ContactsController(IRepository<ContactFormEntry> contactsRepository, IEmailSender emailSender)
         {
             this.contactsRepository = contactsRepository;
@@ -36,8 +35,7 @@
                 return this.View(model);
             }
 
-            // TODO: Extract to IP provider (service)
-            var ip = this.HttpContext.Connection.RemoteIpAddress.ToString();
+           var ip = this.HttpContext.Connection.RemoteIpAddress.ToString();
             var contactFormEntry = new ContactFormEntry
             {
                 Name = model.Name,

@@ -7,236 +7,245 @@
     var mother = Model.Parents.Where(x => x.SexDog == SexDog.Female).Select(x => new SelectListItem(x.PedigreeName, x.Id.ToString()));
     var person = Model.Persons.Select(x => new SelectListItem(x.FullName, x.Id.ToString())).ToList();
 }
-
-<h1>@ViewData["Title"]</h1>
 <div class="container">
-<form method="post" asp-action="CreateDog" class="alert alert-primary" enctype="multipart/form-data">
-@*<div class="alert alert-primary">*@
-<strong><h3>Basic dog information</h3></strong>
-<hr />
-<div class="form-row">
-    <div class="col-md-5">
-        <label asp-for="PedigreeName" class="control-label"></label>
-        <input asp-for="PedigreeName" class="form-control" />
-        <span asp-validation-for="PedigreeName" class="text-danger"></span>
-    </div>
-    <div class="col-md-2">
-        <label asp-for="Breed" class="control-label"></label>
+    <h3>Create Dog</h3>
+    <form method="post" asp-action="CreateDog" class="alert alert-primary" enctype="multipart/form-data">
+        @*<div class="alert alert-primary">*@
+        <strong>
+            <h3>Basic dog information</h3>
+        </strong>
+        <hr />
+        <div class="form-row">
+            <div class="col-md-5">
+                <label asp-for="PedigreeName" class="control-label"></label>
+                <input asp-for="PedigreeName" class="form-control" />
+                <span asp-validation-for="PedigreeName" class="text-danger"></span>
+            </div>
+            <div class="col-md-2">
+                <label asp-for="Breed" class="control-label"></label>
 
-        <select asp-for="Breed" asp-items="@Html.GetEnumSelectList<Breed>()" class="form-control"></select>
-        <span asp-validation-for="Breed" class="text-danger"></span>
-    </div>
-    <div class="col-md-2">
-        <label asp-for="SexDog" class="control-label"></label>
-        <select asp-for="SexDog" asp-items="@Html.GetEnumSelectList<SexDog>()" class="form-control"></select>
-        <span asp-validation-for="SexDog" class="text-danger"></span>
-    </div>
+                <select asp-for="Breed" asp-items="@Html.GetEnumSelectList<Breed>()" class="form-control"></select>
+                <span asp-validation-for="Breed" class="text-danger"></span>
+            </div>
+            <div class="col-md-2">
+                <label asp-for="SexDog" class="control-label"></label>
+                <select asp-for="SexDog" asp-items="@Html.GetEnumSelectList<SexDog>()" class="form-control"></select>
+                <span asp-validation-for="SexDog" class="text-danger"></span>
+            </div>
 
-    <div class="col-md-3">
-        <label asp-for="Color" class="control-label"></label>
-        <select asp-for="Color" asp-items="@Html.GetEnumSelectList<Color>()" class="form-control">
-        </select>
-        <span asp-validation-for="Color" class="text-danger"></span>
-    </div>
-</div>
-<div class="form-row">
-    <div class="col-md-4">
-        <label asp-for="ImagesUrl" class="control-label"></label>
-        <input type="file" asp-for="ImagesUrl" name="ImagesUrl" class="custom-file-input" />
-        <span asp-validation-for="ImagesUrl" class="text-danger"></span>
-                    
-    </div>
-    <div class="col-md-4">
-        <label asp-for="FatherDogId" class="control-label"></label>
-        <select asp-for="FatherDogId" asp-items="father" class="form-control">
-            <option value="">--Select--</option>
-        </select>
-        <span asp-validation-for="FatherDogId"></span>
-    </div>
+            <div class="col-md-3">
+                <label asp-for="Color" class="control-label"></label>
+                <select asp-for="Color" asp-items="@Html.GetEnumSelectList<Color>()" class="form-control">
+                </select>
+                <span asp-validation-for="Color" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4">
+                <label asp-for="ImagesUrl" class="control-label"></label>
+                <input type="file" asp-for="ImagesUrl" name="ImagesUrl" class="custom-file-input" />
+                <span asp-validation-for="ImagesUrl" class="text-danger"></span>
 
-    <div class="col-md-4">
-        <label asp-for="MotherDogId" class="control-label"></label>
-        <select asp-for="MotherDogId" asp-items="mother" class="form-control">
-            <option value="">--Select--</option>
-        </select>
-        <span asp-validation-for="MotherDogId"></span>
-    </div>
-</div>
-<div class="form-row">
-    <div class="form-group col-md-3">
-        <label asp-for="DateOfBirth" class="control-label"></label>
-        <input asp-for="DateOfBirth" class="form-control" />
-        <span asp-validation-for="DateOfBirth"></span>
-    </div>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="FatherDogId" class="control-label"></label>
+                <select asp-for="FatherDogId" asp-items="father" class="form-control">
+                    <option value="">--Select--</option>
+                </select>
+                <span asp-validation-for="FatherDogId"></span>
+            </div>
 
-    <div class="col-md-3">
-        <label asp-for="DateOfDeath" class="control-label"></label>
-        <input asp-for="DateOfDeath" class="form-control" />
-        <span asp-validation-for="DateOfDeath"></span>
-    </div>
+            <div class="col-md-4">
+                <label asp-for="MotherDogId" class="control-label"></label>
+                <select asp-for="MotherDogId" asp-items="mother" class="form-control">
+                    <option value="">--Select--</option>
+                </select>
+                <span asp-validation-for="MotherDogId"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label asp-for="DateOfBirth" class="control-label"></label>
+                <input asp-for="DateOfBirth" class="form-control" />
+                <span asp-validation-for="DateOfBirth"></span>
+            </div>
 
-    <div class="col-md-3">
-        <label asp-for="PersonOwnerId" class="control-label"></label>
-        <select asp-for="PersonOwnerId" asp-items="person" class="form-control">
-            <option value="">--Select--</option>
-        </select>
-        <span asp-validation-for="PersonOwnerId"></span>
-    </div>
-    <div class="col-md-3">
-        <label asp-for="PersonBreederId" class="control-label"></label>
-        <select asp-for="PersonBreederId" asp-items="person" class="form-control">
-            <option value="">--Select--</option>
-        </select>
-        <span asp-validation-for="PersonBreederId"></span>
-    </div>
-</div>
-<hr />
-<div class="form-row">
-    <div class="form-group col-md-6">
-        <strong><h3>Breed kennel club register number</h3></strong>
-    </div>
-    <div class="form-group col-md-6">
-        <strong><h3>Kennel club register number</h3></strong>
-    </div>
-</div>
-<hr />
-<div class="form-row">
-    <div class="form-group col-md-3">
-        <label asp-for="ClubNumber" class="control-label"></label>
-        <input asp-for="ClubNumber" class="form-control" />
-        <span asp-validation-for="ClubNumber"></span>
-    </div>
+            <div class="col-md-3">
+                <label asp-for="DateOfDeath" class="control-label"></label>
+                <input asp-for="DateOfDeath" class="form-control" />
+                <span asp-validation-for="DateOfDeath"></span>
+            </div>
 
-    <div class="col-md-3">
-        <label asp-for="DateOfClubRegister" class="control-label"></label>
-        <input asp-for="DateOfClubRegister" class="form-control" />
-        <span asp-validation-for="DateOfClubRegister"></span>
-    </div>
+            <div class="col-md-3">
+                <label asp-for="PersonOwnerId" class="control-label"></label>
+                <select asp-for="PersonOwnerId" asp-items="person" class="form-control">
+                    <option value="">--Select--</option>
+                </select>
+                <span asp-validation-for="PersonOwnerId"></span>
+            </div>
+            <div class="col-md-3">
+                <label asp-for="PersonBreederId" class="control-label"></label>
+                <select asp-for="PersonBreederId" asp-items="person" class="form-control">
+                    <option value="">--Select--</option>
+                </select>
+                <span asp-validation-for="PersonBreederId"></span>
+            </div>
+        </div>
+        <hr />
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <strong>
+                    <h3>Breed kennel club register number</h3>
+                </strong>
+            </div>
+            <div class="form-group col-md-6">
+                <strong>
+                    <h3>Kennel club register number</h3>
+                </strong>
+            </div>
+        </div>
+        <hr />
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label asp-for="ClubNumber" class="control-label"></label>
+                <input asp-for="ClubNumber" class="form-control" />
+                <span asp-validation-for="ClubNumber"></span>
+            </div>
 
-    <div class="col-md-3">
-        <label asp-for="RegistrationNumber" class="control-label"></label>
-        <input asp-for="RegistrationNumber" class="form-control" />
-        <span asp-validation-for="RegistrationNumber"></span>
-    </div>
+            <div class="col-md-3">
+                <label asp-for="DateOfClubRegister" class="control-label"></label>
+                <input asp-for="DateOfClubRegister" class="form-control" />
+                <span asp-validation-for="DateOfClubRegister"></span>
+            </div>
 
-    <div class="col-md-3">
-        <label asp-for="DateOfRegistrationNumber" class="control-label"></label>
-        <input asp-for="DateOfRegistrationNumber" class="form-control" />
-        <span asp-validation-for="DateOfRegistrationNumber"></span>
-    </div>
-</div>
-<hr />
-<strong><h3>Health information</h3></strong>
-<hr />
-<div class="form-row">
-    <div class="col-md-2">
-        <label asp-for="Baer" class="control-label"></label>
-        <select asp-for="Baer" asp-items="@Html.GetEnumSelectList<Baer>()" class="form-control">
-        </select>
-        <span asp-validation-for="Baer" class="text-danger"></span>
-    </div>
-    <div class="col-md-2">
-        <label asp-for="DateOfBaer" class="control-label"></label>
-        <input asp-for="DateOfBaer" class="form-control" />
-        <span asp-validation-for="DateOfBaer" class="text-danger"></span>
-    </div>
-    <div class="col-md-2">
-        <label asp-for="HipRating" class="control-label"></label>
-        <select asp-for="HipRating" asp-items="@Html.GetEnumSelectList<HipRating>()" class="form-control">
-        </select>
-        <span asp-validation-for="HipRating" class="text-danger"></span>
-    </div>
-    <div class="col-md-2">
-        <label asp-for="DateOfHipRating" class="control-label"></label>
-        <input asp-for="DateOfHipRating" class="form-control" />
-        <span asp-validation-for="DateOfHipRating" class="text-danger"></span>
-    </div>
-    <div class="col-md-2">
-        <label asp-for="HipRating" class="control-label"></label>
-        <select asp-for="HipRating" asp-items="@Html.GetEnumSelectList<ElbowRating>()" class="form-control">
-        </select>
-        <span asp-validation-for="ElbowRating" class="text-danger"></span>
-    </div>
-    <div class="col-md-2">
-        <label asp-for="DateOfElbowRating" class="control-label"></label>
-        <input asp-for="DateOfElbowRating" class="form-control" />
-        <span asp-validation-for="DateOfElbowRating" class="text-danger"></span>
-    </div>
-</div>
-<div class="form-row">
-    <div class="col-md-12">
-        <label asp-for="OtherHealthTest" class="control-label"></label>
-        <textarea asp-for="OtherHealthTest" class="form-control"></textarea>
-        <span asp-validation-for="OtherHealthTest" class="text-danger"></span>
-    </div>
-</div>
-<hr />
-<strong><h3>Breeding information</h3></strong>
-<hr />
-<div class="form-row">
-    <div class="col-md-3">
-        <label asp-for="HeightUnits" class="control-label"></label>
-        <select asp-for="HeightUnits" asp-items="@Html.GetEnumSelectList<HeightUnits>()" class="form-control">
-        </select>
-        <span asp-validation-for="HeightUnits" class="text-danger"></span>
-    </div>
-    <div class="col-md-3">
-        <label asp-for="Height" class="control-label"></label>
-        <input asp-for="Height" class="form-control" />
-        <span asp-validation-for="Height" class="text-danger"></span>
-    </div>
-    <div class="col-md-3">
-        <label asp-for="WeightUnits" class="control-label"></label>
-        <select asp-for="WeightUnits" asp-items="@Html.GetEnumSelectList<WeightUnits>()" class="form-control">
-        </select>
-        <span asp-validation-for="WeightUnits" class="text-danger"></span>
-    </div>
-    <div class="col-md-3">
-        <label asp-for="Weight" class="control-label"></label>
-        <input asp-for="Weight" class="form-control" />
-        <span asp-validation-for="Weight" class="text-danger"></span>
-    </div>
-</div>
-<div class="form-row">
-    <div class="col-md-4">
-        <label asp-for="BreedingStatus" class="control-label"></label>
-        <select asp-for="BreedingStatus" asp-items="@Html.GetEnumSelectList<BreedingStatus>()" class="form-control">
-        </select>
-        <span asp-validation-for="BreedingStatus" class="text-danger"></span>
-    </div>
-    <div class="col-md-4">
-        <label asp-for="BreedingStatus" class="control-label"></label>
-        <select asp-for="CountryOfOrigin" asp-items="@Html.GetEnumSelectList<Country>()" class="form-control"></select>
-        <span asp-validation-for="CountryOfOrigin" class="text-danger"></span>
-    </div>
-    <div class="col-md-4">
-        <label asp-for="CountryOfResidence" class="control-label"></label>
-        <select asp-for="CountryOfResidence" asp-items="@Html.GetEnumSelectList<Country>()" class="form-control">
-        </select>
-        <span asp-validation-for="CountryOfResidence" class="text-danger"></span>
-    </div>
-</div>
-@*</div>*@
-<hr />
-<input type="submit" class="btn btn-primary" />
-</form>
+            <div class="col-md-3">
+                <label asp-for="RegistrationNumber" class="control-label"></label>
+                <input asp-for="RegistrationNumber" class="form-control" />
+                <span asp-validation-for="RegistrationNumber"></span>
+            </div>
+
+            <div class="col-md-3">
+                <label asp-for="DateOfRegistrationNumber" class="control-label"></label>
+                <input asp-for="DateOfRegistrationNumber" class="form-control" />
+                <span asp-validation-for="DateOfRegistrationNumber"></span>
+            </div>
+        </div>
+        <hr />
+        <strong>
+            <h3>Health information</h3>
+        </strong>
+        <hr />
+        <div class="form-row">
+            <div class="col-md-2">
+                <label asp-for="Baer" class="control-label"></label>
+                <select asp-for="Baer" asp-items="@Html.GetEnumSelectList<Baer>()" class="form-control">
+                </select>
+                <span asp-validation-for="Baer" class="text-danger"></span>
+            </div>
+            <div class="col-md-2">
+                <label asp-for="DateOfBaer" class="control-label"></label>
+                <input asp-for="DateOfBaer" class="form-control" />
+                <span asp-validation-for="DateOfBaer" class="text-danger"></span>
+            </div>
+            <div class="col-md-2">
+                <label asp-for="HipRating" class="control-label"></label>
+                <select asp-for="HipRating" asp-items="@Html.GetEnumSelectList<HipRating>()" class="form-control">
+                </select>
+                <span asp-validation-for="HipRating" class="text-danger"></span>
+            </div>
+            <div class="col-md-2">
+                <label asp-for="DateOfHipRating" class="control-label"></label>
+                <input asp-for="DateOfHipRating" class="form-control" />
+                <span asp-validation-for="DateOfHipRating" class="text-danger"></span>
+            </div>
+            <div class="col-md-2">
+                <label asp-for="HipRating" class="control-label"></label>
+                <select asp-for="HipRating" asp-items="@Html.GetEnumSelectList<ElbowRating>()" class="form-control">
+                </select>
+                <span asp-validation-for="ElbowRating" class="text-danger"></span>
+            </div>
+            <div class="col-md-2">
+                <label asp-for="DateOfElbowRating" class="control-label"></label>
+                <input asp-for="DateOfElbowRating" class="form-control" />
+                <span asp-validation-for="DateOfElbowRating" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-12">
+                <label asp-for="OtherHealthTest" class="control-label"></label>
+                <textarea asp-for="OtherHealthTest" class="form-control"></textarea>
+                <span asp-validation-for="OtherHealthTest" class="text-danger"></span>
+            </div>
+        </div>
+        <hr />
+        <strong>
+            <h3>Breeding information</h3>
+        </strong>
+        <hr />
+        <div class="form-row">
+            <div class="col-md-3">
+                <label asp-for="HeightUnits" class="control-label"></label>
+                <select asp-for="HeightUnits" asp-items="@Html.GetEnumSelectList<HeightUnits>()" class="form-control">
+                </select>
+                <span asp-validation-for="HeightUnits" class="text-danger"></span>
+            </div>
+            <div class="col-md-3">
+                <label asp-for="Height" class="control-label"></label>
+                <input asp-for="Height" class="form-control" />
+                <span asp-validation-for="Height" class="text-danger"></span>
+            </div>
+            <div class="col-md-3">
+                <label asp-for="WeightUnits" class="control-label"></label>
+                <select asp-for="WeightUnits" asp-items="@Html.GetEnumSelectList<WeightUnits>()" class="form-control">
+                </select>
+                <span asp-validation-for="WeightUnits" class="text-danger"></span>
+            </div>
+            <div class="col-md-3">
+                <label asp-for="Weight" class="control-label"></label>
+                <input asp-for="Weight" class="form-control" />
+                <span asp-validation-for="Weight" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4">
+                <label asp-for="BreedingStatus" class="control-label"></label>
+                <select asp-for="BreedingStatus" asp-items="@Html.GetEnumSelectList<BreedingStatus>()" class="form-control">
+                </select>
+                <span asp-validation-for="BreedingStatus" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="BreedingStatus" class="control-label"></label>
+                <select asp-for="CountryOfOrigin" asp-items="@Html.GetEnumSelectList<Country>()" class="form-control"></select>
+                <span asp-validation-for="CountryOfOrigin" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="CountryOfResidence" class="control-label"></label>
+                <select asp-for="CountryOfResidence" asp-items="@Html.GetEnumSelectList<Country>()" class="form-control">
+                </select>
+                <span asp-validation-for="CountryOfResidence" class="text-danger"></span>
+            </div>
+        </div>
+        @*</div>*@
+        <hr />
+        <input type="submit" class="btn btn-primary" />
+    </form>
 </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
 @*<script type="text/javascript">
-    (function () {
-        'use strict';
-        window.addEventListener('load', function () {
-            var form = document.getElementById('needs-validation');
-            form.addEventListener('submit', function (event) {
-                if (form.checkValidity() === false) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated');
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                var form = document.getElementById('needs-validation');
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
             }, false);
-        }, false);
-    })();
-</script>*@ 
+        })();
+    </script>*@ 

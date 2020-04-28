@@ -1,7 +1,7 @@
 ﻿@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 @model Dalmatian.Web.ViewModels.Contacts.ContactFormViewModel
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Send Mail";
 }
 
 
@@ -30,11 +30,11 @@
     <p>
         <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
     </p>
-    @*<input type="hidden" id="RecaptchaValue" name="RecaptchaValue" />*@
+    <input type="hidden" id="RecaptchaValue" name="RecaptchaValue" />
     <button type="submit" class="btn btn-primary">Send messages</button>
 </form>
 
-@*@section Scripts
+@section Scripts
 {
     <script src="https://www.google.com/recaptcha/api.js?render=@this.Configuration["GoogleReCaptcha:Key"]"></script>
     <script>
@@ -44,5 +44,5 @@
             });
         });
     </script>
-}*@
+}
 

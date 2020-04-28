@@ -47,6 +47,7 @@ html {
 
 body {
     /* Margin bottom by footer height */
+    margin-top: 70px;
     margin-bottom: 60px;
 }
 .footer {

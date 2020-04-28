@@ -9,24 +9,32 @@
 <div class="container-fluid">
 
     <div class="row justify-content-md-center">
-        <div class="col-auto">
+ <div class="col-auto">
             <div class="table-responsive-sm">
                 <table class="table table-bordered border-dark rounded-circle">
                     <thead class="table-primary">
                     <tr>
                         <h4>Person Details</h4>
-                        
-                            <div class="col-md-4 mb-2">
-                                <form asp-action="Index" method="POST">
-                                    <div class="row input-group">
-                                        <input type="text" name="search" id="search" class="form-control easy-autocomplete" />
-                                        <div class="input-group-btn">
-                                            <input type="submit" class="btn btn-primary" value="Search" />
-                                        </div>
-                                    </div>
-                                </form>
+
+                        <div class="row justify-content-md-center">
+                            <div class="col-xl-2">
+                                <a href="/Persons?page=@Model.PreviousPage" class="float-left btn btn-info @(Model.PreviousDisable ? "disabled" : string.Empty)">Prev</a>
                             </div>
-                        </tr>
+                        <div class="col-xl-8">
+                            <form asp-action="Index" method="POST">
+                                <div class="row input-group">
+                                    <input type="text" name="search" id="search" class="form-control easy-autocomplete"/>
+                                    <div class="input-group-btn">
+                                        <input type="submit" class="btn btn-primary" value="Search"/>
+                                    </div>
+                                </div>
+                            </form>
+                            </div>
+                        <div class="col-xl-2">
+                            <a href="/Persons?page=@Model.NextPage" class="float-right btn btn-info @(Model.NextDisable ? "disabled" : string.Empty)">Next</a>
+                            </div>
+                        </div>
+                    </tr>
                     </thead>
                     <thead class="table-primary">
                     <tr>
@@ -76,7 +84,7 @@
                             </td>
 
                             <td valig="top">
-                            @if (this.User.Identity.Name == person.Email || this.User.IsInRole("Administrator"))
+                            @if (this.User.IsInRole("Administrator"))
                             {
                                 <a class="btn btn-sm btn-primary " asp-action="Edit" asp-controller="Persons" asp-route-id="@person.Id">Edit</a>
                             }

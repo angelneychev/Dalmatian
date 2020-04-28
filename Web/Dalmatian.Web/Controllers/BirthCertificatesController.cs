@@ -1,7 +1,6 @@
-﻿using System.Linq;
-
-namespace Dalmatian.Web.Controllers
+﻿namespace Dalmatian.Web.Controllers
 {
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Dalmatian.Services.Data;
@@ -31,6 +30,7 @@ namespace Dalmatian.Web.Controllers
             this.confirmationOfMatingService = confirmationOfMatingService;
         }
 
+        [Authorize(Roles = "Administrator, ClubMember")]
         public IActionResult Index()
         {
             var birthCertificate =
@@ -44,7 +44,7 @@ namespace Dalmatian.Web.Controllers
             return this.View(viewModel);
         }
 
-        [Authorize(Roles = "Administrator, ClubMember")]
+        [Authorize(Roles = "Administrator")]
         public IActionResult CreateBirthCertificate()
         {
             var person = this.personsService.GetAll<PersonDropDownViewModel>();
@@ -63,7 +63,7 @@ namespace Dalmatian.Web.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Administrator, ClubMember")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> CreateBirthCertificate(BirthCertificateInputModel input)
         {
             if (!this.ModelState.IsValid)
@@ -76,6 +76,7 @@ namespace Dalmatian.Web.Controllers
             return this.RedirectToAction(nameof(this.Details), new { id = birthCertificateId });
         }
 
+        [Authorize(Roles = "Administrator, ClubMember")]
         public IActionResult Details(int id)
         {
             var viewModel = this.birthCertificatesService.Details(id);
@@ -88,7 +89,7 @@ namespace Dalmatian.Web.Controllers
             return this.View(viewModel);
         }
 
-        [Authorize(Roles = "Administrator, ClubMember")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int id)
         {
             var person = this.personsService.GetAll<PersonDropDownViewModel>().ToList();
@@ -96,7 +97,6 @@ namespace Dalmatian.Web.Controllers
             var kennel = this.kennelsService.GetAll<KennelsDropDownViewModel>().ToList();
 
             var confirmationOfMating = this.confirmationOfMatingService.GetAll<ConfirmationOfMatingDropDownViewModel>().ToList();
-
 
             if (!await this.birthCertificatesService.DoesIdExits(id))
             {

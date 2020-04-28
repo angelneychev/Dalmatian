@@ -8,11 +8,8 @@
     ViewData["Title"] = "CreateBirthCertificate";
 }
 
-<h1>CreateBirthCertificate</h1>
-
-<h4>BirthCertificateInputModel</h4>
-<hr />
 <div class="container">
+    <h1>Create Birth Certificate</h1>
     <form asp-action="CreateBirthCertificate" class="alert alert-primary">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-row">
@@ -38,23 +35,23 @@
             <div class="col-md-3 mb-2">
                 <label asp-for="LetterOfLitter" class="control-label"></label>
                 <select asp-for="LetterOfLitter" asp-items="@Html.GetEnumSelectList<LetterOfLitter>()" class="form-control">
-                <option value="LetterOfLitter">--Select--</option>
+                    <option value="LetterOfLitter">--Select--</option>
                 </select>
                 <span asp-validation-for="LetterOfLitter" class="text-danger"></span>
             </div>
             <div class="col-md-3 mb-2">
                 <label asp-for="NumberOfPuppies" class="control-label"></label>
-                <input asp-for="NumberOfPuppies" class="form-control"/>
+                <input asp-for="NumberOfPuppies" class="form-control" />
                 <span asp-validation-for="NumberOfPuppies" class="text-danger"></span>
             </div>
             <div class="col-md-3 mb-2">
                 <label asp-for="NumberOfMales" class="control-label"></label>
-                <input asp-for="NumberOfMales" class="form-control"/>
+                <input asp-for="NumberOfMales" class="form-control" />
                 <span asp-validation-for="NumberOfMales" class="text-danger"></span>
             </div>
             <div class="col-md-3 mb-2">
                 <label asp-for="NumberOfFemales" class="control-label"></label>
-                <input asp-for="NumberOfFemales" class="form-control"/>
+                <input asp-for="NumberOfFemales" class="form-control" />
                 <span asp-validation-for="NumberOfFemales" class="text-danger"></span>
             </div>
         </div>
@@ -74,9 +71,9 @@
                 <span asp-validation-for="KennelId" class="text-danger"></span>
             </div>
         </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
     </form>
 </div>
 

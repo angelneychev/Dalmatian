@@ -20,5 +20,9 @@
         PersonEditModel GetByPersonId(int id);
 
         Task UpdatePerson(PersonEditModel input);
+
+        int Total();
+
+        IEnumerable<PersonViewModel> AllPersons(int page = 1);
     }
 }
