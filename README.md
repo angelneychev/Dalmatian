@@ -8,7 +8,7 @@
 - Can't change and Delete information
 - Search Dogs, Kennel, Breeder, Owner, Health information, Breeding information
 - Send Error Administrator
-- Report for Dog, Kennel, Breeder, Owner, Health information, Breeding information
+- Report for Dog, Kennel, Breeder, Owner, Health information, Breeding information, Owner to Dog, Breeder to Dog
 
 
 ### Member dog club kennel
@@ -20,7 +20,7 @@
 - Search Dogs, Kennel, Breeder, Owner, Health information, Breeding information, Birth Certificate, Confirmation Of Mating
 - Send Error Administrator
 - Can't Delete information
-- Report for Dog, Kennel, Breeder, Owner, Health information, Breeding information, Birth Certificate, Confirmation Of Mating
+- Report for Dog, Kennel, Breeder, Owner, Health information, Breeding information, Birth Certificate, Confirmation Of Mating, Owner to Dog, Breeder to Dog
 
 ### Aministrator
 
@@ -32,7 +32,7 @@
 - Can change and Delete information
 - Search Dogs and Kennel, Breeder
 - Can't  Delete information
-- Report for Dog, Kennel, Breeder, Owner, Health information, Breeding information, Birth Certificate, Confirmation Of Mating
+- Report for Dog, Kennel, Breeder, Owner, Health information, Breeding information, Birth Certificate, Confirmation Of Mating, Owner to Dog, Breeder to Dog
 
 ### Used Technologies:
 - .NET Core 3.1
