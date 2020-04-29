@@ -6,7 +6,7 @@
 
 ##Member dog club kenne
 
-###Aministrator
+##Aministrator
 
 ## Build status
 
