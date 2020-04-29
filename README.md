@@ -2,9 +2,9 @@
 
 ##Functionality
 
-###Users:
+##Users:
 
-###Member dog club kenne
+##Member dog club kenne
 
 ###Aministrator
 
