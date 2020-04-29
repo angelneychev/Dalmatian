@@ -4,7 +4,7 @@
 
 ### Users
 
-- see all Dog information and Dog Kennel
+- See all Dog information and Dog Kennel
 - Can't change and Delete information
 - Search Dogs, Kennel, Breeder, Owner, Health information, Breeding information
 - Send Error Administrator
@@ -24,7 +24,7 @@
 
 ### Aministrator
 
-- Register add User, log and logout.
+- Register add User (all User), log and logout.
 - Add, Create edit Role user
 - See all full information Dog, Club number, Stud Book number, Owner, Breeder, Kennel, Litter
 - Add all full information Dog, Club number, Stud Book number, Owner, Breeder, Kennel, Litter
