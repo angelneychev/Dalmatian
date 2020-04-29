@@ -27,7 +27,7 @@
 
         public string OtherHealthTest { get; set; }
 
-        public virtual ICollection<Dog> Dogs { get; set; }
+        public ICollection<Dog> Dogs { get; set; }
 
     }
 }

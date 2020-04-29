@@ -1,4 +1,6 @@
-﻿namespace Dalmatian.Services.Data
+﻿using System.Collections;
+
+namespace Dalmatian.Services.Data
 {
     using System;
     using System.Collections.Generic;
@@ -238,6 +240,9 @@
             await this.breedingInformationRepository.SaveChangesAsync();
         }
 
+
+
+
         public async Task<int> CreateAsync(DogCreateInputModel input)
         {
             var imageUrl = await ApplicationCloudinary.UploadImage(this.cloudinary, input.ImagesUrl, input.PedigreeName);
@@ -306,6 +311,15 @@
             await this.dogsRepository.AddAsync(dog);
             await this.dogsRepository.SaveChangesAsync();
             return dog.Id;
+        }
+
+        public IEnumerable<T> GetAllBaers<T>()
+        {
+           var dogBaer = this.healthInformationRepository
+                .All()
+                .To<T>();
+
+           return dogBaer.To<T>().ToList();
         }
     }
 }

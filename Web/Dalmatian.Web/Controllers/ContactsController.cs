@@ -35,7 +35,7 @@
                 return this.View(model);
             }
 
-           var ip = this.HttpContext.Connection.RemoteIpAddress.ToString();
+            var ip = this.HttpContext.Connection.RemoteIpAddress.ToString();
             var contactFormEntry = new ContactFormEntry
             {
                 Name = model.Name,

@@ -59,6 +59,7 @@
                 Kennels = kennel,
                 ConfirmationOfMatings = confirmationOfMating,
             };
+
             return this.View(viewModel);
         }
 

@@ -26,5 +26,8 @@ namespace Dalmatian.Services.Data
         DogEditViewModel GetByDogId(int id);
 
         Task UpdateDog(DogEditViewModel input);
+
+        public IEnumerable<T> GetAllBaers<T>();
+
     }
 }

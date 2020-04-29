@@ -6,23 +6,23 @@
 
     public class ContactFormViewModel
     {
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете вашите имена")]
-        [Display(Name = "Вашите имена")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter your names ")]
+        [Display(Name = "Your names")]
         public string Name { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете вашият email адрес")]
-        [EmailAddress(ErrorMessage = "Моля въведете валиден email адрес")]
-        [Display(Name = "Вашият email адрес")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter your email address")]
+        [EmailAddress(ErrorMessage = "Please enter a valid email address")]
+        [Display(Name = "Your email address")]
         public string Email { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете заглавие на съобщението")]
-        [StringLength(100, ErrorMessage = "Заглавието трябва да е поне {2} и не повече от {1} символа.", MinimumLength = 5)]
-        [Display(Name = "Заглавие на съобщението")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter a message title")]
+        [StringLength(100, ErrorMessage = "The title must be at least 5 and not more than 100 characters long.", MinimumLength = 5)]
+        [Display(Name = "Message title")]
         public string Title { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете съдържание на съобщението")]
-        [StringLength(10000, ErrorMessage = "Съобщението трябва да е поне {2} символа.", MinimumLength = 20)]
-        [Display(Name = "Съдържание на съобщението")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter the content of the message")]
+        [StringLength(10000, ErrorMessage = "Message must be at least 20 characters", MinimumLength = 20)]
+        [Display(Name = "Content of the message")]
         public string Content { get; set; }
     }
 }
