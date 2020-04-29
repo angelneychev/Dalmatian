@@ -33,15 +33,15 @@
         </button>
 
         <button type="button" class="btn btn-info">
-            Count of dog Male <span class="badge badge-light">@this.Model.DogFemaleCount</span>
+            Count of dog Female <span class="badge badge-light">@this.Model.DogFemaleCount</span>
         </button>
 
         <button type="button" class="btn btn-info">
-            Count of dog Male <span class="badge badge-light">@this.Model.DogColorBlackCount</span>
+            Dog black spots <span class="badge badge-light">@this.Model.DogColorBlackCount</span>
         </button>
 
         <button type="button" class="btn btn-info">
-            Count of dog Male <span class="badge badge-light">@this.Model.DogColorBrownCount</span>
+            Dog brown spots <span class="badge badge-light">@this.Model.DogColorBrownCount</span>
         </button>
 
         <p class="mb-0"></p>
@@ -82,6 +82,17 @@
                                         <tr class="table-bordered bg-white">
                                             <td valign="top">
                                                 <img id="myImg" src="@dog.ImagesUrl" alt="@dog.PedigreeName" style="width: 100%; max-width: 50px" class="rounded mx-auto d-block">
+                                                <div id="myModal" class="modal">
+
+                                                    <!-- The Close Button -->
+                                                    <span class="close">&times;</span>
+
+                                                    <!-- Modal Content (The Image) -->
+                                                    <img class="modal-content" id="img01">
+
+                                                    <!-- Modal Caption (Image Text) -->
+                                                    <div id="caption"></div>
+                                                </div>
                                             </td>
                                             <td valign="top"><a class="fa-link" href="@dog.RedirectUrl">@dog.PedigreeName</a></td>
                                             <td valign="top">@dog.Breed.GetEnumDisplayName()</td>

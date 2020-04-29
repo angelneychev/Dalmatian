@@ -43,6 +43,17 @@
                                                     @if (!string.IsNullOrEmpty(dog.ImagesUrl))
                                                     {
                                                         <img id="myImg" src="@dog.ImagesUrl" alt="@dog.PedigreeName" style="width: 100%; max-width: 50px" class="rounded mx-auto d-block">
+                                                        <div id="myModal" class="modal">
+
+                                                            <!-- The Close Button -->
+                                                            <span class="close">&times;</span>
+
+                                                            <!-- Modal Content (The Image) -->
+                                                            <img class="modal-content" id="img01">
+
+                                                            <!-- Modal Caption (Image Text) -->
+                                                            <div id="caption"></div>
+                                                        </div>
                                                     }
                                                     else
                                                     {

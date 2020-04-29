@@ -35,7 +35,7 @@
             return this.View(viewModel);
         }
 
-        [HttpPost]
+        [HttpGet("search")]
         public JsonResult AutocompleteResult(string search)
         {
             return this.Json(this.dogsService.SearchDogs<IndexDogsViewModel>(search));

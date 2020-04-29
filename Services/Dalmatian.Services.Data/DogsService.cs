@@ -72,6 +72,7 @@
 
         public IEnumerable<T> SearchDogs<T>(string search)
         {
+            
             var dogSearch = this.dogsRepository.All().Where(x => x.PedigreeName.Contains(search));
 
             return dogSearch.To<T>().ToList();
