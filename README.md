@@ -1,4 +1,4 @@
-# Dalmatian Stud Book
+# Dalmatian Stud Book the Bulgarina dalmatian Club
 
 ## Functionality:
 
