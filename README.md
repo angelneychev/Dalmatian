@@ -1,5 +1,13 @@
 # Dalmatian Database
 
+##Functionality
+
+#Users:
+
+#Member dog club kenne
+
+#Aministrator
+
 ## Build status
 
 ## Video
