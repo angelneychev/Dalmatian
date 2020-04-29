@@ -13,8 +13,8 @@
 
 ### Member dog club kennel
 
-- log and logout.
-- see all full information Dog, Club number, Stud Book number, Owner, Breeder, Kennel, Litter, Health information, Breeding information, Birth Certificate, Confirmation Of Mating
+- Log and logout.
+- See all full information Dog, Club number, Stud Book number, Owner, Breeder, Kennel, Litter, Health information, Breeding information, Birth Certificate, Confirmation Of Mating
 - Add all full information Dog, Club number, Stud Book number, Owner, Breeder, Kennel, Litter, Health information, Breeding information, Birth Certificate, Confirmation Of Mating
 - Can't change information
 - Search Dogs, Kennel, Breeder, Owner, Health information, Breeding information, Birth Certificate, Confirmation Of Mating
