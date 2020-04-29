@@ -13,7 +13,8 @@
 
 ### Member dog club kennel
 
-- Log and logout.
+- Log and logout
+- My profile menu to edit/delete their personal and other info.
 - See all full information Dog, Club number, Stud Book number, Owner, Breeder, Kennel, Litter, Health information, Breeding information, Birth Certificate, Confirmation Of Mating
 - Add all full information Dog, Club number, Stud Book number, Owner, Breeder, Kennel, Litter, Health information, Breeding information, Birth Certificate, Confirmation Of Mating
 - Can't change information
@@ -24,7 +25,8 @@
 
 ### Aministrator
 
-- Register add User (all User), log and logout.
+- Register all User. add User role , log and logout.
+- My profile menu to edit/delete their personal and other info.
 - Add, Create edit Role user
 - See all full information Dog, Club number, Stud Book number, Owner, Breeder, Kennel, Litter
 - Add all full information Dog, Club number, Stud Book number, Owner, Breeder, Kennel, Litter
