@@ -1,12 +1,12 @@
 # Dalmatian Database
 
-##Functionality
+## Functionality
 
-##Users:
+## Users:
 
-##Member dog club kennel
+## Member dog club kennel
 
-##Aministrator
+## Aministrator
 
 ## Build status
 
