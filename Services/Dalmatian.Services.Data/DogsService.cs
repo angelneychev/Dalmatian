@@ -317,6 +317,7 @@ namespace Dalmatian.Services.Data
         {
            var dogBaer = this.healthInformationRepository
                 .All()
+                .Where(x => x.Baer > 0)
                 .To<T>();
 
            return dogBaer.To<T>().ToList();
@@ -350,6 +351,15 @@ namespace Dalmatian.Services.Data
         public IEnumerable GetDogNewRegister()
         {
             return this.dogsRepository.All().OrderBy(x => x.CreatedOn).To<DogNewRegisterViewModel>().Take(10);
+        }
+
+        public IEnumerable<DogHealtViewModel> GetDogByHealthTest()
+        { 
+            var baer = this.healthInformationRepository.All().Where(x=> x.Baer > 0);
+
+            var dog = this.dogsRepository.All().OrderBy(x => x.CreatedOn).To<DogHealtViewModel>(baer);
+
+            return dog;
         }
     }
 }

@@ -40,5 +40,7 @@ namespace Dalmatian.Services.Data
         int GetDogDeadCount();
 
         public IEnumerable GetDogNewRegister();
+
+        public IEnumerable<DogHealtViewModel> GetDogByHealthTest();
     }
 }

@@ -115,42 +115,47 @@
             <div class="table-responsive-sm">
                 <table class="table table-bordered border-dark rounded-circle">
                     <thead class="table-primary">
-                        <tr>
-                            <th valig="top">Name</th>
-                            <th valig="top">Country</th>
-                            <th valig="top">City</th>
-                            <th valig="top">Web site</th>
-                            <th valig="top">Phone</th>
-                            <th valig="top">Email</th>
-                            <th valig="top">Facebook</th>
-                            <th valig="top">Twitter</th>
-                            <th valig="top">Instagram</th>
-                            <th valig="top">Linkedin</th>
-                        </tr>
+                    <tr>
+                        <h4>Last 10 registered persons</h4>
+                    </tr>
+                    </thead>
+                    <thead class="table-primary">
+                    <tr>
+                        <th valig="top">Name</th>
+                        <th valig="top">Country</th>
+                        <th valig="top">City</th>
+                        <th valig="top">Web site</th>
+                        <th valig="top">Phone</th>
+                        <th valig="top">Email</th>
+                        <th valig="top">Facebook</th>
+                        <th valig="top">Twitter</th>
+                        <th valig="top">Instagram</th>
+                        <th valig="top">Linkedin</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        @foreach (var person in Model.Persons)
-                        {
+                    @foreach (var person in Model.Persons)
+                    {
 
-                            <tr class="table-bordered bg-white">
-                                <td valig="top">
-                                    <span>
-                                        @person.Firstname
-                                        @person.Lastname
-                                        @person.Middlename
-                                    </span>
-                                </td>
-                                <td>@person.Country.GetEnumDisplayName()</td>
-                                <td valig="top">@person.City</td>
-                                <td valig="top"><a class="" href="@person.Website" target="_blank">@person.Website</a></td>
-                                <td valig="top">@person.Phone</td>
-                                <td valig="top">@person.Email</td>
-                                <td valig="top"><a class="" href="@person.Facebook" target="_blank">@person.Facebook</a></td>
-                                <td valig="top"><a class="" href="@person.Twitter" target="_blank">@person.Twitter</a></td>
-                                <td valign="top"><a class="" href="@person.Instagram" target="_blank">@person.Instagram</a></td>
-                                <td valign="top"><a class="" href="@person.Linkedin" target="_blank">@person.Linkedin</a></td>
-                            </tr>
-                        }
+                        <tr class="table-bordered bg-white">
+                            <td valig="top">
+                                <span>
+                                    @person.Firstname
+                                    @person.Lastname
+                                    @person.Middlename
+                                </span>
+                            </td>
+                            <td>@person.Country.GetEnumDisplayName()</td>
+                            <td valig="top">@person.City</td>
+                            <td valig="top"><a class="" href="@person.Website" target="_blank">@person.Website</a></td>
+                            <td valig="top">@person.Phone</td>
+                            <td valig="top">@person.Email</td>
+                            <td valig="top"><a class="" href="@person.Facebook" target="_blank">@person.Facebook</a></td>
+                            <td valig="top"><a class="" href="@person.Twitter" target="_blank">@person.Twitter</a></td>
+                            <td valign="top"><a class="" href="@person.Instagram" target="_blank">@person.Instagram</a></td>
+                            <td valign="top"><a class="" href="@person.Linkedin" target="_blank">@person.Linkedin</a></td>
+                        </tr>
+                    }
                     </tbody>
                 </table>
             </div>

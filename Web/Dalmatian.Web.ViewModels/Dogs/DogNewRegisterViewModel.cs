@@ -1,6 +1,4 @@
-﻿using Dalmatian.Web.ViewModels.Persons;
-
-namespace Dalmatian.Web.ViewModels.Dogs
+﻿namespace Dalmatian.Web.ViewModels.Dogs
 {
     using System;
     using System.Collections.Generic;

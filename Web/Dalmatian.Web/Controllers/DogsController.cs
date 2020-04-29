@@ -113,5 +113,15 @@ namespace Dalmatian.Web.Controllers
 
             return this.Redirect($"/club-dogs/{input.PedigreeName.Replace(' ', '-') + "-" + input.Id}");
         }
+
+        [Authorize(Roles = "Administrator, ClubMember")]
+        public IActionResult GetDogByHealth()
+        {
+            var viewModel = new DogAllHealtViewModel
+            {
+                DogHealtViewModels = this.dogsService.GetDogByHealthTest(),
+            };
+            return this.View(viewModel);
+        }
     }
 }

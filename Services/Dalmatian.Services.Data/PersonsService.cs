@@ -144,7 +144,6 @@
 
         public IEnumerable<PersonViewModel> GetTenPersons()
         {
-
             return this.personRepository.All().OrderBy(x => x.CreatedOn).To<PersonViewModel>().Take(10);
         }
     }
