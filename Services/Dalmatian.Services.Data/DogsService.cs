@@ -321,5 +321,35 @@ namespace Dalmatian.Services.Data
 
            return dogBaer.To<T>().ToList();
         }
+
+        public int GetDogCount()
+        {
+            return this.dogsRepository.All().Count();
+        }
+
+        public int GetDogBaerTestCount()
+        {
+            return this.healthInformationRepository.All().Count(x => x.Baer > 0);
+        }
+
+        public int GetDogHipRatingCount()
+        {
+            return this.healthInformationRepository.All().Count(x => x.HipRating > 0);
+        }
+
+        public int GetDogLiveCount()
+        {
+            return this.dogsRepository.All().Count(x => x.DateOfDeath == null);
+        }
+
+        public int GetDogDeadCount()
+        {
+            return this.dogsRepository.All().Count(x => x.DateOfDeath != null);
+        }
+
+        public IEnumerable GetDogNewRegister()
+        {
+            return this.dogsRepository.All().OrderBy(x => x.CreatedOn).To<DogNewRegisterViewModel>().Take(10);
+        }
     }
 }

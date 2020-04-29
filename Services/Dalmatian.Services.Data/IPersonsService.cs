@@ -28,5 +28,7 @@
         public PersonToDogs GetByPersonToDogId(int id);
 
         public BreederToDogViewModel GetByBreederToDogId(int id);
+
+        public IEnumerable<PersonViewModel> GetTenPersons();
     }
 }

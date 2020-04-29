@@ -29,5 +29,16 @@ namespace Dalmatian.Services.Data
 
         public IEnumerable<T> GetAllBaers<T>();
 
+        int GetDogCount();
+
+        int GetDogBaerTestCount();
+
+        int GetDogHipRatingCount();
+
+        int GetDogLiveCount();
+
+        int GetDogDeadCount();
+
+        public IEnumerable GetDogNewRegister();
     }
 }
