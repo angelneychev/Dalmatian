@@ -1,6 +1,6 @@
 # Dalmatian Stud Book
 
-### Functionality:
+## Functionality:
 
 ### Users
 
