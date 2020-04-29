@@ -1,8 +1,7 @@
-﻿using System.Collections;
-
-namespace Dalmatian.Services.Data
+﻿namespace Dalmatian.Services.Data
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
@@ -11,6 +10,7 @@ namespace Dalmatian.Services.Data
     using CloudinaryDotNet;
     using Dalmatian.Data.Common.Repositories;
     using Dalmatian.Data.Models;
+    using Dalmatian.Data.Models.Enum;
     using Dalmatian.Services.Data.Common;
     using Dalmatian.Services.Mapping;
     using Dalmatian.Web.ViewModels.Dogs;
@@ -159,8 +159,7 @@ namespace Dalmatian.Services.Data
 
         public async Task UpdateDog(DogEditViewModel input)
         {
-
-            var dog = this.dogsRepository.All().Where(x => x.Id == input.Id).FirstOrDefault(); ;
+            var dog = this.dogsRepository.All().Where(x => x.Id == input.Id).FirstOrDefault();
 
             var clubNumber =
                 this.clubRegisterNumberRepository.All().Where(x => x.DogId == input.Id).FirstOrDefault();
@@ -179,7 +178,6 @@ namespace Dalmatian.Services.Data
                 dog.PedigreeName = input.PedigreeName;
                 dog.Breed = input.Breed;
                 dog.SexDog = input.SexDog;
-                //dog.ImagesUrl = imageUrl;
                 dog.DateOfBirth = input.DateOfBirth;
                 dog.DateOfDeath = input.DateOfDeath;
                 dog.Color = input.Color;
@@ -239,9 +237,6 @@ namespace Dalmatian.Services.Data
             await this.healthInformationRepository.SaveChangesAsync();
             await this.breedingInformationRepository.SaveChangesAsync();
         }
-
-
-
 
         public async Task<int> CreateAsync(DogCreateInputModel input)
         {
@@ -348,18 +343,58 @@ namespace Dalmatian.Services.Data
             return this.dogsRepository.All().Count(x => x.DateOfDeath != null);
         }
 
+        public int GetDogMaleCount()
+        {
+            return this.dogsRepository.All().Count(x => x.SexDog == SexDog.Male);
+        }
+
+        public int GetDogFemaleCount()
+        {
+            return this.dogsRepository.All().Count(x => x.SexDog == SexDog.Female);
+        }
+
+        public int GetDogColorBrownCount()
+        {
+            return this.dogsRepository.All().Count(x => x.SexDog == SexDog.Female);
+        }
+
+        public int GetDogColorBlackCount()
+        {
+            return this.dogsRepository.All().Count(x => x.SexDog == SexDog.Female);
+        }
+
         public IEnumerable GetDogNewRegister()
         {
             return this.dogsRepository.All().OrderBy(x => x.CreatedOn).To<DogNewRegisterViewModel>().Take(10);
         }
 
         public IEnumerable<DogHealtViewModel> GetDogByHealthTest()
-        { 
-            var baer = this.healthInformationRepository.All().Where(x=> x.Baer > 0);
+        {
+            var baer = this.healthInformationRepository.All().Where(x => x.Baer > 0);
 
             var dog = this.dogsRepository.All().OrderBy(x => x.CreatedOn).To<DogHealtViewModel>(baer);
 
             return dog;
+        }
+
+        public IEnumerable<DogSexViewMode> GetDogMale()
+        {
+            return this.dogsRepository.All().OrderBy(x => x.CreatedOn).To<DogSexViewMode>().Where(x => x.SexDog == SexDog.Male);
+        }
+
+        public IEnumerable<DogSexViewMode> GetDogFemale()
+        {
+            return this.dogsRepository.All().OrderBy(x => x.CreatedOn).To<DogSexViewMode>().Where(x => x.SexDog == SexDog.Female);
+        }
+
+        public IEnumerable<DogColorViewModel> GetDogColorBrown()
+        {
+            return this.dogsRepository.All().OrderBy(x => x.CreatedOn).To<DogColorViewModel>().Where(x => x.Color == Color.WBLS);
+        }
+
+        public IEnumerable<DogColorViewModel> GetDogColorBlack()
+        {
+            return this.dogsRepository.All().OrderBy(x => x.CreatedOn).To<DogColorViewModel>().Where(x => x.Color == Color.WBBS);
         }
     }
 }

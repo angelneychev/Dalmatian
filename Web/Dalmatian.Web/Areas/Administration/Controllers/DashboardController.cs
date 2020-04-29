@@ -29,11 +29,16 @@ namespace Dalmatian.Web.Areas.Administration.Controllers
                 DogCount = this.dogsService.GetDogCount(),
                 DogBaerTestCount = this.dogsService.GetDogBaerTestCount(),
                 DogHipRatingCount = this.dogsService.GetDogHipRatingCount(),
-                GetDogLiveCount = this.dogsService.GetDogLiveCount(),
-                GetDogDeadCount = this.dogsService.GetDogDeadCount(),
+                DogLiveCount = this.dogsService.GetDogLiveCount(),
+                DogDeadCount = this.dogsService.GetDogDeadCount(),
                 DogNewRegisters = this.dogsService.GetDogNewRegister().Cast<DogNewRegisterViewModel>(),
                 Persons = this.persons.GetTenPersons(),
+                DogMaleCount = this.dogsService.GetDogMaleCount(),
+                DogFemaleCount = this.dogsService.GetDogFemaleCount(),
+                DogColorBlackCount = this.dogsService.GetDogColorBlackCount(),
+                DogColorBrownCount = this.dogsService.GetDogColorBrownCount(),
             };
+
             return this.View(viewModel);
         }
     }

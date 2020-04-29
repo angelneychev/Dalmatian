@@ -26,6 +26,8 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+               
+
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
@@ -55,13 +57,18 @@
                                     <a class="dropdown-item" asp-area="" asp-controller="Persons" asp-action="Index">List Persons</a>
                                     <a class="dropdown-item" asp-area="" asp-controller="ConfirmationOfMating" asp-action="Index">Confirmation of mating </a>
                                     <a class="dropdown-item" asp-area="" asp-controller="BirthCertificates" asp-action="Index"> Birth Certificates</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Dogs" asp-action="GetDogByHealth"> Health Informations</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Dogs" asp-action="GetDogMale">Dog Male</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Dogs" asp-action="GetDogFemale">Dog Female</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Dogs" asp-action="GetByDogColorBlack">Dog white, Black spots</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Dogs" asp-action="GetByDogColorBrown">Dog white, Brown spots</a>
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Contacts" asp-action="Index">List Kennel</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Contacts" asp-action="Index">Contact</a>
                             </li>
                         }
-                        else if((!this.User.IsInRole(GlobalConstants.AdministratorRoleName)) && (!this.User.IsInRole(GlobalConstants.ClubMemberRoleName)))
+                        else if ((!this.User.IsInRole(GlobalConstants.AdministratorRoleName)) && (!this.User.IsInRole(GlobalConstants.ClubMemberRoleName)))
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-primary" asp-area="" asp-controller="Kennels" asp-action="Index">List Kennel</a>

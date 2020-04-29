@@ -10,7 +10,7 @@
 @if (Model.Any())
 {
     <a asp-area="Identity" asp-page="/Account/Register"
-       class="btn btn-primary mb-3" style="width:auto">
+       class="btn btn-outline-danger mb-3" style="width:auto">
         Add new user
     </a>
 
@@ -19,13 +19,10 @@
         <div class="card mb-3">
             <div class="card-body">
                 <h5 class="card-title">@user.UserName</h5>
-                <a href="#" class="btn btn-danger">Edit</a>
-                <a href="#" class="btn btn-danger">Delete</a>
-
             </div>
             <div class="card-footer">
                 <a asp-action="ManageUserRoles" asp-route-userId="@user.Id"
-                   class="btn btn-primary">
+                   class="btn btn-outline-primary">
                     Manage Roles
                 </a>
             </div>
@@ -43,10 +40,6 @@ else
             <h5 class="card-title">
                 Use the button below to create a user
             </h5>
-            @*<a class="btn btn-primary" style="width:auto"
-               asp-controller="Account" asp-action="Register">
-                Add new user
-            </a>*@
         </div>
     </div>
 }

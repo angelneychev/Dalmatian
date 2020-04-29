@@ -1,11 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Dalmatian.Web.ViewModels.Kennels;
-using Microsoft.EntityFrameworkCore.Internal;
-
-namespace Dalmatian.Web.Controllers
+﻿namespace Dalmatian.Web.Controllers
 {
-
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Dalmatian.Data.Common.Repositories;
@@ -13,10 +9,12 @@ namespace Dalmatian.Web.Controllers
     using Dalmatian.Services.Data;
     using Dalmatian.Web.ViewModels.ClubRegisterNumber;
     using Dalmatian.Web.ViewModels.Dogs;
+    using Dalmatian.Web.ViewModels.Kennels;
     using Dalmatian.Web.ViewModels.Persons;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore.Internal;
 
     public class DogsController : Controller
     {
@@ -120,6 +118,46 @@ namespace Dalmatian.Web.Controllers
             var viewModel = new DogAllHealtViewModel
             {
                 DogHealtViewModels = this.dogsService.GetDogByHealthTest(),
+            };
+            return this.View(viewModel);
+        }
+
+        [Authorize(Roles = "Administrator, ClubMember")]
+        public IActionResult GetDogMale()
+        {
+            var viewModel = new DogAllSexViewModel
+            {
+                DogSexViewMode = this.dogsService.GetDogMale(),
+            };
+            return this.View(viewModel);
+        }
+
+        [Authorize(Roles = "Administrator, ClubMember")]
+        public IActionResult GetDogFemale()
+        {
+            var viewModel = new DogAllSexViewModel
+            {
+                DogSexViewMode = this.dogsService.GetDogFemale(),
+            };
+            return this.View(viewModel);
+        }
+
+        [Authorize(Roles = "Administrator, ClubMember")]
+        public IActionResult GetByDogColorBlack()
+        {
+            var viewModel = new DogAllColorViewModel
+            {
+                DogColorViewModels = this.dogsService.GetDogColorBlack(),
+            };
+            return this.View(viewModel);
+        }
+
+        [Authorize(Roles = "Administrator, ClubMember")]
+        public IActionResult GetByDogColorBrown()
+        {
+            var viewModel = new DogAllColorViewModel
+            {
+                DogColorViewModels = this.dogsService.GetDogColorBrown(),
             };
             return this.View(viewModel);
         }

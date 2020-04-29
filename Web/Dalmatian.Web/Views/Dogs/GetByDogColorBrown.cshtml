@@ -1,7 +1,9 @@
 ﻿@using Dalmatian.Web.Infrastructure
-@model Dalmatian.Web.ViewModels.Dogs.DogAllHealtViewModel
+@using Dalmatian.Web.ViewModels.Dogs
+
+@model DogAllColorViewModel
 @{
-    ViewData["Title"] = "DogForBaerTest";
+    ViewData["Title"] = "By Dog Male";
 }
 
     <div class="container-fluid">
@@ -15,7 +17,7 @@
                                 <table class="table table-bordered border-dark align-middle align-center text-md-center">
                                     <thead class="table-primary">
                                         <tr>
-                                            <h4>Health Informations all Dog</h4>
+                                            <h4>Report dog color white, brown spots"</h4>
                                         </tr>
                                     </thead>
                                     <thead class="table-primary">
@@ -26,10 +28,6 @@
                                             <th>Date of birth</th>
                                             <th>Sex</th>
                                             <th>Color</th>
-                                            <th>Baer test</th>
-                                            <th>Date Baer test</th>
-                                            <th>Date Hip Rating</th>
-                                            <th>Hip Rating</th>
                                             <th>Breeder</th>
                                             <th>Owner</th>
                                             <th>Breed kennel club register number</th>
@@ -37,30 +35,26 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (var dog in Model.DogHealtViewModels)
+                                        @foreach (var dog in Model.DogColorViewModels)
                                         {
 
                                             <tr class="table-bordered bg-white">
                                                 <td valign="top">
-                                                @if (!string.IsNullOrEmpty(dog.ImagesUrl))
-                                                {
-                                                    <img id="myImg" src="@dog.ImagesUrl" alt="@dog.PedigreeName" style="width: 100%; max-width: 50px" class="rounded mx-auto d-block">
-                                                }
-                                                else
-                                                {
-                                                    <img id="myImg" src="/Images/logo_doc_BDK.jpg" alt="@dog.PedigreeName" style="width: 100%; max-width: 50px" class="rounded mx-auto d-block">
+                                                    @if (!string.IsNullOrEmpty(dog.ImagesUrl))
+                                                    {
+                                                        <img id="myImg" src="@dog.ImagesUrl" alt="@dog.PedigreeName" style="width: 100%; max-width: 50px" class="rounded mx-auto d-block">
+                                                    }
+                                                    else
+                                                    {
+                                                        <img id="myImg" src="/Images/logo_doc_BDK.jpg" alt="@dog.PedigreeName" style="width: 100%; max-width: 50px" class="rounded mx-auto d-block">
 
-                                                }
+                                                    }
                                                 </td>
                                                 <td valign="top"><a class="fa-link" href="@dog.RedirectUrl">@dog.PedigreeName</a></td>
                                                 <td valign="top">@dog.Breed.GetEnumDisplayName()</td>
                                                 <td valign="top">@dog.DateOfBirth?.ToShortDateString()</td>
                                                 <td valign="top">@dog.SexDog.GetEnumDisplayName()</td>
                                                 <td valign="top">@dog.Color.GetEnumDisplayName()</td>
-                                                <td valign="top">@dog.Baer.GetEnumDisplayName()</td>
-                                                <td valign="top">@dog.DateOfBaer?.ToShortDateString()</td>
-                                                <td valign="top">@dog.HipRating.GetEnumDisplayName()</td>
-                                                <td valign="top">@dog.DateOfHipRating?.ToShortDateString()</td>
                                                 <td valign="top">
                                                     @if (dog.PersonBreederId != null)
                                                     {

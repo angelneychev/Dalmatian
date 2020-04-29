@@ -13,9 +13,17 @@
 
         public int DogHipRatingCount { get; set; }
 
-        public int GetDogLiveCount { get; set; }
+        public int DogLiveCount { get; set; }
 
-        public int GetDogDeadCount { get; set; }
+        public int DogDeadCount { get; set; }
+
+        public int DogMaleCount { get; set; }
+
+        public int DogFemaleCount { get; set; }
+
+        public int DogColorBrownCount { get; set; }
+
+        public int DogColorBlackCount { get; set; }
 
         public IEnumerable<DogNewRegisterViewModel> DogNewRegisters { get; set; }
 

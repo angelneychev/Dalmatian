@@ -39,8 +39,24 @@ namespace Dalmatian.Services.Data
 
         int GetDogDeadCount();
 
+        int GetDogMaleCount();
+
+        int GetDogFemaleCount();
+
+        int GetDogColorBrownCount();
+
+        int GetDogColorBlackCount();
+
         public IEnumerable GetDogNewRegister();
 
         public IEnumerable<DogHealtViewModel> GetDogByHealthTest();
+
+        public IEnumerable<DogSexViewMode> GetDogMale();
+
+        public IEnumerable<DogSexViewMode> GetDogFemale();
+
+        public IEnumerable<DogColorViewModel> GetDogColorBrown();
+
+        public IEnumerable<DogColorViewModel> GetDogColorBlack();
     }
 }
