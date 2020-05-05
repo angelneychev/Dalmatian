@@ -1,0 +1,64 @@
+﻿@using Dalmatian.Web.ViewModels.BirthCertificate;
+@model BirthCertificateViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container-fluid">
+    <div class="row justify-content-md-center">
+        <div class="col-auto">
+            <div class="table-responsive-sm">
+                <table class="table table-bordered border-dark rounded-circle">
+                    <thead class="table-primary">
+                        <tr>
+                            <h4>Birth Certificate of Litter</h4>
+                        </tr>
+                    </thead>
+                    <thead class="table-primary">
+                        <tr>
+                            <th valig="top">Registration number</th>
+                            <th valig="top">LetterOfLitter</th>
+                            <th valig="top">Date Of Birth</th>
+                            <th valig="top">Confirmation Number</th>
+                            <th valig="top">Number Of Puppies</th>
+                            <th valig="top">Number Of Males</th>
+                            <th valig="top">Number Of Females</th>
+                            <th valig="top">Breeder</th>
+                            <th valig="top">Dog Kennel</th>
+                            <th valig="top">Edit</th>
+                        </tr>
+                    </thead>
+                        <tbody>
+                            <tr class="table-bordered bg-white">
+                                <td valig="top">@Model.RegistrationNumber</td>
+                                <td valig="top">@Model.LetterOfLitter</td>
+                                <td valig="top">@Model.DateOfBirth.ToShortDateString()</td>
+                                <td valig="top">@Model.ConfirmationOfMating.RegistrationNumber</td>
+                                <td valig="top">@Model.NumberOfPuppies</td>
+                                <td valig="top">@Model.NumberOfMales</td>
+                                <td valig="top">@Model.NumberOfFemales</td>
+                                <td valig="top">
+                                    <span>
+                                        @Model.Person.Firstname
+                                        @Model.Person.Middlename
+                                        @Model.Person.Lastname
+                                    </span>
+                                </td>
+                                <td valig="top">@Model.Kennel.Name</td>
+                                <td valig="top">
+                                    @if (this.User.IsInRole("Administrator"))
+                                    {
+                                        <a class="btn btn-sm btn-primary " asp-action="Edit" asp-controller="BirthCertificates" asp-route-id="@Model.Id">Edit</a>
+                                    }
+                                    else
+                                    {
+                                        <a class="btn btn-sm btn-outline-secondary disabled">Edit</a>
+                                    }
+                            </tr>
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

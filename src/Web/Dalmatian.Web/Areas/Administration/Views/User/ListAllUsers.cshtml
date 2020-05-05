@@ -1,0 +1,46 @@
+﻿@using Dalmatian.Data.Models;
+@model IEnumerable<ApplicationUser>
+
+@{
+    ViewData["Title"] = "All Users";
+}
+
+<h1>List All Users</h1>
+
+@if (Model.Any())
+{
+    <a asp-area="Identity" asp-page="/Account/Register"
+       class="btn btn-outline-danger mb-3" style="width:auto">
+        Add new user
+    </a>
+
+    foreach (var user in Model)
+    {
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">@user.UserName</h5>
+            </div>
+            <div class="card-footer">
+                <a asp-action="ManageUserRoles" asp-route-userId="@user.Id"
+                   class="btn btn-outline-primary">
+                    Manage Roles
+                </a>
+            </div>
+
+        </div>
+    }
+}
+else
+{
+    <div class="card">
+        <div class="card-header">
+            No users created yet
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">
+                Use the button below to create a user
+            </h5>
+        </div>
+    </div>
+}
+

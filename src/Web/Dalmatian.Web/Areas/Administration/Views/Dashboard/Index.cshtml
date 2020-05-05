@@ -1,0 +1,191 @@
+﻿@using Dalmatian.Web.Infrastructure
+@using Dalmatian.Common
+@model Dalmatian.Web.ViewModels.Administration.Dashboard.IndexViewModel
+@{
+    this.ViewData["Title"] = "Statistics for dog club!";
+}
+
+<h1>@this.ViewData["Title"]</h1>
+
+<div class="alert alert-light" role="alert">
+        <button type="button" class="btn btn-success">
+            Count of Register dog <span class="badge badge-light">@this.Model.DogCount</span>
+        </button>
+ 
+        <button type="button" class="btn btn-warning">
+            Count of dog Baer Test <span class="badge badge-light">@this.Model.DogBaerTestCount</span>
+        </button>
+
+        <button type="button" class="btn btn-warning">
+            Count of dog Hip Rating <span class="badge badge-light">@this.Model.DogHipRatingCount</span>
+        </button>
+
+        <button type="button" class="btn btn-info">
+            Count of dog Live <span class="badge badge-light">@this.Model.DogLiveCount</span>
+        </button>
+
+        <button type="button" class="btn btn-dark">
+            Count of dog Dead <span class="badge badge-light">@this.Model.DogDeadCount</span>
+        </button>
+
+        <button type="button" class="btn btn-info">
+            Count of dog Male <span class="badge badge-light">@this.Model.DogMaleCount</span>
+        </button>
+
+        <button type="button" class="btn btn-info">
+            Count of dog Female <span class="badge badge-light">@this.Model.DogFemaleCount</span>
+        </button>
+
+        <button type="button" class="btn btn-info">
+            Dog black spots <span class="badge badge-light">@this.Model.DogColorBlackCount</span>
+        </button>
+
+        <button type="button" class="btn btn-info">
+            Dog brown spots <span class="badge badge-light">@this.Model.DogColorBrownCount</span>
+        </button>
+
+        <p class="mb-0"></p>
+</div>
+
+<div class="container-fluid">
+
+    <div class="row justify-content-md-center">
+        <div class="col-auto">
+            <div class="table-responsive-sm">
+                <div class="row">
+                    <div class="col-auto">
+                        <div class="table-responsive-sm">
+                            <table class="table table-bordered border-dark align-middle align-center text-md-center">
+                                <thead class="table-primary">
+                                    <tr>
+                                        <h4>Last 10 registered dogs</h4>
+                                    </tr>
+                                </thead>
+                                <thead class="table-primary">
+                                    <tr>
+                                        <th>Photo</th>
+                                        <th>PedigreeName</th>
+                                        <th>Date of birth</th>
+                                        <th>Date of birth</th>
+                                        <th>Sex</th>
+                                        <th>Color</th>
+                                        <th>Breeder</th>
+                                        <th>Owner</th>
+                                        <th>Breed kennel club register number</th>
+                                        <th>Kennel club register number</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var dog in Model.DogNewRegisters)
+                                    {
+
+                                        <tr class="table-bordered bg-white">
+                                            <td valign="top">
+                                                <img id="myImg" src="@dog.ImagesUrl" alt="@dog.PedigreeName" style="width: 100%; max-width: 50px" class="rounded mx-auto d-block">
+                                                <div id="myModal" class="modal">
+
+                                                    <!-- The Close Button -->
+                                                    <span class="close">&times;</span>
+
+                                                    <!-- Modal Content (The Image) -->
+                                                    <img class="modal-content" id="img01">
+
+                                                    <!-- Modal Caption (Image Text) -->
+                                                    <div id="caption"></div>
+                                                </div>
+                                            </td>
+                                            <td valign="top"><a class="fa-link" href="@dog.RedirectUrl">@dog.PedigreeName</a></td>
+                                            <td valign="top">@dog.Breed.GetEnumDisplayName()</td>
+                                            <td valign="top">@dog.DateOfBirth?.ToShortDateString()</td>
+                                            <td valign="top">@dog.SexDog.GetEnumDisplayName()</td>
+                                            <td valign="top">@dog.Color.GetEnumDisplayName()</td>
+                                            <td valign="top">
+                                                @if (dog.PersonBreederId != null)
+                                                {
+                                                    <a class="" asp-action="BreederToDog" asp-controller="Persons" asp-route-id="@dog.PersonBreederId">
+                                                        <span>
+                                                            @dog.PersonBreeder.Firstname
+                                                            @dog.PersonBreeder.Lastname
+                                                            @dog.PersonBreeder.Middlename
+                                                        </span>
+                                                    </a>
+                                                }
+                                            </td>
+                                            <td valign="top">
+                                                @if (dog.PersonOwnerId != null)
+                                                {
+                                                    <a class="" asp-action="PersonToDog" asp-controller="Persons" asp-route-id="@dog.PersonOwnerId">
+                                                        <span>
+                                                            @dog.PersonOwner.Firstname
+                                                            @dog.PersonOwner.Lastname
+                                                            @dog.PersonOwner.Middlename
+                                                        </span>
+                                                    </a>
+                                                }
+                                            </td>
+                                            <td valign="top">
+                                                @dog.ClubRegisterNumbers.Select(x => x.ClubNumber).FirstOrDefault()
+                                            </td>
+                                            <td valign="top">
+                                                @dog.RegistrationDogNumbers.Select(x => x.RegistrationNumber).FirstOrDefault()
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="table-responsive-sm">
+                <table class="table table-bordered border-dark rounded-circle">
+                    <thead class="table-primary">
+                    <tr>
+                        <h4>Last 10 registered persons</h4>
+                    </tr>
+                    </thead>
+                    <thead class="table-primary">
+                    <tr>
+                        <th valig="top">Name</th>
+                        <th valig="top">Country</th>
+                        <th valig="top">City</th>
+                        <th valig="top">Web site</th>
+                        <th valig="top">Phone</th>
+                        <th valig="top">Email</th>
+                        <th valig="top">Facebook</th>
+                        <th valig="top">Twitter</th>
+                        <th valig="top">Instagram</th>
+                        <th valig="top">Linkedin</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var person in Model.Persons)
+                    {
+
+                        <tr class="table-bordered bg-white">
+                            <td valig="top">
+                                <span>
+                                    @person.Firstname
+                                    @person.Lastname
+                                    @person.Middlename
+                                </span>
+                            </td>
+                            <td>@person.Country.GetEnumDisplayName()</td>
+                            <td valig="top">@person.City</td>
+                            <td valig="top"><a class="" href="@person.Website" target="_blank">@person.Website</a></td>
+                            <td valig="top">@person.Phone</td>
+                            <td valig="top">@person.Email</td>
+                            <td valig="top"><a class="" href="@person.Facebook" target="_blank">@person.Facebook</a></td>
+                            <td valig="top"><a class="" href="@person.Twitter" target="_blank">@person.Twitter</a></td>
+                            <td valign="top"><a class="" href="@person.Instagram" target="_blank">@person.Instagram</a></td>
+                            <td valign="top"><a class="" href="@person.Linkedin" target="_blank">@person.Linkedin</a></td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

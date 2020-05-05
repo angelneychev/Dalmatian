@@ -1,0 +1,109 @@
+﻿@using Dalmatian.Web.Infrastructure
+@using Dalmatian.Web.ViewModels.Dogs
+
+@model DogAllSexViewModel
+@{
+    ViewData["Title"] = "By Dog Male";
+}
+
+    <div class="container-fluid">
+
+        <div class="row justify-content-md-center">
+            <div class="col-auto">
+                <div class="table-responsive-sm">
+                    <div class="row">
+                        <div class="col-auto">
+                            <div class="table-responsive-sm">
+                                <table class="table table-bordered border-dark align-middle align-center text-md-center">
+                                    <thead class="table-primary">
+                                        <tr>
+                                            <h4>Report Male dog</h4>
+                                        </tr>
+                                    </thead>
+                                    <thead class="table-primary">
+                                        <tr>
+                                            <th>Photo</th>
+                                            <th>PedigreeName</th>
+                                            <th>Date of birth</th>
+                                            <th>Date of birth</th>
+                                            <th>Sex</th>
+                                            <th>Color</th>
+                                            <th>Breeder</th>
+                                            <th>Owner</th>
+                                            <th>Breed kennel club register number</th>
+                                            <th>Kennel club register number</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var dog in Model.DogSexViewMode)
+                                        {
+
+                                            <tr class="table-bordered bg-white">
+                                                <td valign="top">
+                                                    @if (!string.IsNullOrEmpty(dog.ImagesUrl))
+                                                    {
+                                                        <img id="myImg" src="@dog.ImagesUrl" alt="@dog.PedigreeName" style="width: 100%; max-width: 100px" class="rounded mx-auto d-block">
+                                                        <div id="myModal" class="modal">
+
+                                                            <!-- The Close Button -->
+                                                            <span class="close">&times;</span>
+
+                                                            <!-- Modal Content (The Image) -->
+                                                            <img class="modal-content" id="img01">
+
+                                                            <!-- Modal Caption (Image Text) -->
+                                                            <div id="caption"></div>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <img id="myImg" src="/Images/logo_doc_BDK.jpg" alt="@dog.PedigreeName" style="width: 100%; max-width: 50px" class="rounded mx-auto d-block">
+
+                                                    }
+                                                </td>
+                                                <td valign="top"><a class="fa-link" href="@dog.RedirectUrl">@dog.PedigreeName</a></td>
+                                                <td valign="top">@dog.Breed.GetEnumDisplayName()</td>
+                                                <td valign="top">@dog.DateOfBirth?.ToShortDateString()</td>
+                                                <td valign="top">@dog.SexDog.GetEnumDisplayName()</td>
+                                                <td valign="top">@dog.Color.GetEnumDisplayName()</td>
+                                                <td valign="top">
+                                                    @if (dog.PersonBreederId != null)
+                                                    {
+                                                        <a class="" asp-action="BreederToDog" asp-controller="Persons" asp-route-id="@dog.PersonBreederId">
+                                                            <span>
+                                                                @dog.PersonBreeder.Firstname
+                                                                @dog.PersonBreeder.Lastname
+                                                                @dog.PersonBreeder.Middlename
+                                                            </span>
+                                                        </a>
+                                                    }
+                                                </td>
+                                                <td valign="top">
+                                                    @if (dog.PersonOwnerId != null)
+                                                    {
+                                                        <a class="" asp-action="PersonToDog" asp-controller="Persons" asp-route-id="@dog.PersonOwnerId">
+                                                            <span>
+                                                                @dog.PersonOwner.Firstname
+                                                                @dog.PersonOwner.Lastname
+                                                                @dog.PersonOwner.Middlename
+                                                            </span>
+                                                        </a>
+                                                    }
+                                                </td>
+                                                <td valign="top">
+                                                    @dog.ClubRegisterNumbers.Select(x => x.ClubNumber).FirstOrDefault()
+                                                </td>
+                                                <td valign="top">
+                                                    @dog.RegistrationDogNumbers.Select(x => x.RegistrationNumber).FirstOrDefault()
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

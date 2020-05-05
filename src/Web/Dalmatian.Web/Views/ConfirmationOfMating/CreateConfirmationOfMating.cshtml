@@ -1,0 +1,80 @@
+﻿@using Dalmatian.Data.Models.Enum
+@using System.Collections.Immutable
+@model Dalmatian.Web.ViewModels.ConfirmationOfMating.ConfirmationOfMatingInputModel
+
+@{
+    this.ViewData["Title"] = "CreateConfirmationOfMating";
+    var sire = Model.Parents.Where(x => x.SexDog == SexDog.Male).Select(x => new SelectListItem(x.PedigreeName, x.Id.ToString()));
+    var dame = Model.Parents.Where(x => x.SexDog == SexDog.Female).Select(x => new SelectListItem(x.PedigreeName, x.Id.ToString()));
+}
+
+<div class="container">
+    <h1>Create Confirmation Of Mating</h1>
+    <form method="post" asp-action="CreateConfirmationOfMating" class="alert alert-primary">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-row">
+            <div class="col-md-5 mb-2">
+                <label asp-for="RegistrationNumber" class="control-label"></label>
+                <input asp-for="RegistrationNumber" class="form-control" />
+                <span asp-validation-for="RegistrationNumber" class="text-danger"></span>
+            </div>
+            <div class="col-md-2">
+                <label asp-for="DateOfMating" class="control-label"></label>
+                <input asp-for="DateOfMating" class="form-control" />
+                <span asp-validation-for="DateOfMating" class="text-danger"></span>
+            </div>
+            <div class="col-md-3">
+                <label asp-for="EstimatedDateOfBirth" class="control-label"></label>
+                <input asp-for="EstimatedDateOfBirth" class="form-control" />
+                <span asp-validation-for="EstimatedDateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="col-md-2">
+                <label asp-for="TypeOfMating" class="control-label"></label>
+                <select asp-for="TypeOfMating" asp-items="@Html.GetEnumSelectList<TypeOfMating>()" class="form-control">
+                    <option value="TypeOfMating">--Select--</option>
+                </select>
+                <span asp-validation-for="TypeOfMating" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6 mb-2">
+                <label asp-for="DogFatherId" class="control-label"></label>
+                <select asp-for="DogFatherId" asp-items="sire" class="form-control">
+                    <option value="">--Select--</option>
+                </select>
+                <span asp-validation-for="DogFatherId" class="text-danger"></span>
+            </div>
+            <div class="col-md-6 mb-2">
+                <label asp-for="DogMotherId" class="control-label"></label>
+                <select asp-for="DogMotherId" asp-items="dame" class="form-control">
+                    <option value="">--Select--</option>
+                </select>
+                <span asp-validation-for="DogMotherId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6 mb-2">
+                <label asp-for="OwnerMaleDog" class="control-label"></label>
+                <input asp-for="OwnerMaleDog" class="form-control" />
+                <span asp-validation-for="OwnerMaleDog" class="text-danger"></span>
+            </div>
+            <div class="col-md-6 mb-2">
+                <label asp-for="OwnerFemaleDog" class="control-label"></label>
+                <input asp-for="OwnerFemaleDog" class="form-control" />
+                <span asp-validation-for="OwnerFemaleDog" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+
+    </form>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

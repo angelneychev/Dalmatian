@@ -1,0 +1,78 @@
+﻿@using Dalmatian.Common
+@using Dalmatian.Data.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<ul class="navbar-nav">
+    @if (this.SignInManager.IsSignedIn(this.User))
+    {
+        if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+        {
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Manage Dog
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" asp-area="" asp-controller="Dogs" asp-action="CreateDog">Add Dog</a>
+                    <a class="dropdown-item" asp-controller="Kennels" asp-action="CreateKennel">Add Kennel</a>
+                    <a class="dropdown-item" asp-area="" asp-controller="Persons" asp-action="CreatePerson">Add Person</a>
+                    <a class="dropdown-item" asp-area="" asp-controller="ConfirmationOfMating" asp-action="CreateConfirmationOfMating">Add Confirmation Of Mating</a>
+                    <a class="dropdown-item" asp-area="" asp-controller="BirthCertificates" asp-action="CreateBirthCertificate">Add Birth Certificates</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Report Dog Area
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" asp-area="" asp-controller="Kennels" asp-action="Index">List Kennels</a>
+                    <a class="dropdown-item" asp-area="" asp-controller="Persons" asp-action="Index">List Persons</a>
+                    <a class="dropdown-item" asp-area="" asp-controller="ConfirmationOfMating" asp-action="Index">Confirmation of mating </a>
+                    <a class="dropdown-item" asp-area="" asp-controller="BirthCertificates" asp-action="Index">Birth Certificates</a>
+                    <a class="dropdown-item" asp-area="" asp-controller="Dogs" asp-action="GetDogByHealth">Health Informations</a>
+                    <a class="dropdown-item" asp-area="" asp-controller="Dogs" asp-action="GetDogMale">Dog Male</a>
+                    <a class="dropdown-item" asp-area="" asp-controller="Dogs" asp-action="GetDogFemale">Dog Female</a>
+                    <a class="dropdown-item" asp-area="" asp-controller="Dogs" asp-action="GetByDogColorBlack">Dog white, Black spots</a>
+                    <a class="dropdown-item" asp-area="" asp-controller="Dogs" asp-action="GetByDogColorBrown">Dog white, Brown spots</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Manage User
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" asp-area="Administration" asp-controller="User"
+                       asp-action="ListAllUsers">List Users</a>
+                    <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Register">Add Users</a>
+                    <a class="dropdown-item" asp-area="Administration" asp-controller="Role"
+                       asp-action="CreateRole">Roles</a>
+                </div>
+            </li>
+        }
+
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @(this.User.Identity.Name)!</a>
+        </li>
+        if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Administration" asp-controller="Dashboard" asp-action="Index" title="Admin">Admin</a>
+            </li>
+        }
+        <li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@(this.Url.Action("Index", "Home", new { area = string.Empty }))">
+                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+    }
+</ul>
