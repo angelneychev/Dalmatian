@@ -61,9 +61,9 @@
             services.AddRazorPages();
 
             var account = new Account(
-                this.configuration["Cloudinary:AppName"],
-                this.configuration["Cloudinary:AppKey"],
-                this.configuration["Cloudinary:AppSecret"]);
+              this.configuration["Cloudinary:AppName"],
+              this.configuration["Cloudinary:AppKey"],
+              this.configuration["Cloudinary:AppSecret"]);
 
             var cloudinary = new Cloudinary(account);
 
