@@ -1,38 +1,30 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
-name: Build and deploy ASP.Net Core app to Azure Web App - dalmatian
+name: Build and test Dalmatian
 
 on:
   push:
     branches:
       - dalmatian
+  pull_request:
+    branches:
+      - dalmatian
+
+permissions:
+  contents: read
 
 jobs:
-  build-and-deploy:
+  build-and-test:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v7.0.1
+      - uses: actions/checkout@v7.0.1
 
-    - name: Set up .NET 10
-      uses: actions/setup-dotnet@v6.0.0
-      with:
-        dotnet-version: '10.0.x'
+      - name: Set up .NET 10
+        uses: actions/setup-dotnet@v6.0.0
+        with:
+          dotnet-version: '10.0.x'
 
-    - name: Build with dotnet
-      run: dotnet build src/Dalmatian.sln --configuration Release
+      - name: Build
+        run: dotnet build src/Dalmatian.sln --configuration Release
 
-    - name: Run tests
-      run: dotnet test src/Dalmatian.sln --configuration Release --no-build
-
-    - name: dotnet publish
-      run: dotnet publish src/Web/Dalmatian.Web/Dalmatian.Web.csproj -c Release --no-build -o ${{env.DOTNET_ROOT}}/myapp
-
-    - name: Deploy to Azure Web App
-      uses: azure/webapps-deploy@v2.2.19
-      with:
-        app-name: 'dalmatian'
-        slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_b96fd8602b004290a90a53b668ec530d }}
-        package: ${{env.DOTNET_ROOT}}/myapp 
+      - name: Test
+        run: dotnet test src/Dalmatian.sln --configuration Release --no-build
