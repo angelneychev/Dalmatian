@@ -1,4 +1,4 @@
-﻿namespace Dalmatian.Web
+namespace Dalmatian.Web
 {
     using System.Reflection;
     using System.Security.Principal;
@@ -23,6 +23,7 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Microsoft.Extensions.Logging;
 
     public class Startup
     {
@@ -59,6 +60,7 @@
                 options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
             }).AddRazorRuntimeCompilation();
             services.AddRazorPages();
+            services.AddDatabaseDeveloperPageExceptionFilter();
 
             var account = new Account(
               this.configuration["Cloudinary:AppName"],
@@ -90,7 +92,7 @@
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 #pragma warning restore CA1822 // Mark members as static
         {
-            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
+            AutoMapperConfig.RegisterMappings(app.ApplicationServices.GetRequiredService<ILoggerFactory>(), typeof(ErrorViewModel).GetTypeInfo().Assembly);
 
             // Seed data on application startup
             using (var serviceScope = app.ApplicationServices.CreateScope())
@@ -109,7 +111,7 @@
             {
                 app.UseDeveloperExceptionPage();
 
-                app.UseDatabaseErrorPage();
+                app.UseMigrationsEndPoint();
             }
             else
             {

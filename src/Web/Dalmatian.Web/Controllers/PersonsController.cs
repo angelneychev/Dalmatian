@@ -1,4 +1,4 @@
-﻿namespace Dalmatian.Web.Controllers
+namespace Dalmatian.Web.Controllers
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -11,7 +11,6 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore.Internal;
 
     public class PersonsController : Controller
     {

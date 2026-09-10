@@ -1,4 +1,4 @@
-﻿namespace Dalmatian.Services.Mapping
+namespace Dalmatian.Services.Mapping
 {
     using System;
     using System.Collections.Generic;
@@ -7,6 +7,7 @@
 
     using AutoMapper;
     using AutoMapper.Configuration;
+    using Microsoft.Extensions.Logging;
 
     public static class AutoMapperConfig
     {
@@ -14,7 +15,7 @@
 
         public static IMapper MapperInstance { get; set; }
 
-        public static void RegisterMappings(params Assembly[] assemblies)
+        public static void RegisterMappings(ILoggerFactory loggerFactory, params Assembly[] assemblies)
         {
             if (initialized)
             {
@@ -48,7 +49,7 @@
                         map.CreateMappings(configuration);
                     }
                 });
-            MapperInstance = new Mapper(new MapperConfiguration(config));
+            MapperInstance = new Mapper(new MapperConfiguration(config, loggerFactory));
         }
 
         private static IEnumerable<TypesMap> GetFromMaps(IEnumerable<Type> types)

@@ -1,10 +1,9 @@
-﻿namespace Dalmatian.Web.ViewModels.ConfirmationOfMating
+namespace Dalmatian.Web.ViewModels.ConfirmationOfMating
 {
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
-    using System.Web.WebPages.Html;
 
     using Dalmatian.Data.Models;
     using Dalmatian.Data.Models.Enum;

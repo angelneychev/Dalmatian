@@ -1,11 +1,11 @@
-﻿namespace Dalmatian.Data.Seeding
+namespace Dalmatian.Data.Seeding
 {
     using System;
+    using System.Linq;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using Dalmatian.Data.Models;
     using Dalmatian.Data.Models.Enum;
-    using Microsoft.EntityFrameworkCore.Internal;
 
     public class BreedingInformationSeeder : ISeeder
     {

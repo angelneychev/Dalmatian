@@ -13,21 +13,24 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v7.0.1
 
-    - name: Set up .NET Core
-      uses: actions/setup-dotnet@v1
+    - name: Set up .NET 10
+      uses: actions/setup-dotnet@v6.0.0
       with:
-        dotnet-version: '3.0.103'
+        dotnet-version: '10.0.x'
 
     - name: Build with dotnet
-      run: dotnet build --configuration Release
+      run: dotnet build src/Dalmatian.sln --configuration Release
+
+    - name: Run tests
+      run: dotnet test src/Dalmatian.sln --configuration Release --no-build
 
     - name: dotnet publish
-      run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+      run: dotnet publish src/Web/Dalmatian.Web/Dalmatian.Web.csproj -c Release --no-build -o ${{env.DOTNET_ROOT}}/myapp
 
     - name: Deploy to Azure Web App
-      uses: azure/webapps-deploy@v1
+      uses: azure/webapps-deploy@v2.2.19
       with:
         app-name: 'dalmatian'
         slot-name: 'production'

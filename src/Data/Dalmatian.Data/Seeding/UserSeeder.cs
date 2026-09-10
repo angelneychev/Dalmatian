@@ -1,12 +1,12 @@
-﻿namespace Dalmatian.Data.Seeding
+namespace Dalmatian.Data.Seeding
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Dalmatian.Common;
     using Dalmatian.Data.Models;
     using Microsoft.AspNetCore.Identity;
-    using Microsoft.EntityFrameworkCore.Internal;
     using Microsoft.Extensions.DependencyInjection;
 
     public class UserSeeder : ISeeder
